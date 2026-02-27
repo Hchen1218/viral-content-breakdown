@@ -1,0 +1,914 @@
+{
+  "ok": true,
+  "meta": {
+    "url": "https://www.xiaohongshu.com/explore/699a71fd000000000e03fac0?xsec_token=ABZfIUlbsAE8XbJos871XDQGOl67FrAe0vJm5_KlLaNnA=&xsec_source=pc_feed",
+    "platform": "xiaohongshu",
+    "content_type": "video",
+    "fetched_at": "2026-02-25T16:01:24.437307+00:00",
+    "quality": "high",
+    "signals_extracted_at": "2026-02-25T16:11:06.094095+00:00"
+  },
+  "asset_index": {
+    "video": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.mp4"
+    ],
+    "images": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.jpg"
+    ],
+    "audio": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav"
+    ],
+    "transcript": [],
+    "cover_text": [
+      "市场部的工作涉及到很多软件"
+    ]
+  },
+  "post_content": {
+    "title": "市场部用的软件，一点也不高大上（无广",
+    "body": "希望对你有用。提前祝大家开工大吉！#小大人职场慢充bot[话题]# #年味知识罐头[话题]# #职场smalltalk[话题]# #认识100种工作[话题]# #市场部[话题]# #marketing[话题]# #市场营销[话题]# #2026校招季[话题]# @职场薯 #很会下班的我们[话题]#",
+    "tags": [
+      "小大人职场慢充bot",
+      "年味知识罐头",
+      "职场smalltalk",
+      "认识100种工作",
+      "市场部",
+      "marketing",
+      "市场营销",
+      "2026校招季",
+      "很会下班的我们"
+    ]
+  },
+  "signals": {
+    "ocr_hits": [
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_000.jpg",
+        "locator": "frame:0",
+        "text": "市场部的工作涉及到很多软件",
+        "confidence": 0.99
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_001.jpg",
+        "locator": "frame:1",
+        "text": "今天分享几款我非常喜欢的工具",
+        "confidence": 0.99
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_002.jpg",
+        "locator": "frame:2",
+        "text": "而且没有广告",
+        "confidence": 1.0
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_003.jpg",
+        "locator": "frame:3",
+        "text": "第一款是在电脑上制作动图的工具",
+        "confidence": 1.0
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_004.jpg",
+        "locator": "frame:4",
+        "text": "你只要在网页上搜索这个词就能找到",
+        "confidence": 0.99
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_005.jpg",
+        "locator": "frame:5",
+        "text": "除了AI以外",
+        "confidence": 0.99
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_006.jpg",
+        "locator": "frame:6",
+        "text": "原因是市场部需要制作",
+        "confidence": 0.99
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_007.jpg",
+        "locator": "frame:7",
+        "text": "而动图是视觉呈现的重要元素之一",
+        "confidence": 1.0
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_008.jpg",
+        "locator": "frame:8",
+        "text": "GoogleSlides来做展示汇报",
+        "confidence": 1.0
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.jpg",
+        "locator": "image:0",
+        "text": "营销人\n软件推荐",
+        "confidence": 1.0
+      }
+    ],
+    "transcript_chunks": [
+      {
+        "start": 0.0,
+        "end": 1.8,
+        "text": "这场步的工作涉及到很多的软件",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 1
+      },
+      {
+        "start": 1.8,
+        "end": 4.08,
+        "text": "今天分享几款我非常喜欢的工具",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 2
+      },
+      {
+        "start": 4.08,
+        "end": 5.64,
+        "text": "是我每一天都在使用的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 3
+      },
+      {
+        "start": 5.64,
+        "end": 7.68,
+        "text": "而且没有广告可以放心的观看",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 4
+      },
+      {
+        "start": 7.68,
+        "end": 9.84,
+        "text": "第一款是在电脑上制作动图的工具",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 5
+      },
+      {
+        "start": 9.84,
+        "end": 10.64,
+        "text": "Sojif",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 6
+      },
+      {
+        "start": 10.64,
+        "end": 12.88,
+        "text": "你只要在网页上搜索这个词就能找到",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 7
+      },
+      {
+        "start": 12.88,
+        "end": 14.4,
+        "text": "这个产品可能是过去几年里",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 8
+      },
+      {
+        "start": 14.4,
+        "end": 15.28,
+        "text": "除了AI以外",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 9
+      },
+      {
+        "start": 15.28,
+        "end": 17.24,
+        "text": "我使用屏资最高的工具之一",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 10
+      },
+      {
+        "start": 17.24,
+        "end": 20.08,
+        "text": "原因是市场步需要制作各种类型的PPT",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 11
+      },
+      {
+        "start": 20.08,
+        "end": 22.4,
+        "text": "而动图是视觉呈现的重要元素之一",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 12
+      },
+      {
+        "start": 22.4,
+        "end": 25.16,
+        "text": "我公司主要使用GoGo Slides来做展示汇报",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 13
+      },
+      {
+        "start": 25.16,
+        "end": 27.64,
+        "text": "在这种平台上特别是远程的会议",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 14
+      },
+      {
+        "start": 27.64,
+        "end": 30.8,
+        "text": "动图都播放比视频播放的效果稳定很多",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 15
+      },
+      {
+        "start": 30.8,
+        "end": 34.44,
+        "text": "Sojif不仅能帮你在几秒钟内把视频生成为动图",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 16
+      },
+      {
+        "start": 34.44,
+        "end": 36.64,
+        "text": "还能采建动图和压缩动图",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 17
+      },
+      {
+        "start": 36.64,
+        "end": 38.0,
+        "text": "这是一款付费的产品",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 18
+      },
+      {
+        "start": 38.0,
+        "end": 39.24,
+        "text": "你可以免费去试用",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 19
+      },
+      {
+        "start": 39.24,
+        "end": 42.04,
+        "text": "但花一两百元就可以享受终身的权益",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 20
+      },
+      {
+        "start": 42.04,
+        "end": 45.56,
+        "text": "我发现很多美国的Marketing同事都非常擅长使用动图",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 21
+      },
+      {
+        "start": 45.56,
+        "end": 48.08,
+        "text": "如果你能在自己的方案里多一些海外的动图",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 22
+      },
+      {
+        "start": 48.08,
+        "end": 50.04,
+        "text": "那别人可能会觉得你还挺洋气的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 23
+      },
+      {
+        "start": 50.04,
+        "end": 51.6,
+        "text": "再推荐一个记笔记的软件",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 24
+      },
+      {
+        "start": 51.6,
+        "end": 52.92,
+        "text": "Bayer 熊掌机",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 25
+      },
+      {
+        "start": 52.92,
+        "end": 55.08,
+        "text": "这是我使用最久的记笔记软件",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 26
+      },
+      {
+        "start": 55.08,
+        "end": 57.64,
+        "text": "我已经为它连续付费了四五年的时间",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 27
+      },
+      {
+        "start": 57.64,
+        "end": 59.12,
+        "text": "记笔记的软件非常多",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 28
+      },
+      {
+        "start": 59.12,
+        "end": 61.04,
+        "text": "绝大多数也比Bayer更强大",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 29
+      },
+      {
+        "start": 61.04,
+        "end": 62.64,
+        "text": "但我最看重这个软件的点",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 30
+      },
+      {
+        "start": 62.64,
+        "end": 64.76,
+        "text": "就是它足够的简单灵活",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 31
+      },
+      {
+        "start": 64.76,
+        "end": 67.44,
+        "text": "对于一个需要随时随地去做记录的人来说",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 32
+      },
+      {
+        "start": 67.44,
+        "end": 70.84,
+        "text": "最需要的是笔记软件能在没有网络的情况下",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 33
+      },
+      {
+        "start": 70.84,
+        "end": 72.76,
+        "text": "也能立刻兴起一页进行写作",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 34
+      },
+      {
+        "start": 72.76,
+        "end": 73.92,
+        "text": "而且随时保存",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 35
+      },
+      {
+        "start": 73.92,
+        "end": 75.6,
+        "text": "几乎没有遗失数据的风险",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 36
+      },
+      {
+        "start": 75.6,
+        "end": 77.72,
+        "text": "我还喜欢把所有我记不住的网易地址",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 37
+      },
+      {
+        "start": 77.72,
+        "end": 79.16,
+        "text": "全都粘贴在Bayer里面",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 38
+      },
+      {
+        "start": 79.16,
+        "end": 80.48,
+        "text": "方便快速解锁",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 39
+      },
+      {
+        "start": 80.48,
+        "end": 81.88,
+        "text": "这款软件可以免费使用",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 40
+      },
+      {
+        "start": 81.92,
+        "end": 83.76,
+        "text": "它的订阅月是每个月10块钱",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 41
+      },
+      {
+        "start": 83.76,
+        "end": 86.24,
+        "text": "订阅以后可以进行多个设备之间的同步",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 42
+      },
+      {
+        "start": 86.24,
+        "end": 88.28,
+        "text": "也可以导出更多的一些文件的格式",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 43
+      },
+      {
+        "start": 88.28,
+        "end": 90.16,
+        "text": "最后分享的可能不是一个具体工具",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 44
+      },
+      {
+        "start": 90.16,
+        "end": 91.4,
+        "text": "而是一种工作模式",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 45
+      },
+      {
+        "start": 91.4,
+        "end": 93.64,
+        "text": "就是使用日历来管理你的日程",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 46
+      },
+      {
+        "start": 93.64,
+        "end": 95.56,
+        "text": "我公司使用的是Google全家同",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 47
+      },
+      {
+        "start": 95.56,
+        "end": 97.48,
+        "text": "所以自然采用的是Google Calendar",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 48
+      },
+      {
+        "start": 97.48,
+        "end": 99.84,
+        "text": "现在我已经是日历工具的深度用户了",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 49
+      },
+      {
+        "start": 99.84,
+        "end": 102.52,
+        "text": "除了几点到几点的开会安排写进日历",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 50
+      },
+      {
+        "start": 102.52,
+        "end": 104.08,
+        "text": "我有很多同事连自己具体",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 51
+      },
+      {
+        "start": 104.08,
+        "end": 106.8,
+        "text": "几点通期的几点吃饭也都会写在日历上",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 52
+      },
+      {
+        "start": 106.8,
+        "end": 108.96,
+        "text": "通过这种方式让自己遵循计划",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 53
+      },
+      {
+        "start": 108.96,
+        "end": 110.8,
+        "text": "也能去释放大脑内存",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 54
+      },
+      {
+        "start": 110.8,
+        "end": 112.92,
+        "text": "很多讲工的效率和时间管理打卡",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 55
+      },
+      {
+        "start": 112.92,
+        "end": 114.88,
+        "text": "都会讲到用日历进行规划",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 56
+      },
+      {
+        "start": 114.88,
+        "end": 117.24,
+        "text": "其实你某个时代不再开会或者见人",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 57
+      },
+      {
+        "start": 117.24,
+        "end": 118.24,
+        "text": "而是聚焦工作",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 58
+      },
+      {
+        "start": 118.24,
+        "end": 119.64,
+        "text": "也就是你的focus time",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 59
+      },
+      {
+        "start": 119.64,
+        "end": 121.28,
+        "text": "你也可以在日历上标志出来",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 60
+      },
+      {
+        "start": 121.28,
+        "end": 122.8,
+        "text": "这样别人通常不会打扰",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 61
+      },
+      {
+        "start": 122.8,
+        "end": 125.68,
+        "text": "你也有意识的使用这段时间做你必须做的事情",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 62
+      },
+      {
+        "start": 125.68,
+        "end": 128.52,
+        "text": "避免被临时的邀请打破原本的计划",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 63
+      },
+      {
+        "start": 128.52,
+        "end": 129.68,
+        "text": "除了Google Calendar",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 64
+      },
+      {
+        "start": 129.68,
+        "end": 131.96,
+        "text": "我暂时没有深度使用过其他的日历",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 65
+      },
+      {
+        "start": 131.96,
+        "end": 133.72,
+        "text": "所以不能给你做更具体推荐了",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 66
+      },
+      {
+        "start": 133.72,
+        "end": 134.8,
+        "text": "我想最重要的是",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 67
+      },
+      {
+        "start": 134.8,
+        "end": 136.8,
+        "text": "如果你公司有对应的日历平台",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 68
+      },
+      {
+        "start": 136.8,
+        "end": 139.16,
+        "text": "你的生活日历也尽可能采用同一个版本",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 69
+      },
+      {
+        "start": 139.16,
+        "end": 140.56,
+        "text": "避免信息的混乱",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 70
+      },
+      {
+        "start": 140.56,
+        "end": 142.6,
+        "text": "同时需要提前了解你公司的文化",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 71
+      },
+      {
+        "start": 142.6,
+        "end": 144.68,
+        "text": "如果有一些私人的日程不适合透露",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 72
+      },
+      {
+        "start": 144.68,
+        "end": 145.8,
+        "text": "可以标志为BZ",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 73
+      },
+      {
+        "start": 145.8,
+        "end": 147.44,
+        "text": "此以外我最近还在尝试一件",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 74
+      },
+      {
+        "start": 147.44,
+        "end": 149.28,
+        "text": "很有讨论热度的新潮工具",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 75
+      },
+      {
+        "start": 149.28,
+        "end": 150.28,
+        "text": "比如说Typesless",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 76
+      },
+      {
+        "start": 150.28,
+        "end": 151.92,
+        "text": "它是一款让你能在任何平台上",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 77
+      },
+      {
+        "start": 151.92,
+        "end": 153.04,
+        "text": "自行语音输入",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 78
+      },
+      {
+        "start": 153.04,
+        "end": 155.4,
+        "text": "然后自动准划为文字输出的工具",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 79
+      },
+      {
+        "start": 155.4,
+        "end": 156.64,
+        "text": "如果大家对这些好奇",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 80
+      },
+      {
+        "start": 156.64,
+        "end": 157.44,
+        "text": "也请告诉我",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 81
+      },
+      {
+        "start": 157.44,
+        "end": 158.92,
+        "text": "我会再出其新的视频",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 82
+      },
+      {
+        "start": 158.92,
+        "end": 161.24,
+        "text": "如果你对市场已消和职业间感兴趣",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 83
+      },
+      {
+        "start": 161.24,
+        "end": 162.24,
+        "text": "记得关注我",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "line": 84
+      },
+      {
+        "start": null,
+        "end": null,
+        "text": "市场部用的软件，一点也不高大上（无广",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.info.json",
+        "line": 1
+      },
+      {
+        "start": null,
+        "end": null,
+        "text": "希望对你有用。提前祝大家开工大吉！#小大人职场慢充bot[话题]# #年味知识罐头[话题]# #职场smalltalk[话题]# #认识100种工作[话题]# #市场部[话题]# #marketing[话题]# #市场营销[话题]# #2026校招季[话题]# @职场薯 #很会下班的我们[话题]#",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.info.json",
+        "line": 2
+      },
+      {
+        "start": null,
+        "end": null,
+        "text": "标签: 小大人职场慢充bot 年味知识罐头 职场smalltalk 认识100种工作 市场部 marketing 市场营销 2026校招季 很会下班的我们",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.info.json",
+        "line": 3
+      }
+    ],
+    "evidence_pool": [
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_000.jpg",
+        "locator": "frame:0",
+        "snippet": "市场部的工作涉及到很多软件",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_001.jpg",
+        "locator": "frame:1",
+        "snippet": "今天分享几款我非常喜欢的工具",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_002.jpg",
+        "locator": "frame:2",
+        "snippet": "而且没有广告",
+        "confidence": 1.0
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_003.jpg",
+        "locator": "frame:3",
+        "snippet": "第一款是在电脑上制作动图的工具",
+        "confidence": 1.0
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_004.jpg",
+        "locator": "frame:4",
+        "snippet": "你只要在网页上搜索这个词就能找到",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_005.jpg",
+        "locator": "frame:5",
+        "snippet": "除了AI以外",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_006.jpg",
+        "locator": "frame:6",
+        "snippet": "原因是市场部需要制作",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_007.jpg",
+        "locator": "frame:7",
+        "snippet": "而动图是视觉呈现的重要元素之一",
+        "confidence": 1.0
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_008.jpg",
+        "locator": "frame:8",
+        "snippet": "GoogleSlides来做展示汇报",
+        "confidence": 1.0
+      },
+      {
+        "type": "cover_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.jpg",
+        "locator": "image:0",
+        "snippet": "营销人\n软件推荐",
+        "confidence": 1.0
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "locator": "0.0s-1.8s",
+        "snippet": "这场步的工作涉及到很多的软件",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "locator": "1.8s-4.08s",
+        "snippet": "今天分享几款我非常喜欢的工具",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "locator": "4.08s-5.64s",
+        "snippet": "是我每一天都在使用的",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "locator": "5.64s-7.68s",
+        "snippet": "而且没有广告可以放心的观看",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "locator": "7.68s-9.84s",
+        "snippet": "第一款是在电脑上制作动图的工具",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "locator": "9.84s-10.64s",
+        "snippet": "Sojif",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "locator": "10.64s-12.88s",
+        "snippet": "你只要在网页上搜索这个词就能找到",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "locator": "12.88s-14.4s",
+        "snippet": "这个产品可能是过去几年里",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "locator": "14.4s-15.28s",
+        "snippet": "除了AI以外",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "locator": "15.28s-17.24s",
+        "snippet": "我使用屏资最高的工具之一",
+        "confidence": 0.7
+      },
+      {
+        "type": "cover_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.info.json",
+        "locator": "field:title",
+        "snippet": "市场部用的软件，一点也不高大上（无广",
+        "confidence": 0.62
+      },
+      {
+        "type": "transcript_span",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.info.json",
+        "locator": "field:description",
+        "snippet": "希望对你有用。提前祝大家开工大吉！#小大人职场慢充bot[话题]# #年味知识罐头[话题]# #职场smalltalk[话题]# #认识100种工作[话题]# #市场部[话题]# #marketing[话题]# #市场营销[话题]# #20",
+        "confidence": 0.55
+      },
+      {
+        "type": "visual_pattern",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.info.json",
+        "locator": "field:tags",
+        "snippet": "小大人职场慢充bot 年味知识罐头 职场smalltalk 认识100种工作 市场部 marketing 市场营销 2026校招季 很会下班的我们",
+        "confidence": 0.5
+      }
+    ],
+    "hook_candidates": [
+      "这场步的工作涉及到很多的软件",
+      "今天分享几款我非常喜欢的工具",
+      "是我每一天都在使用的",
+      "而且没有广告可以放心的观看",
+      "第一款是在电脑上制作动图的工具"
+    ]
+  },
+  "logs": [
+    {
+      "step": "ffmpeg",
+      "warning": "ffmpeg 未安装，切换到 av 抽帧"
+    },
+    {
+      "step": "av_frames",
+      "saved": 9,
+      "interval": 165
+    },
+    {
+      "ffmpeg": {
+        "step": "audio",
+        "warning": "ffmpeg 未安装，切换到 av 抽音频"
+      },
+      "av": {
+        "step": "av_audio",
+        "written": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+        "samples": 2597298
+      }
+    },
+    "未设置 OPENAI_API_KEY，跳过 OpenAI ASR",
+    "Local Whisper ASR 完成，模型=small，语言=zh"
+  ],
+  "limitations": [
+    "OCR 与 ASR 质量依赖素材清晰度。",
+    "如无网络，Local Whisper 首次模型下载可能失败。"
+  ]
+}

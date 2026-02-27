@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "url": "https://www.xiaohongshu.com/explore/699a71fd000000000e03fac0?xsec_token=ABZfIUlbsAE8XbJos871XDQGOl67FrAe0vJm5_KlLaNnA=&xsec_source=pc_feed",
+    "platform": "xiaohongshu",
+    "content_type": "video",
+    "fetched_at": "2026-02-25T16:01:24.437307+00:00",
+    "analyzed_at": "2026-02-25T16:11:13.859520+00:00",
+    "language": "zh-CN",
+    "analysis_mode": "fallback"
+  },
+  "asset_index": {
+    "video": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.mp4"
+    ],
+    "images": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.jpg"
+    ],
+    "audio": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav"
+    ],
+    "transcript": [],
+    "cover_text": [
+      "市场部的工作涉及到很多软件"
+    ]
+  },
+  "post_content": {
+    "title": "市场部用的软件，一点也不高大上（无广",
+    "body": "希望对你有用。提前祝大家开工大吉！#小大人职场慢充bot[话题]# #年味知识罐头[话题]# #职场smalltalk[话题]# #认识100种工作[话题]# #市场部[话题]# #marketing[话题]# #市场营销[话题]# #2026校招季[话题]# @职场薯 #很会下班的我们[话题]#",
+    "tags": [
+      "小大人职场慢充bot",
+      "年味知识罐头",
+      "职场smalltalk",
+      "认识100种工作",
+      "市场部",
+      "marketing",
+      "市场营销",
+      "2026校招季",
+      "很会下班的我们"
+    ]
+  },
+  "hook": {
+    "text": "这场步的工作涉及到很多的软件",
+    "evidence": [
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_000.jpg",
+        "locator": "frame:0",
+        "snippet": "市场部的工作涉及到很多软件",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_001.jpg",
+        "locator": "frame:1",
+        "snippet": "今天分享几款我非常喜欢的工具",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_002.jpg",
+        "locator": "frame:2",
+        "snippet": "而且没有广告",
+        "confidence": 1.0
+      }
+    ]
+  },
+  "script_structure": [
+    {
+      "section": "开场钩子",
+      "text": "这场步的工作涉及到很多的软件 今天分享几款我非常喜欢的工具 是我每一天都在使用的 而且没有广告可以放心的观看 第一款是在电脑上制作动图的工具 Sojif 你只要在网页上搜索这个词就能找到 这个产品可能是过去几年里 除了AI以外 我使用屏资最高的工具之一 原因是市场步需要制作各种类型的PPT 而动图是视觉呈现的重要元素之一 我公司主要使用GoGo Slides来做展示汇报 在这种平台上特别是远程的会议 动图都播放比视频播放的效果稳定很多 Sojif不仅能帮你在几秒钟内把视频生成为动图 还能采建动图和压缩动图 这是一款付费的产品 你可以免费去试用 但花一两百",
+      "evidence": [
+        {
+          "type": "transcript_span",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+          "locator": "line:1",
+          "snippet": "这场步的工作涉及到很多的软件 今天分享几款我非常喜欢的工具 是我每一天都在使用的 而且没有广告可以放心的观看 第一款是在电脑上制作动图的工具 Sojif 你只要在网页上搜索这个词就能找到 这个产品可能是过去几年里 除了AI以外 我使用屏资最高的工具之一 原因是市场步需要制作各种类型的PPT 而动图是视觉呈现的重要元素之一 我公司主要使用GoGo Slides来做展示汇报 在这种平台上特别是远程的会",
+          "confidence": 0.7
+        }
+      ]
+    },
+    {
+      "section": "主体展开",
+      "text": "但我最看重这个软件的点 就是它足够的简单灵活 对于一个需要随时随地去做记录的人来说 最需要的是笔记软件能在没有网络的情况下 也能立刻兴起一页进行写作 而且随时保存 几乎没有遗失数据的风险 我还喜欢把所有我记不住的网易地址 全都粘贴在Bayer里面 方便快速解锁 这款软件可以免费使用 它的订阅月是每个月10块钱 订阅以后可以进行多个设备之间的同步 也可以导出更多的一些文件的格式 最后分享的可能不是一个具体工具 而是一种工作模式 就是使用日历来管理你的日程 我公司使用的是Google全家同 所以自然采用的是Google Calendar 现在我已经是日历工具",
+      "evidence": [
+        {
+          "type": "transcript_span",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+          "locator": "line:30",
+          "snippet": "但我最看重这个软件的点 就是它足够的简单灵活 对于一个需要随时随地去做记录的人来说 最需要的是笔记软件能在没有网络的情况下 也能立刻兴起一页进行写作 而且随时保存 几乎没有遗失数据的风险 我还喜欢把所有我记不住的网易地址 全都粘贴在Bayer里面 方便快速解锁 这款软件可以免费使用 它的订阅月是每个月10块钱 订阅以后可以进行多个设备之间的同步 也可以导出更多的一些文件的格式 最后分享的可能不是一",
+          "confidence": 0.7
+        }
+      ]
+    },
+    {
+      "section": "收束/行动召唤",
+      "text": "也就是你的focus time 你也可以在日历上标志出来 这样别人通常不会打扰 你也有意识的使用这段时间做你必须做的事情 避免被临时的邀请打破原本的计划 除了Google Calendar 我暂时没有深度使用过其他的日历 所以不能给你做更具体推荐了 我想最重要的是 如果你公司有对应的日历平台 你的生活日历也尽可能采用同一个版本 避免信息的混乱 同时需要提前了解你公司的文化 如果有一些私人的日程不适合透露 可以标志为BZ 此以外我最近还在尝试一件 很有讨论热度的新潮工具 比如说Typesless 它是一款让你能在任何平台上 自行语音输入 然后自动准划为文字",
+      "evidence": [
+        {
+          "type": "transcript_span",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/audio.wav",
+          "locator": "line:59",
+          "snippet": "也就是你的focus time 你也可以在日历上标志出来 这样别人通常不会打扰 你也有意识的使用这段时间做你必须做的事情 避免被临时的邀请打破原本的计划 除了Google Calendar 我暂时没有深度使用过其他的日历 所以不能给你做更具体推荐了 我想最重要的是 如果你公司有对应的日历平台 你的生活日历也尽可能采用同一个版本 避免信息的混乱 同时需要提前了解你公司的文化 如果有一些私人的日程不适",
+          "confidence": 0.7
+        }
+      ]
+    }
+  ],
+  "narrative_pattern": {
+    "name": "问题-方法-结果",
+    "description": "先抛出痛点/结果，再给方法，最后收束到收益或行动。",
+    "evidence": [
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_000.jpg",
+        "locator": "frame:0",
+        "snippet": "市场部的工作涉及到很多软件",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_001.jpg",
+        "locator": "frame:1",
+        "snippet": "今天分享几款我非常喜欢的工具",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_002.jpg",
+        "locator": "frame:2",
+        "snippet": "而且没有广告",
+        "confidence": 1.0
+      }
+    ]
+  },
+  "cover_title": {
+    "text": "市场部的工作涉及到很多软件",
+    "evidence": [
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_000.jpg",
+        "locator": "frame:0",
+        "snippet": "市场部的工作涉及到很多软件",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_001.jpg",
+        "locator": "frame:1",
+        "snippet": "今天分享几款我非常喜欢的工具",
+        "confidence": 0.99
+      }
+    ]
+  },
+  "voiceover_copy": {
+    "text": "这场步的工作涉及到很多的软件 今天分享几款我非常喜欢的工具 是我每一天都在使用的 而且没有广告可以放心的观看 第一款是在电脑上制作动图的工具 Sojif 你只要在网页上搜索这个词就能找到 这个产品可能是过去几年里 除了AI以外 我使用屏资最高的工具之一 原因是市场步需要制作各种类型的PPT 而动图是视觉呈现的重要元素之一 我公司主要使用GoGo Slides来做展示汇报 在这种平台上特别是远程的会议 动图都播放比视频播放的效果稳定很多 Sojif不仅能帮你在几秒钟内把视频生成为动图 还能采建动图和压缩动图 这是一款付费的产品 你可以免费去试用 但花一两百元就可以享受终身的权益 我发现很多美国的Marketing同事都非常擅长使用动图 如果你能在自己的方案里多一些海外的动图 那别人可能会觉得你还挺洋气的 再推荐一个记笔记的软件 Bayer 熊掌机 这是我使用最久的记笔记软件 我已经为它连续付费了四五年的时间 记笔记的软件非常多 绝大多数也比Bayer更强大 但我最看重这个软件的点 就是它足够的简单灵活 对于一个需要随时随地去做记录的人来说 最需要的是笔记软件能在没有网络的情况下 也能立刻",
+    "evidence": [
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_000.jpg",
+        "locator": "frame:0",
+        "snippet": "市场部的工作涉及到很多软件",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_001.jpg",
+        "locator": "frame:1",
+        "snippet": "今天分享几款我非常喜欢的工具",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_002.jpg",
+        "locator": "frame:2",
+        "snippet": "而且没有广告",
+        "confidence": 1.0
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_003.jpg",
+        "locator": "frame:3",
+        "snippet": "第一款是在电脑上制作动图的工具",
+        "confidence": 1.0
+      }
+    ]
+  },
+  "production_method_inference": [
+    {
+      "method": "剪映/CapCut（推断）",
+      "confidence": 0.45,
+      "evidence": [
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_000.jpg",
+          "locator": "frame:0",
+          "snippet": "市场部的工作涉及到很多软件",
+          "confidence": 0.99
+        },
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_001.jpg",
+          "locator": "frame:1",
+          "snippet": "今天分享几款我非常喜欢的工具",
+          "confidence": 0.99
+        }
+      ]
+    },
+    {
+      "method": "平台内置模板（推断）",
+      "confidence": 0.35,
+      "evidence": [
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_002.jpg",
+          "locator": "frame:2",
+          "snippet": "而且没有广告",
+          "confidence": 1.0
+        },
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_003.jpg",
+          "locator": "frame:3",
+          "snippet": "第一款是在电脑上制作动图的工具",
+          "confidence": 1.0
+        }
+      ]
+    },
+    {
+      "method": "PR/专业剪辑软件（推断）",
+      "confidence": 0.2,
+      "evidence": [
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_004.jpg",
+          "locator": "frame:4",
+          "snippet": "你只要在网页上搜索这个词就能找到",
+          "confidence": 0.99
+        },
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_005.jpg",
+          "locator": "frame:5",
+          "snippet": "除了AI以外",
+          "confidence": 0.99
+        }
+      ]
+    }
+  ],
+  "virality_drivers": [
+    {
+      "driver": "开场钩子直接给结果或冲突",
+      "why": "前 1-3 秒给出强信息密度，提高停留率",
+      "evidence": [
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_000.jpg",
+          "locator": "frame:0",
+          "snippet": "市场部的工作涉及到很多软件",
+          "confidence": 0.99
+        },
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_001.jpg",
+          "locator": "frame:1",
+          "snippet": "今天分享几款我非常喜欢的工具",
+          "confidence": 0.99
+        }
+      ]
+    },
+    {
+      "driver": "叙事节奏快，信息分段清晰",
+      "why": "降低理解成本，推动完播",
+      "evidence": [
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_002.jpg",
+          "locator": "frame:2",
+          "snippet": "而且没有广告",
+          "confidence": 1.0
+        },
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_003.jpg",
+          "locator": "frame:3",
+          "snippet": "第一款是在电脑上制作动图的工具",
+          "confidence": 1.0
+        }
+      ]
+    },
+    {
+      "driver": "主题与受众痛点高度贴合",
+      "why": "触发评论与转发意愿",
+      "evidence": [
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_004.jpg",
+          "locator": "frame:4",
+          "snippet": "你只要在网页上搜索这个词就能找到",
+          "confidence": 0.99
+        },
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/frames/frame_av_005.jpg",
+          "locator": "frame:5",
+          "snippet": "除了AI以外",
+          "confidence": 0.99
+        }
+      ]
+    }
+  ],
+  "adaptation_ideas": [
+    {
+      "idea": "保留原内容的高密度开场，但改成你的真实案例切入。",
+      "rationale": "减少同质化，同时延续高停留结构。"
+    },
+    {
+      "idea": "将主体拆成 3 个可执行步骤，每步加一个可量化结果。",
+      "rationale": "提高可操作感与收藏率。"
+    },
+    {
+      "idea": "结尾增加反直觉观点或对照结论，引导评论区讨论。",
+      "rationale": "提升互动率，放大推荐信号。"
+    }
+  ],
+  "limitations": [
+    "OCR 与 ASR 质量依赖素材清晰度。",
+    "如无网络，Local Whisper 首次模型下载可能失败。",
+    "制作软件识别属于推断，非平台官方标注。"
+  ],
+  "confidence_overall": 0.68
+}

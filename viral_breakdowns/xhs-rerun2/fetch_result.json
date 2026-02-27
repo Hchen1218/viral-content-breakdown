@@ -1,0 +1,40 @@
+{
+  "ok": false,
+  "error": {
+    "code": "DOWNLOAD_FAILED",
+    "reason": "下载失败或未识别到可分析媒体",
+    "next_action": "检查链接可访问性、登录状态，并确认 yt-dlp/专用下载器已安装",
+    "timestamp": "2026-02-25T15:58:58.649656+00:00",
+    "url": "https://www.xiaohongshu.com/explore/699a71fd000000000e03fac0?xsec_token=ABZfIUlbsAE8XbJos871XDQGOl67FrAe0vJm5_KlLaNnA=&xsec_source=pc_feed",
+    "platform": "xiaohongshu",
+    "attempts": [
+      {
+        "adapter": "yt-dlp",
+        "command": "/Users/cecilialiu/Library/Python/3.9/bin/yt-dlp --no-progress --no-warnings --write-info-json --write-thumbnail --write-subs --write-auto-subs --sub-langs 'zh.*,en.*' -o '/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun2/download/%(id)s/%(title).120B.%(ext)s' --cookies-from-browser safari 'https://www.xiaohongshu.com/explore/699a71fd000000000e03fac0?xsec_token=ABZfIUlbsAE8XbJos871XDQGOl67FrAe0vJm5_KlLaNnA=&xsec_source=pc_feed'",
+        "result": {
+          "argv": [
+            "/Users/cecilialiu/Library/Python/3.9/bin/yt-dlp",
+            "--no-progress",
+            "--no-warnings",
+            "--write-info-json",
+            "--write-thumbnail",
+            "--write-subs",
+            "--write-auto-subs",
+            "--sub-langs",
+            "zh.*,en.*",
+            "-o",
+            "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun2/download/%(id)s/%(title).120B.%(ext)s",
+            "--cookies-from-browser",
+            "safari",
+            "https://www.xiaohongshu.com/explore/699a71fd000000000e03fac0?xsec_token=ABZfIUlbsAE8XbJos871XDQGOl67FrAe0vJm5_KlLaNnA=&xsec_source=pc_feed"
+          ],
+          "exit_code": 1,
+          "stdout_tail": "[XiaoHongShu] Extracting URL: https://www.xiaohongshu.com/explore/699a71fd000000000e03fac0?xsec_token=ABZfIUlbsAE8XbJos871XDQGO...&xsec_source=pc_feed\n[XiaoHongShu] 699a71fd000000000e03fac0: Downloading webpage\n",
+          "stderr_tail": "/Users/cecilialiu/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nDeprecated Feature: Support for Python version 3.9 has been deprecated. Please update to Python 3.10 or above\nERROR: [Errno 1] Operation not permitted: '/Users/cecilialiu/Library/Containers/com.apple.Safari/Data/Library/Cookies/Cookies.binarycookies'\n"
+        },
+        "new_files": []
+      }
+    ],
+    "download_dir": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun2/download"
+  }
+}

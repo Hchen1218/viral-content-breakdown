@@ -1,0 +1,62 @@
+{
+  "ok": true,
+  "meta": {
+    "url": "https://www.xiaohongshu.com/explore/699a71fd000000000e03fac0?xsec_token=ABZfIUlbsAE8XbJos871XDQGOl67FrAe0vJm5_KlLaNnA=&xsec_source=pc_feed",
+    "platform": "xiaohongshu",
+    "content_type": "video",
+    "fetched_at": "2026-02-25T16:01:24.437307+00:00",
+    "quality": "high"
+  },
+  "asset_index": {
+    "video": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.mp4"
+    ],
+    "images": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.jpg"
+    ],
+    "audio": [],
+    "transcript": [],
+    "cover_text": []
+  },
+  "artifacts": {
+    "output_dir": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3",
+    "download_dir": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download",
+    "all_files": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.info.json",
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.jpg",
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.mp4"
+    ]
+  },
+  "adapter_attempts": [
+    {
+      "adapter": "yt-dlp",
+      "command": "/Users/cecilialiu/Library/Python/3.9/bin/yt-dlp --no-progress --no-warnings --write-info-json --write-thumbnail --write-subs --write-auto-subs --sub-langs 'zh.*,en.*' -o '/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/%(id)s/%(title).120B.%(ext)s' --cookies-from-browser chrome 'https://www.xiaohongshu.com/explore/699a71fd000000000e03fac0?xsec_token=ABZfIUlbsAE8XbJos871XDQGOl67FrAe0vJm5_KlLaNnA=&xsec_source=pc_feed'",
+      "result": {
+        "argv": [
+          "/Users/cecilialiu/Library/Python/3.9/bin/yt-dlp",
+          "--no-progress",
+          "--no-warnings",
+          "--write-info-json",
+          "--write-thumbnail",
+          "--write-subs",
+          "--write-auto-subs",
+          "--sub-langs",
+          "zh.*,en.*",
+          "-o",
+          "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/%(id)s/%(title).120B.%(ext)s",
+          "--cookies-from-browser",
+          "chrome",
+          "https://www.xiaohongshu.com/explore/699a71fd000000000e03fac0?xsec_token=ABZfIUlbsAE8XbJos871XDQGOl67FrAe0vJm5_KlLaNnA=&xsec_source=pc_feed"
+        ],
+        "exit_code": 0,
+        "stdout_tail": "[XiaoHongShu] Extracting URL: https://www.xiaohongshu.com/explore/699a71fd000000000e03fac0?xsec_token=ABZfIUlbsAE8XbJos871XDQGO...&xsec_source=pc_feed\n[XiaoHongShu] 699a71fd000000000e03fac0: Downloading webpage\nExtracting cookies from chrome\nExtracted 109 cookies from chrome\n[info] 699a71fd000000000e03fac0: Downloading 1 format(s): 5\n[info] There are no subtitles for the requested languages\n[info] Downloading video thumbnail 1 ...\n[info] Writing video thumbnail 1 to: /Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.jpg\n[info] Writing video metadata as JSON to: /Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.info.json\n[download] Destination: /Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.mp4\n[download] Download completed\n",
+        "stderr_tail": "/Users/cecilialiu/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nDeprecated Feature: Support for Python version 3.9 has been deprecated. Please update to Python 3.10 or above\n"
+      },
+      "new_files": [
+        "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.info.json",
+        "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.jpg",
+        "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun3/download/699a71fd000000000e03fac0/市场部用的软件，一点也不高大上（无广.mp4"
+      ]
+    }
+  ]
+}

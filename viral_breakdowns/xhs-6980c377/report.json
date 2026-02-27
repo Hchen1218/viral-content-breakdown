@@ -1,0 +1,332 @@
+{
+  "meta": {
+    "url": "https://www.xiaohongshu.com/explore/6980c377000000000a02b5ac?xsec_token=AB4zPya9_uirM2vDyOK9stHn8B0-70z7Owlsr4G9fQtQM=&xsec_source=pc_search&source=web_explore_feed",
+    "platform": "xiaohongshu",
+    "content_type": "video",
+    "fetched_at": "2026-02-26T08:14:22.593248+00:00",
+    "analyzed_at": "2026-02-26T08:53:43.955230+00:00",
+    "language": "zh-CN",
+    "analysis_mode": "fallback"
+  },
+  "asset_index": {
+    "video": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/download/6980c377000000000a02b5ac/母老乡亲们，这个时代简直是为了我们而生的.mp4"
+    ],
+    "images": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/download/6980c377000000000a02b5ac/母老乡亲们，这个时代简直是为了我们而生的.jpg"
+    ],
+    "audio": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav"
+    ],
+    "transcript": [],
+    "cover_text": [
+      "AI生成"
+    ]
+  },
+  "post_content": {
+    "title": "母老乡亲们，这个时代简直是为了我们而生的",
+    "body": "#vibecoding大赏[话题]# #ai编程[话题]# #网站[话题]# #产品经理[话题]# #有趣[话题]# #表达[话题]# #创造[话题]# #互联网[话题]# #文科生[话题]# #运营[话题]# @科技薯 @职场薯 @薯队长",
+    "tags": [
+      "vibecoding大赏",
+      "ai编程",
+      "网站",
+      "产品经理",
+      "有趣",
+      "表达",
+      "创造",
+      "互联网",
+      "文科生",
+      "运营"
+    ]
+  },
+  "hook": {
+    "text": "主播最近用ai做了自己的个人网站",
+    "evidence": [
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_000.jpg",
+        "locator": "frame:0",
+        "snippet": "AI生成\n多\n剪AF",
+        "confidence": 0.93
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_001.jpg",
+        "locator": "frame:1",
+        "snippet": "首页\n关于我\n文章\n视频\n产品\n日\n我是\n西门美月匈XD\nA Product Manager,\n练习时长\n两年半\nBilibili Creator|Digital Writer|Hyperactive Otaku\ntoBPMby day,V",
+        "confidence": 0.91
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_002.jpg",
+        "locator": "frame:2",
+        "snippet": "DLEH\n甚至所有的内容创作者",
+        "confidence": 0.82
+      }
+    ]
+  },
+  "script_structure": [
+    {
+      "section": "开场钩子",
+      "text": "主播最近用ai做了自己的个人网站 我甚至觉得所有的产品经理运营市场销售 资型 政治所有的内容创作者自由职业者或者你拥有很多丰富的兴趣爱好的人都应该用ai 去搭建一个属于自己的网站 我觉得这个时代简直是为了我们这些人而胜的 就好像我们原本是瘫痪的人我们的脑子非常灵活 ai资予了我们手和脚和气体我们能用它去做任何我们想做到的事情 而不需要再依靠别人 接下来请允许我隆重的介绍一下我webcoding出来的 客人网站 网站框架全都是jamana帮我生成的包括这张 笑相图片也是我和jamana聊出来的 而且长得非常像我 其实我的大号的网名新闻美月兄全屏台投名 我是",
+      "evidence": [
+        {
+          "type": "transcript_span",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+          "locator": "line:1",
+          "snippet": "主播最近用ai做了自己的个人网站 我甚至觉得所有的产品经理运营市场销售 资型 政治所有的内容创作者自由职业者或者你拥有很多丰富的兴趣爱好的人都应该用ai 去搭建一个属于自己的网站 我觉得这个时代简直是为了我们这些人而胜的 就好像我们原本是瘫痪的人我们的脑子非常灵活 ai资予了我们手和脚和气体我们能用它去做任何我们想做到的事情 而不需要再依靠别人 接下来请允许我隆重的介绍一下我webcoding出来",
+          "confidence": 0.7
+        }
+      ]
+    },
+    {
+      "section": "主体展开",
+      "text": "经常上澳大线的视频 我几乎把全网的所有澳大线相关的事事 都事件都看了一遍 每天下班回家都是非常痴迷这个AI编程 下面我就放了一些自己的历史的时间节点的一条时间线 左边的话是主线任务 也就是我是在二三年毕业的 然后后面去做了产品经理 右边是我的接线任务 也就是我的各种兴趣爱好开始的时间 比如说我24年开了一家女生情趣玩具店 24年的11月份 就莫名其妙成为了一名抽象的B站UP主 然后在2025年的4月开始买股票 在26年的1月开始激动的AI编程 我觉得人生它其实就像一个开放世界的游戏 所以大家也可以用这样子的时间点去标注一下 自己在什么时刻做了什么样的事情",
+      "evidence": [
+        {
+          "type": "transcript_span",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+          "locator": "line:24",
+          "snippet": "经常上澳大线的视频 我几乎把全网的所有澳大线相关的事事 都事件都看了一遍 每天下班回家都是非常痴迷这个AI编程 下面我就放了一些自己的历史的时间节点的一条时间线 左边的话是主线任务 也就是我是在二三年毕业的 然后后面去做了产品经理 右边是我的接线任务 也就是我的各种兴趣爱好开始的时间 比如说我24年开了一家女生情趣玩具店 24年的11月份 就莫名其妙成为了一名抽象的B站UP主 然后在2025年的4",
+          "confidence": 0.7
+        }
+      ]
+    },
+    {
+      "section": "收束/行动召唤",
+      "text": "虽然我已经5年没有更新了 跳转出去就是微信公众号的文章的链接 这个跳转也是AI帮我做的 第四个tab是我的B站的所有的视频 然后也是做了一个跳转的链接 以前做这种跳转链接应该挺难的 但是现在AI直接能够帮我们做了 最后一个tab是我自己外部coding出来的一些产品 比如说这个是等会吃傻 一个能够直接获取你当前的定位 用其找出方圆500米或者1000米内的所有餐饮店 然后随机帮你写一个需要吃的餐厅 然后你就可以到行去吃了 这个工具就是做给我自己这种选择困难症的懒人用的 因为有朋友需要 所以我也把它放在了我的个人主页上 这样它就能直接用了 这个网站花费了我",
+      "evidence": [
+        {
+          "type": "transcript_span",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+          "locator": "line:47",
+          "snippet": "虽然我已经5年没有更新了 跳转出去就是微信公众号的文章的链接 这个跳转也是AI帮我做的 第四个tab是我的B站的所有的视频 然后也是做了一个跳转的链接 以前做这种跳转链接应该挺难的 但是现在AI直接能够帮我们做了 最后一个tab是我自己外部coding出来的一些产品 比如说这个是等会吃傻 一个能够直接获取你当前的定位 用其找出方圆500米或者1000米内的所有餐饮店 然后随机帮你写一个需要吃的餐厅",
+          "confidence": 0.7
+        }
+      ]
+    }
+  ],
+  "narrative_pattern": {
+    "name": "问题-方法-结果",
+    "description": "先抛出痛点/结果，再给方法，最后收束到收益或行动。",
+    "evidence": [
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_000.jpg",
+        "locator": "frame:0",
+        "snippet": "AI生成\n多\n剪AF",
+        "confidence": 0.93
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_001.jpg",
+        "locator": "frame:1",
+        "snippet": "首页\n关于我\n文章\n视频\n产品\n日\n我是\n西门美月匈XD\nA Product Manager,\n练习时长\n两年半\nBilibili Creator|Digital Writer|Hyperactive Otaku\ntoBPMby day,V",
+        "confidence": 0.91
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_002.jpg",
+        "locator": "frame:2",
+        "snippet": "DLEH\n甚至所有的内容创作者",
+        "confidence": 0.82
+      }
+    ]
+  },
+  "cover_title": {
+    "text": "AI生成",
+    "evidence": [
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_000.jpg",
+        "locator": "frame:0",
+        "snippet": "AI生成\n多\n剪AF",
+        "confidence": 0.93
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_001.jpg",
+        "locator": "frame:1",
+        "snippet": "首页\n关于我\n文章\n视频\n产品\n日\n我是\n西门美月匈XD\nA Product Manager,\n练习时长\n两年半\nBilibili Creator|Digital Writer|Hyperactive Otaku\ntoBPMby day,V",
+        "confidence": 0.91
+      }
+    ]
+  },
+  "voiceover_copy": {
+    "text": "主播最近用ai做了自己的个人网站 我甚至觉得所有的产品经理运营市场销售 资型 政治所有的内容创作者自由职业者或者你拥有很多丰富的兴趣爱好的人都应该用ai 去搭建一个属于自己的网站 我觉得这个时代简直是为了我们这些人而胜的 就好像我们原本是瘫痪的人我们的脑子非常灵活 ai资予了我们手和脚和气体我们能用它去做任何我们想做到的事情 而不需要再依靠别人 接下来请允许我隆重的介绍一下我webcoding出来的 客人网站 网站框架全都是jamana帮我生成的包括这张 笑相图片也是我和jamana聊出来的 而且长得非常像我 其实我的大号的网名新闻美月兄全屏台投名 我是一个产品经理现在已经工作两年半了 接下来关于我的这一页 我们可以看到这个个人名片就是完全jamana帮我认证的 不得不说他的审美还是挺在线的 然后在这个页面我就做了很多的自我介绍和个人表达 然后以及一些什么slogan 这里写了我最近的生活 最近在读的书是那娃尔宝典 经常上澳大线的视频 我几乎把全网的所有澳大线相关的事事 都事件都看了一遍 每天下班回家都是非常痴迷这个AI编程 下面我就放了一些自己的历史的时间节点的一条时间线 左边的话是",
+    "evidence": [
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_000.jpg",
+        "locator": "frame:0",
+        "snippet": "AI生成\n多\n剪AF",
+        "confidence": 0.93
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_001.jpg",
+        "locator": "frame:1",
+        "snippet": "首页\n关于我\n文章\n视频\n产品\n日\n我是\n西门美月匈XD\nA Product Manager,\n练习时长\n两年半\nBilibili Creator|Digital Writer|Hyperactive Otaku\ntoBPMby day,V",
+        "confidence": 0.91
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_002.jpg",
+        "locator": "frame:2",
+        "snippet": "DLEH\n甚至所有的内容创作者",
+        "confidence": 0.82
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_003.jpg",
+        "locator": "frame:3",
+        "snippet": "OVO\n或者你拥有很多丰富的兴趣爱好的人",
+        "confidence": 0.81
+      }
+    ]
+  },
+  "production_method_inference": [
+    {
+      "method": "剪映/CapCut（推断）",
+      "confidence": 0.45,
+      "evidence": [
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_000.jpg",
+          "locator": "frame:0",
+          "snippet": "AI生成\n多\n剪AF",
+          "confidence": 0.93
+        },
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_001.jpg",
+          "locator": "frame:1",
+          "snippet": "首页\n关于我\n文章\n视频\n产品\n日\n我是\n西门美月匈XD\nA Product Manager,\n练习时长\n两年半\nBilibili Creator|Digital Writer|Hyperactive Otaku\ntoBPMby day,V",
+          "confidence": 0.91
+        }
+      ]
+    },
+    {
+      "method": "平台内置模板（推断）",
+      "confidence": 0.35,
+      "evidence": [
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_002.jpg",
+          "locator": "frame:2",
+          "snippet": "DLEH\n甚至所有的内容创作者",
+          "confidence": 0.82
+        },
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_003.jpg",
+          "locator": "frame:3",
+          "snippet": "OVO\n或者你拥有很多丰富的兴趣爱好的人",
+          "confidence": 0.81
+        }
+      ]
+    },
+    {
+      "method": "PR/专业剪辑软件（推断）",
+      "confidence": 0.2,
+      "evidence": [
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_004.jpg",
+          "locator": "frame:4",
+          "snippet": "去搭建一个属于自己的网站",
+          "confidence": 0.99
+        },
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_005.jpg",
+          "locator": "frame:5",
+          "snippet": "简直是为了我们这些人而生的",
+          "confidence": 1.0
+        }
+      ]
+    }
+  ],
+  "virality_drivers": [
+    {
+      "driver": "开场钩子直接给结果或冲突",
+      "why": "前 1-3 秒给出强信息密度，提高停留率",
+      "evidence": [
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_000.jpg",
+          "locator": "frame:0",
+          "snippet": "AI生成\n多\n剪AF",
+          "confidence": 0.93
+        },
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_001.jpg",
+          "locator": "frame:1",
+          "snippet": "首页\n关于我\n文章\n视频\n产品\n日\n我是\n西门美月匈XD\nA Product Manager,\n练习时长\n两年半\nBilibili Creator|Digital Writer|Hyperactive Otaku\ntoBPMby day,V",
+          "confidence": 0.91
+        }
+      ]
+    },
+    {
+      "driver": "叙事节奏快，信息分段清晰",
+      "why": "降低理解成本，推动完播",
+      "evidence": [
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_002.jpg",
+          "locator": "frame:2",
+          "snippet": "DLEH\n甚至所有的内容创作者",
+          "confidence": 0.82
+        },
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_003.jpg",
+          "locator": "frame:3",
+          "snippet": "OVO\n或者你拥有很多丰富的兴趣爱好的人",
+          "confidence": 0.81
+        }
+      ]
+    },
+    {
+      "driver": "主题与受众痛点高度贴合",
+      "why": "触发评论与转发意愿",
+      "evidence": [
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_004.jpg",
+          "locator": "frame:4",
+          "snippet": "去搭建一个属于自己的网站",
+          "confidence": 0.99
+        },
+        {
+          "type": "frame_ocr",
+          "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_005.jpg",
+          "locator": "frame:5",
+          "snippet": "简直是为了我们这些人而生的",
+          "confidence": 1.0
+        }
+      ]
+    }
+  ],
+  "adaptation_ideas": [
+    {
+      "idea": "保留原内容的高密度开场，但改成你的真实案例切入。",
+      "rationale": "减少同质化，同时延续高停留结构。"
+    },
+    {
+      "idea": "将主体拆成 3 个可执行步骤，每步加一个可量化结果。",
+      "rationale": "提高可操作感与收藏率。"
+    },
+    {
+      "idea": "结尾增加反直觉观点或对照结论，引导评论区讨论。",
+      "rationale": "提升互动率，放大推荐信号。"
+    }
+  ],
+  "limitations": [
+    "OCR 与 ASR 质量依赖素材清晰度。",
+    "如无网络，Local Whisper 首次模型下载可能失败。",
+    "制作软件识别属于推断，非平台官方标注。"
+  ],
+  "confidence_overall": 0.68
+}

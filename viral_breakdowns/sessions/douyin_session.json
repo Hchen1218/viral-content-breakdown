@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "session_mode": "qr-login",
+  "platform": "douyin",
+  "browser": "safari",
+  "created_at": "2026-02-25T15:56:27.697483+00:00",
+  "cookies": {
+    "source": "browser_session",
+    "cookies_file": null,
+    "cookies_from_browser": "safari"
+  },
+  "notes": [
+    "若下载失败，请先刷新登录态后重试。",
+    "Safari 模式通常建议配合 cookies 文件提高成功率。"
+  ]
+}

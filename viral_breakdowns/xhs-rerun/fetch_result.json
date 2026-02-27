@@ -1,0 +1,18 @@
+{
+  "ok": false,
+  "error": {
+    "code": "DOWNLOAD_FAILED",
+    "reason": "yt-dlp 未安装",
+    "next_action": "检查链接可访问性、登录状态，并确认 yt-dlp/专用下载器已安装",
+    "timestamp": "2026-02-25T15:57:01.263203+00:00",
+    "url": "https://www.xiaohongshu.com/explore/699a71fd000000000e03fac0?xsec_token=ABZfIUlbsAE8XbJos871XDQGOl67FrAe0vJm5_KlLaNnA=&xsec_source=pc_feed",
+    "platform": "xiaohongshu",
+    "attempts": [
+      {
+        "adapter": "yt-dlp",
+        "error": "yt-dlp 未安装"
+      }
+    ],
+    "download_dir": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-rerun/download"
+  }
+}

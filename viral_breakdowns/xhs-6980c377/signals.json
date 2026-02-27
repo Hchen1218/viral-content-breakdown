@@ -1,0 +1,796 @@
+{
+  "ok": true,
+  "meta": {
+    "url": "https://www.xiaohongshu.com/explore/6980c377000000000a02b5ac?xsec_token=AB4zPya9_uirM2vDyOK9stHn8B0-70z7Owlsr4G9fQtQM=&xsec_source=pc_search&source=web_explore_feed",
+    "platform": "xiaohongshu",
+    "content_type": "video",
+    "fetched_at": "2026-02-26T08:14:22.593248+00:00",
+    "quality": "high",
+    "signals_extracted_at": "2026-02-26T08:53:32.340827+00:00"
+  },
+  "asset_index": {
+    "video": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/download/6980c377000000000a02b5ac/母老乡亲们，这个时代简直是为了我们而生的.mp4"
+    ],
+    "images": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/download/6980c377000000000a02b5ac/母老乡亲们，这个时代简直是为了我们而生的.jpg"
+    ],
+    "audio": [
+      "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav"
+    ],
+    "transcript": [],
+    "cover_text": [
+      "AI生成"
+    ]
+  },
+  "post_content": {
+    "title": "母老乡亲们，这个时代简直是为了我们而生的",
+    "body": "#vibecoding大赏[话题]# #ai编程[话题]# #网站[话题]# #产品经理[话题]# #有趣[话题]# #表达[话题]# #创造[话题]# #互联网[话题]# #文科生[话题]# #运营[话题]# @科技薯 @职场薯 @薯队长",
+    "tags": [
+      "vibecoding大赏",
+      "ai编程",
+      "网站",
+      "产品经理",
+      "有趣",
+      "表达",
+      "创造",
+      "互联网",
+      "文科生",
+      "运营"
+    ]
+  },
+  "signals": {
+    "ocr_hits": [
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_000.jpg",
+        "locator": "frame:0",
+        "text": "AI生成\n多\n剪AF",
+        "confidence": 0.93
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_001.jpg",
+        "locator": "frame:1",
+        "text": "首页\n关于我\n文章\n视频\n产品\n日\n我是\n西门美月匈XD\nA Product Manager,\n练习时长\n两年半\nBilibili Creator|Digital Writer|Hyperactive Otaku\ntoBPMby day,VibeCoderbynight.\n[oo]\nAPASSIONATEFOOOOOLI!I\nMore aboutme\nArticles\nBrowse all articles→\n我可有可无的网友\n#SJTU游离日记#0004\n关于枸杞岛和我的恋爱\n关于即要在生命中出现又消失的数字连接。\n在交大的日子里，那逐项辞而真实的面间，\n降风、乌，还有那段关于直无的记亿。\nVideos\nWatch all videos\n真\n棒\n浙大我来啦~（~）\n2025年支出总结$\n02:28\n有一个捧杀式领导是什么样的\nvlog.吸取大学生的元气才能\n25岁纯牛马全年消费支出大盘\n体验？\n继续生存下去\n点\n8226999\n6281259\n2.2万\n605\n我甚至觉得所有的产品经理",
+        "confidence": 0.91
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_002.jpg",
+        "locator": "frame:2",
+        "text": "DLEH\n甚至所有的内容创作者",
+        "confidence": 0.82
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_003.jpg",
+        "locator": "frame:3",
+        "text": "OVO\n或者你拥有很多丰富的兴趣爱好的人",
+        "confidence": 0.81
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_004.jpg",
+        "locator": "frame:4",
+        "text": "去搭建一个属于自己的网站",
+        "confidence": 0.99
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_005.jpg",
+        "locator": "frame:5",
+        "text": "简直是为了我们这些人而生的",
+        "confidence": 1.0
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_006.jpg",
+        "locator": "frame:6",
+        "text": "NO-WO\n我们的脑子非常灵活",
+        "confidence": 0.86
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_007.jpg",
+        "locator": "frame:7",
+        "text": "OVO\n我们能用它",
+        "confidence": 0.77
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_008.jpg",
+        "locator": "frame:8",
+        "text": "JWC\n而不需要再依靠别人",
+        "confidence": 0.75
+      },
+      {
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/download/6980c377000000000a02b5ac/母老乡亲们，这个时代简直是为了我们而生的.jpg",
+        "locator": "image:0",
+        "text": "属于我的个人网站\n终于上线了\n我是\n西门美月甸XD\nA Product Manager,\n练习时长两年半\nASA\nmmHIo\nWI Mhte ifsoui. k",
+        "confidence": 0.86
+      }
+    ],
+    "transcript_chunks": [
+      {
+        "start": 0.0,
+        "end": 2.04,
+        "text": "主播最近用ai做了自己的个人网站",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 1
+      },
+      {
+        "start": 2.04,
+        "end": 5.12,
+        "text": "我甚至觉得所有的产品经理运营市场销售",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 2
+      },
+      {
+        "start": 5.12,
+        "end": 5.88,
+        "text": "资型",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 3
+      },
+      {
+        "start": 5.88,
+        "end": 11.52,
+        "text": "政治所有的内容创作者自由职业者或者你拥有很多丰富的兴趣爱好的人都应该用ai",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 4
+      },
+      {
+        "start": 11.52,
+        "end": 13.32,
+        "text": "去搭建一个属于自己的网站",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 5
+      },
+      {
+        "start": 13.32,
+        "end": 15.88,
+        "text": "我觉得这个时代简直是为了我们这些人而胜的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 6
+      },
+      {
+        "start": 15.88,
+        "end": 18.8,
+        "text": "就好像我们原本是瘫痪的人我们的脑子非常灵活",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 7
+      },
+      {
+        "start": 18.8,
+        "end": 23.04,
+        "text": "ai资予了我们手和脚和气体我们能用它去做任何我们想做到的事情",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 8
+      },
+      {
+        "start": 23.04,
+        "end": 24.32,
+        "text": "而不需要再依靠别人",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 9
+      },
+      {
+        "start": 24.32,
+        "end": 27.4,
+        "text": "接下来请允许我隆重的介绍一下我webcoding出来的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 10
+      },
+      {
+        "start": 27.4,
+        "end": 28.4,
+        "text": "客人网站",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 11
+      },
+      {
+        "start": 28.4,
+        "end": 31.72,
+        "text": "网站框架全都是jamana帮我生成的包括这张",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 12
+      },
+      {
+        "start": 31.72,
+        "end": 34.56,
+        "text": "笑相图片也是我和jamana聊出来的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 13
+      },
+      {
+        "start": 34.56,
+        "end": 36.24,
+        "text": "而且长得非常像我",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 14
+      },
+      {
+        "start": 36.24,
+        "end": 38.88,
+        "text": "其实我的大号的网名新闻美月兄全屏台投名",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 15
+      },
+      {
+        "start": 38.88,
+        "end": 41.92,
+        "text": "我是一个产品经理现在已经工作两年半了",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 16
+      },
+      {
+        "start": 41.92,
+        "end": 43.52,
+        "text": "接下来关于我的这一页",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 17
+      },
+      {
+        "start": 43.52,
+        "end": 46.4,
+        "text": "我们可以看到这个个人名片就是完全jamana帮我认证的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 18
+      },
+      {
+        "start": 46.4,
+        "end": 49.08,
+        "text": "不得不说他的审美还是挺在线的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 19
+      },
+      {
+        "start": 49.08,
+        "end": 52.36,
+        "text": "然后在这个页面我就做了很多的自我介绍和个人表达",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 20
+      },
+      {
+        "start": 52.36,
+        "end": 54.2,
+        "text": "然后以及一些什么slogan",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 21
+      },
+      {
+        "start": 54.2,
+        "end": 55.84,
+        "text": "这里写了我最近的生活",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 22
+      },
+      {
+        "start": 55.84,
+        "end": 57.84,
+        "text": "最近在读的书是那娃尔宝典",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 23
+      },
+      {
+        "start": 57.84,
+        "end": 59.28,
+        "text": "经常上澳大线的视频",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 24
+      },
+      {
+        "start": 59.28,
+        "end": 61.96,
+        "text": "我几乎把全网的所有澳大线相关的事事",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 25
+      },
+      {
+        "start": 61.96,
+        "end": 63.44,
+        "text": "都事件都看了一遍",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 26
+      },
+      {
+        "start": 63.44,
+        "end": 66.36,
+        "text": "每天下班回家都是非常痴迷这个AI编程",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 27
+      },
+      {
+        "start": 66.36,
+        "end": 70.56,
+        "text": "下面我就放了一些自己的历史的时间节点的一条时间线",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 28
+      },
+      {
+        "start": 70.56,
+        "end": 71.8,
+        "text": "左边的话是主线任务",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 29
+      },
+      {
+        "start": 71.8,
+        "end": 73.76,
+        "text": "也就是我是在二三年毕业的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 30
+      },
+      {
+        "start": 73.76,
+        "end": 75.8,
+        "text": "然后后面去做了产品经理",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 31
+      },
+      {
+        "start": 75.8,
+        "end": 76.96,
+        "text": "右边是我的接线任务",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 32
+      },
+      {
+        "start": 76.96,
+        "end": 79.48,
+        "text": "也就是我的各种兴趣爱好开始的时间",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 33
+      },
+      {
+        "start": 79.48,
+        "end": 82.56,
+        "text": "比如说我24年开了一家女生情趣玩具店",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 34
+      },
+      {
+        "start": 82.56,
+        "end": 84.32,
+        "text": "24年的11月份",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 35
+      },
+      {
+        "start": 84.32,
+        "end": 86.76,
+        "text": "就莫名其妙成为了一名抽象的B站UP主",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 36
+      },
+      {
+        "start": 86.76,
+        "end": 89.52,
+        "text": "然后在2025年的4月开始买股票",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 37
+      },
+      {
+        "start": 89.52,
+        "end": 92.48,
+        "text": "在26年的1月开始激动的AI编程",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 38
+      },
+      {
+        "start": 92.48,
+        "end": 95.2,
+        "text": "我觉得人生它其实就像一个开放世界的游戏",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 39
+      },
+      {
+        "start": 95.2,
+        "end": 98.8,
+        "text": "所以大家也可以用这样子的时间点去标注一下",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 40
+      },
+      {
+        "start": 98.8,
+        "end": 100.8,
+        "text": "自己在什么时刻做了什么样的事情",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 41
+      },
+      {
+        "start": 100.8,
+        "end": 103.36,
+        "text": "而且如果你自己的个人网站作为简历的话",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 42
+      },
+      {
+        "start": 103.36,
+        "end": 104.96,
+        "text": "你也可以在这个时间线上",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 43
+      },
+      {
+        "start": 104.96,
+        "end": 107.6,
+        "text": "说明自己做了什么项目在什么公司任职",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 44
+      },
+      {
+        "start": 107.6,
+        "end": 110.04,
+        "text": "第三个tab就是我自己的个人的文章",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 45
+      },
+      {
+        "start": 110.04,
+        "end": 111.64,
+        "text": "这是我微信公众号的文章",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 46
+      },
+      {
+        "start": 111.64,
+        "end": 114.26,
+        "text": "虽然我已经5年没有更新了",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 47
+      },
+      {
+        "start": 114.3,
+        "end": 118.1,
+        "text": "跳转出去就是微信公众号的文章的链接",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 48
+      },
+      {
+        "start": 118.1,
+        "end": 120.06,
+        "text": "这个跳转也是AI帮我做的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 49
+      },
+      {
+        "start": 120.06,
+        "end": 123.5,
+        "text": "第四个tab是我的B站的所有的视频",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 50
+      },
+      {
+        "start": 123.5,
+        "end": 125.58,
+        "text": "然后也是做了一个跳转的链接",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 51
+      },
+      {
+        "start": 125.58,
+        "end": 127.7,
+        "text": "以前做这种跳转链接应该挺难的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 52
+      },
+      {
+        "start": 127.7,
+        "end": 130.02,
+        "text": "但是现在AI直接能够帮我们做了",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 53
+      },
+      {
+        "start": 130.02,
+        "end": 132.82,
+        "text": "最后一个tab是我自己外部coding出来的一些产品",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 54
+      },
+      {
+        "start": 132.82,
+        "end": 134.82,
+        "text": "比如说这个是等会吃傻",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 55
+      },
+      {
+        "start": 134.82,
+        "end": 137.06,
+        "text": "一个能够直接获取你当前的定位",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 56
+      },
+      {
+        "start": 137.06,
+        "end": 140.86,
+        "text": "用其找出方圆500米或者1000米内的所有餐饮店",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 57
+      },
+      {
+        "start": 140.86,
+        "end": 144.14,
+        "text": "然后随机帮你写一个需要吃的餐厅",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 58
+      },
+      {
+        "start": 144.14,
+        "end": 146.02,
+        "text": "然后你就可以到行去吃了",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 59
+      },
+      {
+        "start": 146.02,
+        "end": 149.74,
+        "text": "这个工具就是做给我自己这种选择困难症的懒人用的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 60
+      },
+      {
+        "start": 149.74,
+        "end": 150.66,
+        "text": "因为有朋友需要",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 61
+      },
+      {
+        "start": 150.66,
+        "end": 152.86,
+        "text": "所以我也把它放在了我的个人主页上",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 62
+      },
+      {
+        "start": 152.86,
+        "end": 154.3,
+        "text": "这样它就能直接用了",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 63
+      },
+      {
+        "start": 154.3,
+        "end": 156.78,
+        "text": "这个网站花费了我大概5天的下班时间",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 64
+      },
+      {
+        "start": 156.78,
+        "end": 159.78,
+        "text": "要知道我是每天9点之后才能下班的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 65
+      },
+      {
+        "start": 159.78,
+        "end": 161.74,
+        "text": "所以你们做的话应该会更快",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 66
+      },
+      {
+        "start": 161.74,
+        "end": 165.54,
+        "text": "下一个视频我会分享我是怎么和AI聊出来这个网站的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "line": 67
+      },
+      {
+        "start": null,
+        "end": null,
+        "text": "母老乡亲们，这个时代简直是为了我们而生的",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/download/6980c377000000000a02b5ac/母老乡亲们，这个时代简直是为了我们而生的.info.json",
+        "line": 1
+      },
+      {
+        "start": null,
+        "end": null,
+        "text": "#vibecoding大赏[话题]# #ai编程[话题]# #网站[话题]# #产品经理[话题]# #有趣[话题]# #表达[话题]# #创造[话题]# #互联网[话题]# #文科生[话题]# #运营[话题]# @科技薯 @职场薯 @薯队长",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/download/6980c377000000000a02b5ac/母老乡亲们，这个时代简直是为了我们而生的.info.json",
+        "line": 2
+      },
+      {
+        "start": null,
+        "end": null,
+        "text": "标签: vibecoding大赏 ai编程 网站 产品经理 有趣 表达 创造 互联网 文科生 运营",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/download/6980c377000000000a02b5ac/母老乡亲们，这个时代简直是为了我们而生的.info.json",
+        "line": 3
+      }
+    ],
+    "evidence_pool": [
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_000.jpg",
+        "locator": "frame:0",
+        "snippet": "AI生成\n多\n剪AF",
+        "confidence": 0.93
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_001.jpg",
+        "locator": "frame:1",
+        "snippet": "首页\n关于我\n文章\n视频\n产品\n日\n我是\n西门美月匈XD\nA Product Manager,\n练习时长\n两年半\nBilibili Creator|Digital Writer|Hyperactive Otaku\ntoBPMby day,V",
+        "confidence": 0.91
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_002.jpg",
+        "locator": "frame:2",
+        "snippet": "DLEH\n甚至所有的内容创作者",
+        "confidence": 0.82
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_003.jpg",
+        "locator": "frame:3",
+        "snippet": "OVO\n或者你拥有很多丰富的兴趣爱好的人",
+        "confidence": 0.81
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_004.jpg",
+        "locator": "frame:4",
+        "snippet": "去搭建一个属于自己的网站",
+        "confidence": 0.99
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_005.jpg",
+        "locator": "frame:5",
+        "snippet": "简直是为了我们这些人而生的",
+        "confidence": 1.0
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_006.jpg",
+        "locator": "frame:6",
+        "snippet": "NO-WO\n我们的脑子非常灵活",
+        "confidence": 0.86
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_007.jpg",
+        "locator": "frame:7",
+        "snippet": "OVO\n我们能用它",
+        "confidence": 0.77
+      },
+      {
+        "type": "frame_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/frames/frame_av_008.jpg",
+        "locator": "frame:8",
+        "snippet": "JWC\n而不需要再依靠别人",
+        "confidence": 0.75
+      },
+      {
+        "type": "cover_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/download/6980c377000000000a02b5ac/母老乡亲们，这个时代简直是为了我们而生的.jpg",
+        "locator": "image:0",
+        "snippet": "属于我的个人网站\n终于上线了\n我是\n西门美月甸XD\nA Product Manager,\n练习时长两年半\nASA\nmmHIo\nWI Mhte ifsoui. k",
+        "confidence": 0.86
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "locator": "0.0s-2.04s",
+        "snippet": "主播最近用ai做了自己的个人网站",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "locator": "2.04s-5.12s",
+        "snippet": "我甚至觉得所有的产品经理运营市场销售",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "locator": "5.12s-5.88s",
+        "snippet": "资型",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "locator": "5.88s-11.52s",
+        "snippet": "政治所有的内容创作者自由职业者或者你拥有很多丰富的兴趣爱好的人都应该用ai",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "locator": "11.52s-13.32s",
+        "snippet": "去搭建一个属于自己的网站",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "locator": "13.32s-15.88s",
+        "snippet": "我觉得这个时代简直是为了我们这些人而胜的",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "locator": "15.88s-18.8s",
+        "snippet": "就好像我们原本是瘫痪的人我们的脑子非常灵活",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "locator": "18.8s-23.04s",
+        "snippet": "ai资予了我们手和脚和气体我们能用它去做任何我们想做到的事情",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "locator": "23.04s-24.32s",
+        "snippet": "而不需要再依靠别人",
+        "confidence": 0.7
+      },
+      {
+        "type": "timestamp",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "locator": "24.32s-27.4s",
+        "snippet": "接下来请允许我隆重的介绍一下我webcoding出来的",
+        "confidence": 0.7
+      },
+      {
+        "type": "cover_ocr",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/download/6980c377000000000a02b5ac/母老乡亲们，这个时代简直是为了我们而生的.info.json",
+        "locator": "field:title",
+        "snippet": "母老乡亲们，这个时代简直是为了我们而生的",
+        "confidence": 0.62
+      },
+      {
+        "type": "transcript_span",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/download/6980c377000000000a02b5ac/母老乡亲们，这个时代简直是为了我们而生的.info.json",
+        "locator": "field:description",
+        "snippet": "#vibecoding大赏[话题]# #ai编程[话题]# #网站[话题]# #产品经理[话题]# #有趣[话题]# #表达[话题]# #创造[话题]# #互联网[话题]# #文科生[话题]# #运营[话题]# @科技薯 @职场薯 @薯队长",
+        "confidence": 0.55
+      },
+      {
+        "type": "visual_pattern",
+        "source": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/download/6980c377000000000a02b5ac/母老乡亲们，这个时代简直是为了我们而生的.info.json",
+        "locator": "field:tags",
+        "snippet": "vibecoding大赏 ai编程 网站 产品经理 有趣 表达 创造 互联网 文科生 运营",
+        "confidence": 0.5
+      }
+    ],
+    "hook_candidates": [
+      "主播最近用ai做了自己的个人网站",
+      "我甚至觉得所有的产品经理运营市场销售",
+      "资型",
+      "政治所有的内容创作者自由职业者或者你拥有很多丰富的兴趣爱好的人都应该用ai",
+      "去搭建一个属于自己的网站"
+    ]
+  },
+  "logs": [
+    {
+      "step": "ffmpeg",
+      "warning": "ffmpeg 未安装，切换到 av 抽帧"
+    },
+    {
+      "step": "av_frames",
+      "saved": 9,
+      "interval": 90
+    },
+    {
+      "ffmpeg": {
+        "step": "audio",
+        "warning": "ffmpeg 未安装，切换到 av 抽音频"
+      },
+      "av": {
+        "step": "av_audio",
+        "written": "/Users/cecilialiu/Documents/Codex/Skills/viral_breakdowns/xhs-6980c377/audio.wav",
+        "samples": 2651539
+      }
+    },
+    "未设置 OPENAI_API_KEY，跳过 OpenAI ASR",
+    "Local Whisper ASR 完成，模型=small，语言=zh"
+  ],
+  "limitations": [
+    "OCR 与 ASR 质量依赖素材清晰度。",
+    "如无网络，Local Whisper 首次模型下载可能失败。"
+  ]
+}
