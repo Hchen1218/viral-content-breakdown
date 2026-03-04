@@ -1,5 +1,5 @@
 ---
-name: github-to-skills
+name: github-to-skills-suite
 description: Unified GitHub skill suite for creating, managing, and evolving skills. Use when users want to convert a GitHub repo into a skill, list/check/delete local skills, or persist conversation learnings into evolution.json and stitch them back into SKILL.md.
 license: MIT
 ---
@@ -94,4 +94,3 @@ metadata:
 - 用户说“把这个 GitHub 仓库封装成 skill” -> `create`
 - 用户说“查一下我哪些 skill 过期了” -> `check`
 - 用户说“复盘并把经验写回 skill” -> `evolve-merge` + `evolve-stitch`
-
