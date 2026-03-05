@@ -12,6 +12,7 @@ description: Analyze Douyin/Xiaohongshu/WeChat article links into evidence-backe
 2. 执行 `scripts/run_pipeline.py`。
 3. 若用户未指定素材保留策略，使用默认 `--save-artifacts ask`。
 4. 成功后返回 `report.json` + `report.md` 路径和关键结论摘要。
+5. 默认自动删除原视频与原音频，保留结构化结果与必要元数据。
 
 每条链接会额外导出到固定目录 `./viral_breakdowns/`：
 - `<抓取日期>-<内容总结>.json`
@@ -47,10 +48,12 @@ python3 scripts/run_pipeline.py \
 - `--quality`：默认 `high`。
 - `--non-interactive`：禁用交互输入，适合 CI/Agent。
 - `--session-file`：可选，复用已有 `session.json`。
+- `--prune-original-media`：`always|never`，默认 `always`（自动删原视频和原音频）。
 - `fetch_content.py` 支持 `--input-video/--input-image/--input-audio/--input-transcript` 手动补料。
 
 ## 输出与字段
 主输出：`report.json`、`report.md`。
+默认附加：`deleted_media_files.txt`（删除的原视频/音频清单）。
 核心字段：
 - `meta`
 - `asset_index`

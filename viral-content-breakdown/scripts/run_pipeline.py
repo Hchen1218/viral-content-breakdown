@@ -33,6 +33,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--skip-session", action="store_true", help="跳过扫码阶段，复用已有 session")
     parser.add_argument("--session-file", help="可选：复用指定 session.json 路径")
     parser.add_argument("--non-interactive", action="store_true", help="非交互模式（自动跳过输入提示）")
+    parser.add_argument(
+        "--prune-original-media",
+        choices=["always", "never"],
+        default="always",
+        help="是否在产出完成后删除原视频与原音频（默认 always）",
+    )
     return parser.parse_args()
 
 
@@ -72,6 +78,51 @@ def _cleanup_for_never(output_dir: Path) -> None:
                 p.rmdir()
             except OSError:
                 pass
+
+
+def _prune_original_media(output_dir: Path, fetch: Dict[str, object], signals: Dict[str, object]) -> Dict[str, object]:
+    deleted: List[str] = []
+    failed: List[str] = []
+    targets: List[str] = []
+
+    for src in (fetch, signals):
+        if not isinstance(src, dict):
+            continue
+        asset = src.get("asset_index", {})
+        if not isinstance(asset, dict):
+            continue
+        for key in ("video", "audio"):
+            arr = asset.get(key, [])
+            if isinstance(arr, list):
+                targets.extend(str(x) for x in arr if str(x).strip())
+
+    # 兜底：有些音频是中间产物 audio.wav，可能未写回 asset_index
+    audio_wav = output_dir / "audio.wav"
+    if audio_wav.exists():
+        targets.append(str(audio_wav))
+
+    seen = set()
+    dedup_targets: List[str] = []
+    for t in targets:
+        if t in seen:
+            continue
+        seen.add(t)
+        dedup_targets.append(t)
+
+    for raw in dedup_targets:
+        p = Path(raw)
+        if not p.exists() or not p.is_file():
+            continue
+        try:
+            p.unlink()
+            deleted.append(str(p))
+        except Exception:
+            failed.append(str(p))
+
+    log_file = output_dir / "deleted_media_files.txt"
+    lines = deleted + [f"[FAILED] {x}" for x in failed]
+    log_file.write_text("\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")
+    return {"deleted_count": len(deleted), "failed_count": len(failed), "log_file": str(log_file)}
 
 
 def _sanitize_summary(text: str) -> str:
@@ -244,6 +295,10 @@ def main() -> int:
         if save_artifacts == "never":
             # 保留 report + run_meta；其余素材清理
             _cleanup_for_never(output_dir)
+        elif args.prune_original_media == "always":
+            fetch_obj = read_json(fetch_result, default={})
+            signals_obj = read_json(signals_file, default={})
+            run_meta["pruned_media"] = _prune_original_media(output_dir, fetch_obj, signals_obj)
 
         run_meta["finished_at"] = utc_now_iso()
         run_meta["ok"] = True
