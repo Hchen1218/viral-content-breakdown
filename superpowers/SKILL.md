@@ -1,6 +1,13 @@
 ---
 name: superpowers
 description: Use for general software-development tasks when a structured Superpowers workflow would help, or when the user explicitly asks for Superpowers. This is a single entrypoint that chooses the right local Superpowers workflow from /Users/cecilialiu/.codex/.superpowers-internal/skills.
+license: MIT
+metadata:
+  github_url: https://github.com/obra/superpowers
+  github_hash: eafe962b18f6c5dc70fb7c8cc7e83e61f4cdde06
+  version: "5.0.6"
+  created_at: 2026-03-30T12:00:00+08:00
+  entry_point: SKILL.md
 ---
 
 # Superpowers

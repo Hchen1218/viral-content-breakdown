@@ -1,6 +1,15 @@
 ---
 name: lark-suite
 description: Use for any Feishu/Lark task involving docs, sheets, drive, calendar, chat, contacts, mail, tasks, wiki, meetings, whiteboards, search, or Lark OpenAPI exploration. This is the single entrypoint for the local Lark toolkit and replaces the former lark-doc, lark-sheets, lark-im, lark-calendar, lark-drive, lark-mail, lark-task, lark-wiki, lark-vc, lark-whiteboard, lark-minutes, lark-contact, lark-base, lark-event, lark-openapi-explorer, and related workflow skills.
+license: MIT
+metadata:
+  github_url: https://github.com/larksuite/cli
+  github_hash: e5a83f5eaab0a0724334b291249fb776ffd4ff14
+  version: "1.0.0"
+  created_at: 2026-03-30T12:00:00+08:00
+  entry_point: SKILL.md
+  dependencies:
+    - lark-cli
 ---
 
 # Lark Suite
@@ -8,6 +17,8 @@ description: Use for any Feishu/Lark task involving docs, sheets, drive, calenda
 This is the single-entry wrapper for the local Feishu/Lark toolkit.
 
 Use this skill instead of exposing the underlying `lark-*` skills directly in the main skill list.
+
+This wrapper stays aligned to the upstream `larksuite/cli` repository while preserving a clean one-skill user experience. The upstream toolkit currently provides 200+ commands and 19 AI Agent skills across docs, sheets, base, calendar, chat, contacts, mail, tasks, wiki, meetings, whiteboards, and API exploration.
 
 ## How To Use This Wrapper
 
@@ -42,7 +53,7 @@ Use this skill instead of exposing the underlying `lark-*` skills directly in th
   Read `/Users/cecilialiu/.codex/.lark-internal-skills/lark-vc/SKILL.md` and `/Users/cecilialiu/.codex/.lark-internal-skills/lark-minutes/SKILL.md`
 - Work with whiteboards:
   Read `/Users/cecilialiu/.codex/.lark-internal-skills/lark-whiteboard/SKILL.md`
-- Work with bitable/base:
+- Work with Base:
   Read `/Users/cecilialiu/.codex/.lark-internal-skills/lark-base/SKILL.md`
 - Work with event subscriptions:
   Read `/Users/cecilialiu/.codex/.lark-internal-skills/lark-event/SKILL.md`

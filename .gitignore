@@ -1,3 +1,7 @@
 .cleanup-backups/
 viral_breakdowns/
 viral-content-breakdown/viral_breakdowns/
+follow-builders/.git/
+follow-builders/feed-*.json
+follow-builders/state-feed.json
+follow-builders/scripts/node_modules/

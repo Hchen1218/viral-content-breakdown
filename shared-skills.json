@@ -1,0 +1,30 @@
+{
+  "roots": {
+    "repo": "/Users/cecilialiu/Documents/Codex/Skills",
+    "codex": "/Users/cecilialiu/.codex/skills",
+    "claude": "/Users/cecilialiu/.claude/skills",
+    "agents": "/Users/cecilialiu/.agents/skills"
+  },
+  "repoManaged": [
+    "anthropic-skill-creator",
+    "github-to-skills",
+    "skill-evolution-manager",
+    "skill-manager",
+    "viral-content-breakdown",
+    "dbskill",
+    "follow-builders",
+    "humanizer-zh",
+    "lark-suite",
+    "superpowers"
+  ],
+  "externalShared": [
+    "claude-mem",
+    "pua",
+    "web-access"
+  ],
+  "compatibilityLinks": {
+    "agents": [
+      "superpowers"
+    ]
+  }
+}

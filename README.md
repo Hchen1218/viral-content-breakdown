@@ -1,162 +1,69 @@
-# Hchen-Skills
+# Shared Skills Workspace
 
-A collection of AI Skills for managing and evolving your skill library. These tools help you create, maintain, and continuously improve AI skills from GitHub repositories.
+This repository is the source of truth for the self-managed skills that both Codex and Claude Code should use on this Mac.
 
-## Skills Overview
+## Layout
 
-| Skill | Description |
-|-------|-------------|
-| [github-to-skills](./github-to-skills/) | Convert GitHub repos into AI skills automatically |
-| [skill-manager](./skill-manager/) | Manage skill lifecycle - check updates, list, delete |
-| [skill-evolution-manager](./skill-evolution-manager/) | Evolve skills based on user feedback and experience |
+- Source repo: `/Users/cecilialiu/Documents/Codex/Skills`
+- Codex runtime entrypoints: `/Users/cecilialiu/.codex/skills`
+- Claude Code runtime entrypoints: `/Users/cecilialiu/.claude/skills`
+- Compatibility link kept for migration: `/Users/cecilialiu/.agents/skills/superpowers`
 
----
+The runtime directories should only contain symlinks for the shared set. The actual repo-managed sources live here in the repository.
 
-## github-to-skills
+## Shared Set
 
-**Automated factory for converting GitHub repositories into specialized AI skills.**
+### Repo-managed skills
 
-### Features
-- Fetches repository metadata (README, latest commit hash)
-- Creates standardized skill directory structure
-- Generates `SKILL.md` with extended frontmatter for lifecycle management
-- Creates wrapper scripts for tool invocation
+These skills are maintained in this repository and published to both clients:
 
-### Usage
-```
-/github-to-skills <github_url>
-```
-Or: "Package this repo into a skill: <url>"
+- `anthropic-skill-creator`
+- `github-to-skills`
+- `skill-evolution-manager`
+- `skill-manager`
+- `viral-content-breakdown`
+- `dbskill`
+- `follow-builders`
+- `humanizer-zh`
+- `lark-suite`
+- `superpowers`
 
-### Example
-```
-/github-to-skills https://github.com/yt-dlp/yt-dlp
-```
+### External shared entrypoints
 
----
+These stay upstream-managed in the existing Codex vendor/internal layout. Claude gets symlinks to the same real directories:
 
-## skill-manager
+- `claude-mem`
+- `pua`
+- `web-access`
 
-**Lifecycle manager for GitHub-based skills.**
+## Runtime Rebuild
 
-### Features
-- **Audit**: Scan local skills folder for GitHub-based skills
-- **Check**: Compare local commit hashes against remote HEAD
-- **Report**: Generate status report (Stale/Current)
-- **Update**: Guided workflow for upgrading skills
-- **Inventory**: List all skills, delete unwanted ones
+The shared layout is defined in [shared-skills.json](./shared-skills.json).
 
-### Usage
-```
-/skill-manager check     # Scan for updates
-/skill-manager list      # List all skills
-/skill-manager delete <name>  # Remove a skill
-```
+Rebuild both runtime entrypoint trees with:
 
-### Scripts
-| Script | Purpose |
-|--------|---------|
-| `scan_and_check.py` | Scan directories, parse frontmatter, check remote versions |
-| `update_helper.py` | Backup files before update |
-| `list_skills.py` | List installed skills with metadata |
-| `delete_skill.py` | Permanently remove a skill |
-
----
-
-## skill-evolution-manager
-
-**Continuously improve skills based on user feedback and conversation insights.**
-
-### Core Concepts
-1. **Session Review**: Analyze skill performance after conversations
-2. **Experience Extraction**: Convert feedback into structured `evolution.json`
-3. **Smart Stitching**: Persist learned best practices into `SKILL.md`
-
-### Usage
-```
-/evolve
-```
-Or: "Save this experience to the skill"
-
-### Workflow
-1. **Review**: Agent analyzes what worked/didn't work
-2. **Extract**: Creates structured JSON with preferences, fixes, custom prompts
-3. **Persist**: Merges into `evolution.json`
-4. **Stitch**: Updates `SKILL.md` with learned best practices
-
-### Scripts
-| Script | Purpose |
-|--------|---------|
-| `merge_evolution.py` | Incrementally merge new experience data |
-| `smart_stitch.py` | Generate/update best practices section in SKILL.md |
-| `align_all.py` | Batch re-stitch all skills after updates |
-
----
-
-## Installation
-
-1. Clone this repository:
 ```bash
-git clone https://github.com/KKKKhazix/Khazix-Skills.git
+python3 scripts/rebuild_shared_skill_links.py
 ```
 
-2. Copy desired skills to your Claude skills directory:
+The script will:
+
+1. Create `~/.claude/skills` if it does not exist.
+2. Point `~/.codex/skills/<skill>` for repo-managed skills back to this repository.
+3. Point `~/.claude/skills/<skill>` for repo-managed skills back to this repository.
+4. Point `~/.claude/skills/{claude-mem,pua,web-access}` to the same upstream directories Codex already uses.
+5. Keep `~/.agents/skills/superpowers` as a compatibility symlink.
+6. Move replaced runtime directories into `~/.codex/.shared-skill-backups/<timestamp>/`.
+
+Use `--dry-run` first if you want to inspect the planned changes:
+
 ```bash
-# Windows
-copy /E Khazix-Skills\github-to-skills %USERPROFILE%\.claude\skills\
-
-# macOS/Linux
-cp -r Khazix-Skills/github-to-skills ~/.claude/skills/
+python3 scripts/rebuild_shared_skill_links.py --dry-run
 ```
 
-3. Restart Claude to load the new skills.
+## Notes
 
----
-
-## Requirements
-
-- Python 3.8+
-- Git (for checking remote repositories)
-- PyYAML (`pip install pyyaml`)
-
----
-
-## How It Works
-
-```
-+------------------+     +----------------+     +------------------------+
-| github-to-skills | --> | skill-manager  | --> | skill-evolution-manager|
-+------------------+     +----------------+     +------------------------+
-        |                       |                         |
-    Create new             Maintain &                 Evolve &
-    skills from            update skills              improve based
-    GitHub repos                                      on feedback
-```
-
-**The Complete Skill Lifecycle:**
-1. **Create**: Use `github-to-skills` to wrap a GitHub repo as a skill
-2. **Maintain**: Use `skill-manager` to check for updates and upgrade
-3. **Evolve**: Use `skill-evolution-manager` to capture learnings and improve
-
----
-
-## License
-
-MIT
-
----
-
-## Contributing
-
-Contributions are welcome! Feel free to:
-- Report issues
-- Submit pull requests
-- Share your own skills
-
----
-
-## Author
-
-**KKKKhazix**
-
-If you find these skills useful, consider giving this repo a star!
+- `lark-suite` remains a wrapper over `/Users/cecilialiu/.codex/.lark-internal-skills`.
+- `superpowers` remains a wrapper over `/Users/cecilialiu/.codex/.superpowers-internal/skills`.
+- `follow-builders` is kept as source only. Local feed snapshots, state files, nested `.git`, and `node_modules` are intentionally excluded from this repo.
+- `skill-manager` still scans `~/.codex/skills` and `~/.agents/skills`; it does not scan `~/.claude/skills`, so the Claude entrypoints do not create duplicate inventory rows.

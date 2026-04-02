@@ -1,0 +1,6 @@
+scripts/node_modules/
+.env
+*.log
+.DS_Store
+feed-*.json
+state-feed.json
