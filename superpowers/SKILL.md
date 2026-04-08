@@ -4,9 +4,9 @@ description: Use for general software-development tasks when a structured Superp
 license: MIT
 metadata:
   github_url: https://github.com/obra/superpowers
-  github_hash: eafe962b18f6c5dc70fb7c8cc7e83e61f4cdde06
-  version: "5.0.6"
-  created_at: 2026-03-30T12:00:00+08:00
+  github_hash: 917e5f53b16b115b70a3a355ed5f4993b9f8b73d
+  version: "5.0.7"
+  created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
 ---
 

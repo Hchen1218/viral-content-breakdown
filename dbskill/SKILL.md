@@ -9,6 +9,7 @@ description: |
   - /dbs-benchmark、/对标、「帮我找对标」「我该模仿谁」「我该学谁」
   - /dbs-content、/内容诊断、「这个内容怎么做」「帮我看看这个文案」
   - /dbs-hook、/hook、「帮我优化开头」「开头怎么写」
+  - /dbs-xhs-title、/小红书标题、「帮我起个小红书标题」「小红书标题公式」
   - /dbs-action、/action、「我知道该怎么做但就是不做」「为什么我总是拖延」
   - /dbs-deconstruct、/拆概念、「帮我拆解这个概念」「这个词到底什么意思」
   - /chatroom-austrian、/奥派、「奥派聊天室」
@@ -16,9 +17,9 @@ description: |
   The upstream repo files are preserved untouched under references/. This wrapper is a local single-entry shell around them.
 metadata:
   github_url: https://github.com/dontbesilent2025/dbskill
-  github_hash: fb530e9075a1989fe0c4afcde471870fe63fdd4a
+  github_hash: 78e8318564e1e5eeb4886ce6c0a9d2011eda8d41
   version: main
-  created_at: 2026-03-23T00:00:00+08:00
+  created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
   dependencies: []
 ---
@@ -43,6 +44,7 @@ metadata:
 | 想找对标、想模仿谁、说"我该学谁" | `/dbs-benchmark` | 对标分析，五重过滤排除一切噪音 |
 | 选题通过了想知道怎么做内容、说"这个内容怎么做" | `/dbs-content` | 内容创作诊断，五维检测 |
 | 有短视频文案想优化开头、说"开头怎么写" | `/dbs-hook` | 短视频开头优化，诊断 + 生成方案 |
+| 想起小红书标题、说"帮我起个小红书标题"、要写标题 | `/dbs-xhs-title` | 小红书标题公式，从 75 个验证过的爆款公式里匹配最适合的 |
 | 知道该做什么但做不动、说"我总是拖延" | `/dbs-action` | 执行力诊断，阿德勒框架找到真正原因 |
 | 某个概念搞不清楚、说"这个词什么意思" | `/dbs-deconstruct` | 概念拆解，维特根斯坦式审查 |
 | 说"/奥派"、"奥派聊天室" | `/chatroom-austrian` | 哈耶克 × 米塞斯 × Claude 多角色讨论 |
@@ -63,8 +65,9 @@ metadata:
 > 2. 想找一个值得模仿的对标 → 对标
 > 3. 有个选题或内容想让我诊断怎么做 → 内容诊断
 > 4. 有短视频文案想优化开头 → 开头优化
-> 5. 知道该做什么但就是做不动 → 自检
-> 6. 有个概念/词搞不清楚 → 拆概念
+> 5. 想起一个小红书标题 → 小红书标题
+> 6. 知道该做什么但就是做不动 → 自检
+> 7. 有个概念/词搞不清楚 → 拆概念
 
 只有当用户显式写 `/奥派`、`/chatroom-austrian`，或明确说出「奥派聊天室」时，进入奥派聊天室。
 
@@ -84,6 +87,7 @@ metadata:
 - `/dbs-benchmark` -> `references/dbs-benchmark.md`
 - `/dbs-content` -> `references/dbs-content.md`
 - `/dbs-hook` -> `references/dbs-hook.md`
+- `/dbs-xhs-title` -> `references/dbs-xhs-title.md`
 - `/dbs-action` -> `references/dbs-action.md`
 - `/dbs-deconstruct` -> `references/dbs-deconstruct.md`
 - `/chatroom-austrian` -> `references/chatroom-austrian.md`

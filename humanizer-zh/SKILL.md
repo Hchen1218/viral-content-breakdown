@@ -14,9 +14,9 @@ metadata:
   trigger: 编辑或审阅文本，去除 AI 写作痕迹
   source: 翻译自 blader/humanizer，参考 hardikpandya/stop-slop
   github_url: https://github.com/op7418/Humanizer-zh
-  github_hash: b4b4fe5c9bc4f14f1be0614f8c2c234161734a6e
+  github_hash: 91f3d394db8419c20d67ebe22a96cf8fee0a404b
   version: "2026.01.19"
-  created_at: 2026-03-30T12:00:00+08:00
+  created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
 ---
 

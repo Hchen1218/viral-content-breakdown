@@ -1,6 +1,11 @@
 ---
 name: follow-builders
 description: AI builders digest — monitors top AI builders on X and YouTube podcasts, remixes their content into digestible summaries. Use when the user wants AI industry insights, builder updates, or invokes /ai. No API keys or dependencies required — all content is fetched from a central feed.
+metadata:
+  github_url: https://github.com/zarazhangrui/follow-builders
+  github_hash: 3cecd8c54e22d9abb247879cc86b9c68382151d4
+  version: "main"
+  created_at: 2026-04-07T00:00:00+08:00
 ---
 
 # Follow Builders, Not Influencers

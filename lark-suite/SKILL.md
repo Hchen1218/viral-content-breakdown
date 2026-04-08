@@ -4,9 +4,9 @@ description: Use for any Feishu/Lark task involving docs, sheets, drive, calenda
 license: MIT
 metadata:
   github_url: https://github.com/larksuite/cli
-  github_hash: e5a83f5eaab0a0724334b291249fb776ffd4ff14
-  version: "1.0.0"
-  created_at: 2026-03-30T12:00:00+08:00
+  github_hash: 0c77c95a11c9ead1f82b4c268815164104c1249c
+  version: "1.0.4"
+  created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
   dependencies:
     - lark-cli

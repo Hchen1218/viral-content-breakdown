@@ -99,7 +99,7 @@ fi
 
 格式：
 
-```text
+```
 dbskill v{REMOTE_VERSION} — 从 v{OLD_VERSION} 升级成功！
 
 更新内容：
