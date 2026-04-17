@@ -1,6 +1,8 @@
 ---
 name: viral-content-breakdown
 description: Analyze Douyin/Xiaohongshu/WeChat article links into evidence-backed JSON + Markdown breakdown reports. Use when users ask for script decomposition, narrative pattern, cover text, voiceover, tags,正文, engagement metrics, visual specs, production-method inference (Top3 confidence), virality reasons, and adaptation ideas.
+metadata:
+  tracking: local-only
 ---
 
 # Viral Content Breakdown

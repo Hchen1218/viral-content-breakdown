@@ -13,11 +13,117 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-import yaml
+try:
+    import yaml  # type: ignore
+except Exception:  # pragma: no cover - optional dependency fallback
+    yaml = None
 
 
 def _default_skills_root() -> Path:
     return Path.home() / ".codex" / "skills"
+
+
+def _fallback_frontmatter_parse(frontmatter: str) -> Dict[str, Any]:
+    data: Dict[str, Any] = {}
+
+    def _strip_quotes(value: str) -> str:
+        value = value.strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in {'"', "'"}:
+            return value[1:-1]
+        return value
+
+    lines = frontmatter.splitlines()
+    i = 0
+    current_section: Optional[str] = None
+    nested_section: Optional[str] = None
+    while i < len(lines):
+        line = lines[i]
+        if not line.strip() or line.lstrip().startswith("#"):
+            i += 1
+            continue
+
+        if not line.startswith(" "):
+            current_section = None
+            nested_section = None
+            if ":" not in line:
+                i += 1
+                continue
+            key, raw = line.split(":", 1)
+            key = key.strip()
+            value = raw.strip()
+            if value == "|":
+                block: List[str] = []
+                i += 1
+                while i < len(lines):
+                    nxt = lines[i]
+                    if nxt.startswith("  "):
+                        block.append(nxt[2:])
+                        i += 1
+                        continue
+                    if not nxt.strip():
+                        block.append("")
+                        i += 1
+                        continue
+                    break
+                data[key] = "\n".join(block).rstrip()
+                continue
+            if value:
+                data[key] = _strip_quotes(value)
+            else:
+                data[key] = {}
+                current_section = key
+            i += 1
+            continue
+
+        if current_section is None:
+            i += 1
+            continue
+
+        stripped = line.strip()
+        if ":" not in stripped:
+            i += 1
+            continue
+        key, raw = stripped.split(":", 1)
+        key = key.strip()
+        value = raw.strip()
+
+        if current_section not in data or not isinstance(data[current_section], dict):
+            data[current_section] = {}
+
+        if value == "":
+            data[current_section][key] = {}
+            nested_section = key
+            i += 1
+            continue
+
+        if value == "|" and current_section == "metadata" and nested_section:
+            block = []
+            i += 1
+            while i < len(lines):
+                nxt = lines[i]
+                if nxt.startswith("      "):
+                    block.append(nxt[6:])
+                    i += 1
+                    continue
+                if not nxt.strip():
+                    block.append("")
+                    i += 1
+                    continue
+                break
+            if isinstance(data[current_section].get(nested_section), dict):
+                data[current_section][nested_section][key] = "\n".join(block).rstrip()
+            continue
+
+        if line.startswith("    ") and nested_section:
+            nested = data[current_section].setdefault(nested_section, {})
+            if isinstance(nested, dict):
+                nested[key] = _strip_quotes(value)
+        else:
+            data[current_section][key] = _strip_quotes(value)
+            nested_section = None
+        i += 1
+
+    return data
 
 
 def _extract_frontmatter(content: str) -> Dict[str, Any]:
@@ -26,11 +132,14 @@ def _extract_frontmatter(content: str) -> Dict[str, Any]:
     parts = content.split("---", 2)
     if len(parts) < 3:
         return {}
-    try:
-        data = yaml.safe_load(parts[1])
-        return data if isinstance(data, dict) else {}
-    except Exception:
-        return {}
+    frontmatter = parts[1]
+    if yaml is not None:
+        try:
+            data = yaml.safe_load(frontmatter)
+            return data if isinstance(data, dict) else {}
+        except Exception:
+            pass
+    return _fallback_frontmatter_parse(frontmatter)
 
 
 def _load_skill_meta(skill_dir: Path) -> Dict[str, Any]:
@@ -42,9 +151,16 @@ def _load_skill_meta(skill_dir: Path) -> Dict[str, Any]:
 
 
 def _source_meta(frontmatter: Dict[str, Any]) -> Dict[str, Any]:
-    source = ((frontmatter.get("metadata") or {}).get("source") or {}) if isinstance(frontmatter, dict) else {}
+    metadata = (frontmatter.get("metadata") or {}) if isinstance(frontmatter, dict) else {}
+    source = (metadata.get("source") or {}) if isinstance(metadata, dict) else {}
     if not isinstance(source, dict):
         source = {}
+    if "github_url" not in source and isinstance(metadata, dict) and metadata.get("github_url"):
+        source["github_url"] = metadata.get("github_url")
+    if "github_hash" not in source and isinstance(metadata, dict) and metadata.get("github_hash"):
+        source["github_hash"] = metadata.get("github_hash")
+    if "version" not in source and isinstance(metadata, dict) and metadata.get("version"):
+        source["version"] = metadata.get("version")
     # backward compatible fields
     if "github_url" not in source and frontmatter.get("github_url"):
         source["github_url"] = frontmatter.get("github_url")
@@ -56,9 +172,13 @@ def _source_meta(frontmatter: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _git_remote_hash(repo_url: str) -> Optional[str]:
+    normalized = repo_url
+    m = re.match(r"(https://github\.com/[^/]+/[^/]+)", repo_url.rstrip("/"))
+    if m:
+        normalized = m.group(1)
     try:
         res = subprocess.run(
-            ["git", "ls-remote", repo_url, "HEAD"],
+            ["git", "ls-remote", normalized, "HEAD"],
             text=True,
             capture_output=True,
             timeout=20,
@@ -113,19 +233,30 @@ def cmd_check(args: argparse.Namespace) -> int:
         if not fm:
             continue
         source = _source_meta(fm)
-        if not source.get("github_url"):
-            continue
-        skills.append(
-            {
-                "name": fm.get("name", item.name),
-                "path": str(item),
-                "github_url": source.get("github_url"),
-                "local_hash": source.get("github_hash", "unknown"),
-                "version": source.get("version", "0.1.0"),
-            }
-        )
+        metadata = (fm.get("metadata") or {}) if isinstance(fm, dict) else {}
+        skill = {
+            "name": fm.get("name", item.name),
+            "path": str(item),
+            "github_url": source.get("github_url"),
+            "local_hash": source.get("github_hash", "unknown"),
+            "version": source.get("version", "0.1.0"),
+            "tracking": metadata.get("tracking", "github"),
+        }
+        skills.append(skill)
 
     def _one(skill: Dict[str, Any]) -> Dict[str, Any]:
+        if skill.get("tracking") == "local-only":
+            out = dict(skill)
+            out["remote_hash"] = None
+            out["status"] = "local-only"
+            out["message"] = "no_remote_tracking_expected"
+            return out
+        if not skill.get("github_url"):
+            out = dict(skill)
+            out["remote_hash"] = None
+            out["status"] = "untracked"
+            out["message"] = "missing_github_metadata"
+            return out
         remote = _git_remote_hash(skill["github_url"])
         out = dict(skill)
         out["remote_hash"] = remote

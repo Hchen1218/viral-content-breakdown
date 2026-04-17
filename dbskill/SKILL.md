@@ -10,6 +10,8 @@ description: |
   - /dbs-content、/内容诊断、「这个内容怎么做」「帮我看看这个文案」
   - /dbs-hook、/hook、「帮我优化开头」「开头怎么写」
   - /dbs-xhs-title、/小红书标题、「帮我起个小红书标题」「小红书标题公式」
+  - /dbs-ai-check、/AI检测、「帮我看看有没有 AI 味」「检测一下 AI 特征」
+  - /dbs-slowisfast、/慢就是快、「有没有更慢的方法」「我是不是太快了」
   - /dbs-action、/action、「我知道该怎么做但就是不做」「为什么我总是拖延」
   - /dbs-deconstruct、/拆概念、「帮我拆解这个概念」「这个词到底什么意思」
   - /chatroom-austrian、/奥派、「奥派聊天室」
@@ -17,7 +19,7 @@ description: |
   The upstream repo files are preserved untouched under references/. This wrapper is a local single-entry shell around them.
 metadata:
   github_url: https://github.com/dontbesilent2025/dbskill
-  github_hash: 78e8318564e1e5eeb4886ce6c0a9d2011eda8d41
+  github_hash: 93fea4ce129f310f0138cf1b8a8ff2515f8399ee
   version: main
   created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
@@ -45,6 +47,8 @@ metadata:
 | 选题通过了想知道怎么做内容、说"这个内容怎么做" | `/dbs-content` | 内容创作诊断，五维检测 |
 | 有短视频文案想优化开头、说"开头怎么写" | `/dbs-hook` | 短视频开头优化，诊断 + 生成方案 |
 | 想起小红书标题、说"帮我起个小红书标题"、要写标题 | `/dbs-xhs-title` | 小红书标题公式，从 75 个验证过的爆款公式里匹配最适合的 |
+| 发来文案问有没有 AI 味、说"检测一下" | `/dbs-ai-check` | AI 写作特征识别，只诊断不改 |
+| 觉得自己在走捷径、想找更深入的方法、说"有没有更慢的方法" | `/dbs-slowisfast` | 慢就是快，找到值得慢做的环节 |
 | 知道该做什么但做不动、说"我总是拖延" | `/dbs-action` | 执行力诊断，阿德勒框架找到真正原因 |
 | 某个概念搞不清楚、说"这个词什么意思" | `/dbs-deconstruct` | 概念拆解，维特根斯坦式审查 |
 | 说"/奥派"、"奥派聊天室" | `/chatroom-austrian` | 哈耶克 × 米塞斯 × Claude 多角色讨论 |
@@ -66,8 +70,10 @@ metadata:
 > 3. 有个选题或内容想让我诊断怎么做 → 内容诊断
 > 4. 有短视频文案想优化开头 → 开头优化
 > 5. 想起一个小红书标题 → 小红书标题
-> 6. 知道该做什么但就是做不动 → 自检
-> 7. 有个概念/词搞不清楚 → 拆概念
+> 6. 有文案想看看有没有 AI 味 → AI 检测
+> 7. 觉得自己在走捷径，想找更深入的做法 → 慢方法诊断
+> 8. 知道该做什么但就是做不动 → 自检
+> 9. 有个概念/词搞不清楚 → 拆概念
 
 只有当用户显式写 `/奥派`、`/chatroom-austrian`，或明确说出「奥派聊天室」时，进入奥派聊天室。
 
@@ -88,6 +94,8 @@ metadata:
 - `/dbs-content` -> `references/dbs-content.md`
 - `/dbs-hook` -> `references/dbs-hook.md`
 - `/dbs-xhs-title` -> `references/dbs-xhs-title.md`
+- `/dbs-ai-check` -> `references/dbs-ai-check.md`
+- `/dbs-slowisfast` -> `references/dbs-slowisfast.md`
 - `/dbs-action` -> `references/dbs-action.md`
 - `/dbs-deconstruct` -> `references/dbs-deconstruct.md`
 - `/chatroom-austrian` -> `references/chatroom-austrian.md`
@@ -100,7 +108,7 @@ metadata:
 - 保持原版子 skill 的触发信号一致，不要省略或改写成更粗糙的意图判断。
 - 不新增解释性触发词，不把相近语义词自动扩大成新的触发入口。
 - 如果用户消息里直接出现旧命令或原始触发短语，优先按原版子 skill 处理，不要先走泛化澄清。
-- 只有在用户没有给出足够信号时，才使用原版 `/dbs` 的六选一澄清流程。
+- 只有在用户没有给出足够信号时，才使用原版 `/dbs` 的九选一澄清流程。
 - 识别意图只是入口工作；一旦匹配到模块，就完整执行该模块原有流程。
 - 如果内部模块里推荐另一个模块，把它理解成内部切换建议，不要把它说成“去调用另一个独立 skill”。
 

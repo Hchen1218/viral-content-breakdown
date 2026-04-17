@@ -2,6 +2,8 @@
 name: skill-evolution-manager
 description: Compatibility alias for github-to-skills unified suite. Use when older prompts mention skill-evolution-manager; routes to evolve-merge/evolve-stitch/evolve-align flows.
 license: MIT
+metadata:
+  tracking: local-only
 ---
 
 # Skill Evolution Manager (Compatibility Alias)
@@ -17,4 +19,3 @@ python3 ../github-to-skills/scripts/github_skills_suite.py --help
 - `merge_evolution.py` -> `github_skills_suite.py evolve-merge`
 - `smart_stitch.py` -> `github_skills_suite.py evolve-stitch`
 - `align_all.py` -> `github_skills_suite.py evolve-align`
-

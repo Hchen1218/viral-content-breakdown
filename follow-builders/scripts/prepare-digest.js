@@ -61,6 +61,44 @@ function normalizeError(err) {
   return err.message || String(err);
 }
 
+function resolveTimeZone(candidate) {
+  const fallback = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+  if (!candidate) return fallback;
+
+  try {
+    new Intl.DateTimeFormat('en-CA', { timeZone: candidate }).format(new Date());
+    return candidate;
+  } catch {
+    return fallback;
+  }
+}
+
+function getDateKey(value, timeZone) {
+  if (!value) return null;
+
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).format(date);
+}
+
+function buildFeedFreshness(result, payload, timeZone, todayKey) {
+  const generatedAt = result.snapshotGeneratedAt || payload?.generatedAt || null;
+  const dateKey = getDateKey(generatedAt, timeZone);
+
+  return {
+    source: result.source,
+    generatedAt,
+    dateKey,
+    isFreshToday: Boolean(dateKey && dateKey === todayKey)
+  };
+}
+
 async function fetchWithRetry(url, parser) {
   let lastError = null;
 
@@ -210,6 +248,8 @@ async function main() {
   const feedX = xResult.data;
   const feedPodcasts = podcastsResult.data;
   const feedBlogs = blogsResult.data;
+  const timeZone = resolveTimeZone(config.timezone);
+  const todayKey = getDateKey(new Date(), timeZone);
 
   // 3. Load prompts with priority: user custom > remote (GitHub) > local default
   //
@@ -262,6 +302,23 @@ async function main() {
     : Object.values(sources).every(source => source === 'snapshot' || source === 'missing')
       ? 'snapshot'
       : 'mixed';
+  const freshness = {
+    timeZone,
+    todayKey,
+    x: buildFeedFreshness(xResult, feedX, timeZone, todayKey),
+    podcasts: buildFeedFreshness(podcastsResult, feedPodcasts, timeZone, todayKey),
+    blogs: buildFeedFreshness(blogsResult, feedBlogs, timeZone, todayKey)
+  };
+  const freshSources = Object.entries(freshness)
+    .filter(([key, value]) => ['x', 'podcasts', 'blogs'].includes(key) && value.isFreshToday)
+    .map(([key]) => key);
+  const staleSources = Object.entries(freshness)
+    .filter(([key, value]) => ['x', 'podcasts', 'blogs'].includes(key) && value.generatedAt && !value.isFreshToday)
+    .map(([key]) => key);
+  freshness.freshSources = freshSources;
+  freshness.staleSources = staleSources;
+  freshness.hasFreshContentToday = freshSources.length > 0;
+  freshness.allFeedsFreshToday = ['x', 'podcasts', 'blogs'].every(key => freshness[key].isFreshToday);
   const stats = {
     podcastEpisodes: feedPodcasts?.podcasts?.length || 0,
     xBuilders: feedX?.x?.length || 0,
@@ -271,15 +328,20 @@ async function main() {
   };
   const hasUsableContent = stats.podcastEpisodes > 0 || stats.xBuilders > 0 || stats.blogPosts > 0;
 
+  if (!freshness.hasFreshContentToday && hasUsableContent) {
+    errors.push(`No feed source is fresh for ${todayKey} in ${timeZone}`);
+  }
+
   // 4. Build the output — everything the LLM needs in one blob
   const output = {
-    status: hasUsableContent ? 'ok' : 'empty',
+    status: !hasUsableContent ? 'empty' : freshness.hasFreshContentToday ? 'ok' : 'stale',
     generatedAt: new Date().toISOString(),
 
     // User preferences
     config: {
       language: config.language || 'en',
       frequency: config.frequency || 'daily',
+      timezone: timeZone,
       delivery: config.delivery || { method: 'stdout' }
     },
 
@@ -291,8 +353,10 @@ async function main() {
     // Stats for the LLM to reference
     stats,
     hasUsableContent,
+    hasFreshContentToday: freshness.hasFreshContentToday,
     contentSource,
     sources,
+    freshness,
     snapshots: {
       x: {
         path: CACHE_PATHS.x,

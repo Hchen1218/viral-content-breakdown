@@ -1,4 +1,6 @@
 .cleanup-backups/
+__pycache__/
+*.py[cod]
 viral_breakdowns/
 viral-content-breakdown/viral_breakdowns/
 follow-builders/.git/
