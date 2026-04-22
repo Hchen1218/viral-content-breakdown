@@ -3,7 +3,7 @@ name: anthropic-skill-creator
 description: Anthropic's advanced skill creator workflow for creating new skills, improving existing skills, and measuring skill performance. Use when users want Anthropic's eval-heavy skill creation loop, including benchmarking, variance analysis, and trigger-description optimization.
 metadata:
   github_url: https://github.com/anthropics/skills/tree/main/skills/skill-creator
-  github_hash: 98669c11ca63e9c81c11501e1437e5c47b556621
+  github_hash: b9e19e6f44773509fbdd7001d77ff41a49a486c1
   version: "0.1.0"
   created_at: 2026-04-07T00:00:00+08:00
 ---
