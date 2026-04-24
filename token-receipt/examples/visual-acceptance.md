@@ -1,0 +1,25 @@
+# Token Receipt 视觉验收
+
+人工验收时先看视觉，不要先看字段清单。
+
+## 必须通过
+
+- 一眼像热敏纸小票，而不是普通表格。
+- 顶部有品牌感，能区分 Codex / Claude Code / Generic。
+- Claude Code 顶部使用缩小版 `█` block 像素螃蟹轮廓，整块左边缘和主体不能歪。
+- 顶部 logo 按 Agent 工具决定；感谢语按实际模型决定。
+- `TOTAL` 是视觉中心。
+- 底部有根据模型/当前对话总结变化的 footer 和条形码，适合截图传播。
+- 终端运行时可以用 `--stream` 形成一行一行打印的小票效果。
+- 所有价格都有来源口径；未知价格明确标注 `UNMAPPED`。
+- Token 明细只包含已固定且有来源的字段：`Input Tokens`、`Output Tokens`、`Cache Read Tokens`、`Cache Write Tokens`。
+
+## 应该拒绝
+
+- Markdown 表格。
+- 纯 JSON / YAML / CSV。
+- 只有 token 数字，没有小票形态。
+- 超宽换行导致截图不好看。
+- 模型价格不匹配时硬算美元。
+- 默认打印 `Reasoning Tokens` 或其他尚未固定的数据项。
+- 出现 `DATA: SNAPSHOT`。

@@ -1,0 +1,59 @@
+{
+  "skill_name": "token-receipt",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我把本次 Codex 对话的 token 消耗打成一张可以截图发出去的小票，默认展示最新一轮。",
+      "expected_output": "输出一张 Codex 品牌感 ASCII 热敏小票，包含 THANK YOU FOR CODING WITH、provider、model/context used、ITEM/TOKENS 明细、TOTAL、USD ESTIMATE、条形码和 receipt id。视觉上不能像普通 Markdown 表格，不要包含 DATA: SNAPSHOT。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "输出必须是固定宽度 ASCII 小票，不是 Markdown 表格。"
+        },
+        {
+          "text": "顶部必须有 Codex 或通用 AI CHECKOUT 像素头图。"
+        },
+        {
+          "text": "顶部 logo 按 Agent 工具决定，THANK YOU FOR CODING WITH 后面的名称按实际模型决定。"
+        },
+        {
+          "text": "必须包含 THANK YOU FOR CODING WITH、CONTEXT USED、TOTAL、USD ESTIMATE 和条形码，且不能包含 DATA: SNAPSHOT。"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "用 Claude Code 风格，手动数据：input 12487、cache read 8742、cache write 1024、output 3215，模型 claude-sonnet-4.5，生成一张像参考图那种 token 小票。",
+      "expected_output": "输出 Claude Code 视觉方向的小票，顶部使用缩小版 block 像素螃蟹轮廓和 CLAUDE/CODE 品牌区，明细区包含 Cache Read Tokens 和 Cache Write Tokens，美元金额按官方 Anthropic 价格估算。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "输出必须出现 CLAUDE 和 CODE 品牌头图，block logo 不能逐行歪斜。"
+        },
+        {
+          "text": "明细只能使用已固定且有来源的 token 字段：Input Tokens、Output Tokens、Cache Read Tokens、Cache Write Tokens 和 TOTAL；不要默认打印 Reasoning Tokens。"
+        },
+        {
+          "text": "底部必须有短 footer、ASCII 条形码和 receipt id。"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "模型叫 mystery-model，token 数据 input 1000 output 500，也要生成小票，但不要乱算美元。",
+      "expected_output": "输出完整 ASCII 小票；价格区明确显示 PRICE: UNMAPPED 或 USD ESTIMATE: UNMAPPED，不虚构金额。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "未知模型仍然生成完整小票。"
+        },
+        {
+          "text": "价格区必须明确显示 UNMAPPED。"
+        },
+        {
+          "text": "不得出现伪造的美元金额。"
+        }
+      ]
+    }
+  ]
+}
