@@ -20,12 +20,18 @@ ALLOWED_WIDTHS = (42, 48, 56, 64)
 SKILL_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_PRICING = SKILL_DIR / "references" / "pricing.json"
 DEFAULT_FOOTER = "auto"
-DEFAULT_TOKEN_FIELDS = (
+PIXEL_CHARS = {"█", "░", "▒", "▓", "▐", "▛", "▜", "▌", "▘", "▝", "¥"}
+COMMON_TOKEN_FIELDS = (
     "input_tokens",
     "output_tokens",
     "cached_input_tokens",
+    "total_tokens",
+)
+OPTIONAL_TOKEN_FIELDS = (
+    "reasoning_output_tokens",
     "cache_write_tokens",
 )
+RECEIPT_TOKEN_FIELDS = COMMON_TOKEN_FIELDS + OPTIONAL_TOKEN_FIELDS
 
 
 @dataclass
@@ -51,8 +57,10 @@ class PriceEstimate:
     status: str
     amount: Optional[float]
     model: str = "UNMAPPED"
+    currency: str = "USD"
     source_url: str = ""
     source_checked_at: str = ""
+    rate_note: str = ""
 
 
 def normalize(value: str) -> str:
@@ -264,8 +272,10 @@ def estimate_cost(snapshot: UsageSnapshot, pricing_path: Path) -> PriceEstimate:
         status="ESTIMATE",
         amount=amount,
         model=str(entry.get("model", snapshot.model)),
+        currency=str(entry.get("currency", pricing.get("currency", "USD"))).upper(),
         source_url=str(entry.get("source_url", "")),
         source_checked_at=str(entry.get("source_checked_at", "")),
+        rate_note=str(entry.get("rate_note", "")),
     )
 
 
@@ -300,7 +310,7 @@ class Receipt:
             if len(line) > self.width:
                 raise AssertionError(f"line exceeds width: {line!r}")
             for char in line:
-                if ord(char) > 127 and char != "█":
+                if ord(char) > 127 and char not in PIXEL_CHARS:
                     raise AssertionError(f"unsupported non-ascii character: {line!r}")
         return "\n".join(self.lines)
 
@@ -311,7 +321,7 @@ def receipt_id(snapshot: UsageSnapshot, provider: str) -> str:
         date_part = stamp.strftime("%Y%m%d_%H%M%S")
     else:
         date_part = dt.datetime.now().strftime("%Y%m%d_%H%M%S")
-    seed = f"{snapshot.session_id}:{snapshot.total_tokens}:{snapshot.source}:{date_part}"
+    seed = f"{snapshot.session_id}:{snapshot.provider}:{snapshot.model}:{snapshot.total_tokens}:{snapshot.source}:{date_part}"
     digest = hashlib.sha1(seed.encode("utf-8")).hexdigest()[:6].upper()
     prefix = "CC" if normalize(provider) == "anthropic" else "CX" if normalize(provider) == "openai" else "AI"
     return f"{prefix}_{date_part}_{digest}"
@@ -331,6 +341,8 @@ def auto_brand(provider: str, source: str, explicit: str) -> str:
         return explicit
     provider_key = normalize(provider)
     source_key = normalize(source)
+    if provider_key == "trae" or "trae" in source_key:
+        return "trae"
     if provider_key == "openai" or "codex" in source_key:
         return "codex"
     if provider_key == "anthropic" or "claude" in source_key:
@@ -339,9 +351,12 @@ def auto_brand(provider: str, source: str, explicit: str) -> str:
 
 
 def add_centered_block(receipt: Receipt, lines: List[str]) -> None:
-    block_width = max(len(line) for line in lines)
+    nonempty = [line for line in lines if line.strip()]
+    shared_indent = min((len(line) - len(line.lstrip(" ")) for line in nonempty), default=0)
+    normalized = [line[shared_indent:] for line in lines]
+    block_width = max(len(line.rstrip()) for line in normalized)
     left_pad = max((receipt.width - block_width) // 2, 0)
-    for line in lines:
+    for line in normalized:
         receipt.add(" " * left_pad + line.rstrip())
 
 
@@ -350,25 +365,45 @@ def add_logo(receipt: Receipt, agent_tool: str) -> None:
         add_centered_block(
             receipt,
             [
-                ".----------------.     CODEX",
-                "|  >_            |",
-                "'----------------'",
+                "      █████",
+                "    █    ██   ███",
+                "  ███ ██    ██   █",
+                "██ ██ ██████   ███",
+                "█  ██ ██    ███   █",
+                "██   ███    █  ██  █",
+                "  ███   █████  ██ ██",
+                "  █   ██    █  ███",
+                "   ███   ██    █",
+                "         █████",
             ],
         )
+        receipt.center("CODEX")
+        return
+    if agent_tool == "trae":
+        add_centered_block(
+            receipt,
+            [
+                "   ██████████████",
+                "███▒▒▒▒▒▒▒▒▒▒▒▒▒▒███",
+                "███▒▒██████████▒▒███",
+                "███▒▒██▒▒▒█▒▒▒█▒▒███",
+                "███▒▒██████████▒▒███",
+                "█████▒▒▒▒▒▒▒▒▒▒▒▒███",
+                "   █████████████",
+            ],
+        )
+        receipt.center("TRAE")
         return
     if agent_tool == "claude-code":
         add_centered_block(
             receipt,
             [
-                "████████████        CLAUDE",
-                "██  ██████  ██        CODE",
-                "████████████████",
-                "████████████████",
-                "  ████████████",
-                "  ████████████",
-                "   █  █    █  █",
+                "▐▛███▜▌",
+                "▜█████▛▘",
+                " ▘▘ ▝▝",
             ],
         )
+        receipt.center("CLAUDE CODE")
         return
     receipt.center("[ AI CHECKOUT ]")
 
@@ -377,15 +412,33 @@ def product_name(snapshot: UsageSnapshot) -> str:
     model_key = normalize(snapshot.model)
     provider_key = normalize(snapshot.provider)
     if "claude" in model_key:
-        return "CLAUDE"
+        return "Claude"
+    if "codex" in model_key:
+        return "Codex"
     if "gpt" in model_key:
-        return "CHATGPT"
+        return "ChatGPT"
+    if "gemini" in model_key or provider_key == "google":
+        return "Gemini"
+    if "deepseek" in model_key or provider_key == "deepseek":
+        return "DeepSeek"
+    if "kimi" in model_key or provider_key == "moonshot":
+        return "Kimi"
+    if "glm" in model_key or provider_key in ("zhipu", "bigmodel"):
+        return "GLM"
+    if "mimo" in model_key or provider_key == "xiaomi":
+        return "MiMo"
+    if "qwen" in model_key or provider_key in ("qwen", "dashscope"):
+        return "Qwen"
+    if "minimax" in model_key or provider_key == "minimax":
+        return "MiniMax"
+    if "trae" in model_key:
+        return "Trae"
     if snapshot.model and snapshot.model != "UNRECORDED":
-        return truncate(snapshot.model.upper(), 16)
+        return truncate(snapshot.model, 16)
     if provider_key == "anthropic":
-        return "CLAUDE"
+        return "Claude"
     if provider_key == "openai":
-        return "CHATGPT"
+        return "ChatGPT"
     return "AI"
 
 
@@ -424,7 +477,7 @@ def auto_footer(snapshot: UsageSnapshot, estimate: PriceEstimate, tone: str, hin
     dry = [
         "SNAPSHOT ONLY. TAX NOT INCLUDED.",
         "ESTIMATED COST, REAL CONTEXT.",
-        "PAID IN TOKENS, PRINTED IN ASCII.",
+        "PAID IN TOKENS, PRINTED IN PIXELS.",
         "RECEIPT DOES NOT INCLUDE THIS RECEIPT.",
     ]
 
@@ -458,34 +511,39 @@ def footer_lines(text: str, width: int) -> List[str]:
     return lines or [""]
 
 
-def money(amount: Optional[float]) -> str:
+def money(amount: Optional[float], currency: str = "USD") -> str:
     if amount is None:
         return "UNMAPPED"
     if 0 < amount < 0.000001:
-        return "<$0.000001"
-    return f"${amount:.6f}"
+        return f"<{currency_symbol(currency)}0.000001"
+    return f"{currency_symbol(currency)}{amount:.6f}"
+
+
+def currency_symbol(currency: str) -> str:
+    key = currency.upper()
+    if key == "USD":
+        return "$"
+    if key in ("CNY", "RMB"):
+        return "¥"
+    return f"{key} "
 
 
 def available_fields_report(snapshot: UsageSnapshot) -> Dict[str, Any]:
     available = sorted(snapshot.available_fields)
-    rendered = [field for field in DEFAULT_TOKEN_FIELDS if field in snapshot.available_fields]
-    unavailable_default = [field for field in DEFAULT_TOKEN_FIELDS if field not in snapshot.available_fields]
-    omitted_known = []
-    if "reasoning_output_tokens" in snapshot.available_fields:
-        omitted_known.append(
-            {
-                "field": "reasoning_output_tokens",
-                "reason": "available in Codex token_count, but not printed until the receipt field list is fixed with the user",
-            }
-        )
+    rendered = [field for field in RECEIPT_TOKEN_FIELDS if field in snapshot.available_fields]
+    unavailable_common = [field for field in COMMON_TOKEN_FIELDS if field not in snapshot.available_fields]
+    available_optional = [field for field in OPTIONAL_TOKEN_FIELDS if field in snapshot.available_fields]
     return {
         "source": snapshot.source,
         "scope": snapshot.scope,
         "provider": snapshot.provider,
         "model": snapshot.model,
         "token_usage_fields_available": available,
+        "receipt_fields_common": list(COMMON_TOKEN_FIELDS),
+        "receipt_fields_optional_if_available": list(OPTIONAL_TOKEN_FIELDS),
         "receipt_fields_rendered_by_default": rendered,
-        "receipt_fields_missing_from_source": unavailable_default,
+        "receipt_common_fields_missing_from_source": unavailable_common,
+        "receipt_optional_fields_available": available_optional,
         "context_fields_available": ["model_context_window"] if snapshot.context_window else [],
         "metadata_fields_supported": ["session_id", "timestamp", "model_provider", "model"],
         "known_unavailable_in_codex_token_count": [
@@ -493,7 +551,6 @@ def available_fields_report(snapshot: UsageSnapshot) -> Dict[str, Any]:
             "tool_use_tokens",
             "system_tokens",
         ],
-        "omitted_known_fields": omitted_known,
     }
 
 
@@ -531,18 +588,22 @@ def render_receipt(snapshot: UsageSnapshot, estimate: PriceEstimate, width: int,
         receipt.kv("Output Tokens", fmt_int(snapshot.output_tokens))
     if source_has(snapshot, "cached_input_tokens"):
         receipt.kv("Cache Read Tokens", fmt_int(snapshot.cached_input_tokens))
+    if source_has(snapshot, "reasoning_output_tokens"):
+        receipt.kv("Reasoning Tokens", fmt_int(snapshot.reasoning_output_tokens))
     if source_has(snapshot, "cache_write_tokens"):
         receipt.kv("Cache Write Tokens", fmt_int(snapshot.cache_write_tokens))
     receipt.rule()
     receipt.kv("TOTAL", f"{fmt_int(snapshot.total_tokens)} TOKENS")
     receipt.rule()
-    receipt.kv("USD ESTIMATE", money(estimate.amount))
+    receipt.kv(f"{estimate.currency} ESTIMATE", money(estimate.amount, estimate.currency))
     if estimate.status == "UNMAPPED":
         receipt.kv("PRICE", "UNMAPPED")
     else:
         receipt.kv("PRICE", estimate.model)
         if estimate.source_checked_at:
             receipt.kv("PRICE DATE", estimate.source_checked_at)
+        if estimate.rate_note:
+            receipt.kv("RATE NOTE", estimate.rate_note)
     receipt.rule()
     for line in footer_lines(footer_text, width):
         receipt.center(line)
@@ -558,8 +619,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--session", type=Path, help="Codex JSONL session path. Defaults to newest local session.")
     parser.add_argument("--scope", choices=("latest-turn", "session"), default="latest-turn")
     parser.add_argument("--width", type=int, choices=ALLOWED_WIDTHS, default=48)
-    parser.add_argument("--agent-tool", choices=("auto", "codex", "claude-code", "generic"), default=None, help="Agent/tool logo source. Use codex for Codex and claude-code for Claude Code.")
-    parser.add_argument("--brand", choices=("auto", "codex", "claude-code", "generic"), default=None, help="Backward-compatible alias for --agent-tool.")
+    parser.add_argument("--agent-tool", choices=("auto", "codex", "claude-code", "trae", "generic"), default=None, help="Agent/tool logo source. Use codex, claude-code, or trae for the matching agent logo.")
+    parser.add_argument("--brand", choices=("auto", "codex", "claude-code", "trae", "generic"), default=None, help="Backward-compatible alias for --agent-tool.")
     parser.add_argument("--pricing", type=Path, default=DEFAULT_PRICING)
     parser.add_argument("--footer", default=DEFAULT_FOOTER, help="Custom footer line, or 'auto' for model-aware footer.")
     parser.add_argument("--footer-tone", choices=("auto", "snarky", "encouraging", "dry"), default="auto")

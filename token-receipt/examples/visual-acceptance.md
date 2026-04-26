@@ -12,7 +12,8 @@
 - 底部有根据模型/当前对话总结变化的 footer 和条形码，适合截图传播。
 - 终端运行时可以用 `--stream` 形成一行一行打印的小票效果。
 - 所有价格都有来源口径；未知价格明确标注 `UNMAPPED`。
-- Token 明细只包含已固定且有来源的字段：`Input Tokens`、`Output Tokens`、`Cache Read Tokens`、`Cache Write Tokens`。
+- 美元模型显示 `USD ESTIMATE`，人民币模型显示 `CNY ESTIMATE`；有平台或区域口径时显示 `RATE NOTE`。
+- Token 明细只包含已固定且有来源的字段：通用字段 `Input Tokens`、`Output Tokens`、`Cache Read Tokens`、`TOTAL`；可选字段 `Reasoning Tokens`、`Cache Write Tokens` 有就显示。
 
 ## 应该拒绝
 
@@ -21,5 +22,5 @@
 - 只有 token 数字，没有小票形态。
 - 超宽换行导致截图不好看。
 - 模型价格不匹配时硬算美元。
-- 默认打印 `Reasoning Tokens` 或其他尚未固定的数据项。
+- 打印 `System Tokens`、`Tool Use Tokens` 或其他尚未固定的数据项。
 - 出现 `DATA: SNAPSHOT`。

@@ -31,19 +31,25 @@ python3 scripts/token_receipt.py --show-fields
 
 ## 默认票面固定字段
 
-第一版小票只打印这些已经和用户固定的条目，并且只有字段真实存在时才打印：
+为了让 Claude Code / Codex / Trae 三种 Agent 工具都能稳定支持，默认通用条目固定为：
 
 - `Input Tokens` <- `input_tokens`
 - `Output Tokens` <- `output_tokens`
 - `Cache Read Tokens` <- `cached_input_tokens`
-- `Cache Write Tokens` <- `cache_write_tokens`
 - `TOTAL` <- `total_tokens`
 
-## 暂不默认打印
+这些条目只有字段真实存在时才打印；`TOTAL` 使用日志里的 `total_tokens`，手动模式中会由 input + output 兜底计算。
 
-- `Reasoning Tokens`：Codex 日志里可能有 `reasoning_output_tokens`，但用户还没有固定它是否应该成为票面条目，所以默认不打印。
+## 可选字段
+
+以下字段已经固定为可选条目：有真实字段就显示，没有就省略。
+
+- `Reasoning Tokens` <- `reasoning_output_tokens`
+- `Cache Write Tokens` <- `cache_write_tokens` 或 Anthropic 的 `cache_creation_input_tokens`
+
+## 不打印
+
 - `System Tokens`：当前 Codex `token_count` 事件没有独立字段。
 - `Tool Use Tokens`：当前 Codex `token_count` 事件没有独立字段。
-- `Cache Write Tokens`：当前 Codex `token_count` 常见字段里没有；只有手动传入或未来其他 provider 日志提供时才打印。
 
-原则：真实可读字段优先；不可读字段不写；可读但未固定的字段先留在 `--show-fields` 报告里，不进入票面。
+原则：真实可读字段优先；不可读字段不写；可选字段有就显示，没有就省略。

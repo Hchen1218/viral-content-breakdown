@@ -4,11 +4,11 @@
     {
       "id": 1,
       "prompt": "帮我把本次 Codex 对话的 token 消耗打成一张可以截图发出去的小票，默认展示最新一轮。",
-      "expected_output": "输出一张 Codex 品牌感 ASCII 热敏小票，包含 THANK YOU FOR CODING WITH、provider、model/context used、ITEM/TOKENS 明细、TOTAL、USD ESTIMATE、条形码和 receipt id。视觉上不能像普通 Markdown 表格，不要包含 DATA: SNAPSHOT。",
+      "expected_output": "输出一张 Codex 品牌感 monospace 热敏小票，包含 THANK YOU FOR CODING WITH、provider、model/context used、ITEM/TOKENS 明细、TOTAL、对应币种 ESTIMATE、条形码和 receipt id。视觉上不能像普通 Markdown 表格，不要包含 DATA: SNAPSHOT。",
       "files": [],
       "assertions": [
         {
-          "text": "输出必须是固定宽度 ASCII 小票，不是 Markdown 表格。"
+          "text": "输出必须是固定宽度 monospace 小票，不是 Markdown 表格；Logo 区可使用像素字符。"
         },
         {
           "text": "顶部必须有 Codex 或通用 AI CHECKOUT 像素头图。"
@@ -17,7 +17,7 @@
           "text": "顶部 logo 按 Agent 工具决定，THANK YOU FOR CODING WITH 后面的名称按实际模型决定。"
         },
         {
-          "text": "必须包含 THANK YOU FOR CODING WITH、CONTEXT USED、TOTAL、USD ESTIMATE 和条形码，且不能包含 DATA: SNAPSHOT。"
+          "text": "必须包含 THANK YOU FOR CODING WITH、CONTEXT USED、TOTAL、对应币种 ESTIMATE 和条形码，且不能包含 DATA: SNAPSHOT。"
         }
       ]
     },
@@ -31,7 +31,7 @@
           "text": "输出必须出现 CLAUDE 和 CODE 品牌头图，block logo 不能逐行歪斜。"
         },
         {
-          "text": "明细只能使用已固定且有来源的 token 字段：Input Tokens、Output Tokens、Cache Read Tokens、Cache Write Tokens 和 TOTAL；不要默认打印 Reasoning Tokens。"
+          "text": "明细只能使用已固定且有来源的 token 字段：Input Tokens、Output Tokens、Cache Read Tokens、TOTAL；Reasoning Tokens 和 Cache Write Tokens 有真实字段时才显示。"
         },
         {
           "text": "底部必须有短 footer、ASCII 条形码和 receipt id。"
@@ -41,7 +41,7 @@
     {
       "id": 3,
       "prompt": "模型叫 mystery-model，token 数据 input 1000 output 500，也要生成小票，但不要乱算美元。",
-      "expected_output": "输出完整 ASCII 小票；价格区明确显示 PRICE: UNMAPPED 或 USD ESTIMATE: UNMAPPED，不虚构金额。",
+      "expected_output": "输出完整 monospace 小票；价格区明确显示 PRICE: UNMAPPED 或 ESTIMATE: UNMAPPED，不虚构金额。",
       "files": [],
       "assertions": [
         {
@@ -52,6 +52,23 @@
         },
         {
           "text": "不得出现伪造的美元金额。"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "用 Trae 风格生成 token 小票：input 12487、cache read 8742、output 3215，模型 gpt-5.4，顶部 logo 要和 Codex / Claude Code 属于同一级别的 Agent 工具品牌区。",
+      "expected_output": "输出 Trae 品牌方向的 monospace 小票，顶部使用 Trae 像素块 logo 和 TRAE 字标；THANK YOU FOR CODING WITH 仍按实际模型/供应商品牌显示，比如 gpt 模型显示 ChatGPT、GLM 显示 GLM、MiniMax 显示 MiniMax；明细和价格口径保持真实。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "顶部必须出现 Trae logo 和 TRAE 字标，且字标居中在 logo 下方。"
+        },
+        {
+          "text": "Trae 是 agent-tool logo，不得覆盖实际模型名称判断。"
+        },
+        {
+          "text": "仍然必须包含 ITEM/TOKENS、TOTAL、对应币种 ESTIMATE、条形码和 receipt id。"
         }
       ]
     }
