@@ -30,6 +30,9 @@ description: |
 | 知道该做什么但做不动、说"我总是拖延" | `/dbs-action` | 执行力诊断，阿德勒框架找到真正原因 |
 | 某个概念搞不清楚、说"这个词什么意思" | `/dbs-deconstruct` | 概念拆解，维特根斯坦式审查 |
 | 明确提到 Claude Code、Codex、AGENTS.md、CLAUDE.md、skill bridge、工作台迁移、双端统一，或说“我的 Agent 工作台很乱”“帮我统一 Claude 和 Codex” | `/dbs-agent-migration` | Agent 工作台迁移，整理规则文件、真源、命名与 Claude / Codex 双端 bridge |
+| 想把这次诊断的关键状态留下来、说「保存」「记下来」「存档」「这个结论留着」 | `/dbs-save` | 把当前诊断状态写到本地，下次可恢复 |
+| 想接续上次的诊断、说「上次」「之前的」「接着」「续上」「上次诊断到哪了」 | `/dbs-restore` | 拉出最近一份存档，接着上次继续 |
+| 想出一份可分享的报告、说「出报告」「打包」「整理一份」「给合伙人看的」 | `/dbs-report` | 把多份存档合并成 markdown 报告 |
 
 ---
 

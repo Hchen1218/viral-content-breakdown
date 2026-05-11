@@ -19,7 +19,7 @@ description: |
   The upstream repo files are preserved untouched under references/. This wrapper is a local single-entry shell around them.
 metadata:
   github_url: https://github.com/dontbesilent2025/dbskill
-  github_hash: f29b07c5d4811ef21951a9b59cb8978fa0851b17
+  github_hash: da75f9f3d6f4ebc053118415b4a906d9501f78d5
   version: main
   created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md

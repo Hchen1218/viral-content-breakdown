@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rebuild shared skill entrypoints for Codex and Claude Code."""
+"""Rebuild Codex, Claude, and agents skill entrypoints from one manifest."""
 
 from __future__ import annotations
 
@@ -14,9 +14,27 @@ from pathlib import Path
 @dataclass(frozen=True)
 class Roots:
     repo: Path
+    skillhub: Path
     codex: Path
     claude: Path
     agents: Path
+
+    def get(self, key: str) -> Path:
+        try:
+            return getattr(self, key)
+        except AttributeError as exc:
+            raise KeyError(f"Unknown root key: {key}") from exc
+
+    def keys(self) -> tuple[str, ...]:
+        return ("repo", "skillhub", "codex", "claude", "agents")
+
+
+@dataclass(frozen=True)
+class Manifest:
+    roots: Roots
+    source_of_truth: dict[str, list[str]]
+    runtime_links: dict[str, dict[str, list[str]]]
+    preserved_entries: dict[str, list[str]]
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -26,7 +44,7 @@ MANIFEST_PATH = REPO_ROOT / "shared-skills.json"
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Rebuild shared skill symlinks for Codex and Claude Code."
+        description="Rebuild shared skill symlinks for Codex, Claude, and agents."
     )
     parser.add_argument(
         "--dry-run",
@@ -36,10 +54,27 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def load_manifest() -> tuple[Roots, list[str], list[str], list[str]]:
+def unique_ordered(items: list[str], label: str) -> list[str]:
+    seen: set[str] = set()
+    result: list[str] = []
+    duplicates: list[str] = []
+    for item in items:
+        if item in seen:
+            duplicates.append(item)
+            continue
+        seen.add(item)
+        result.append(item)
+    if duplicates:
+        joined = ", ".join(sorted(set(duplicates)))
+        raise RuntimeError(f"Duplicate entries in {label}: {joined}")
+    return result
+
+
+def load_manifest() -> Manifest:
     data = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     roots = Roots(
         repo=Path(data["roots"]["repo"]).expanduser().resolve(),
+        skillhub=Path(data["roots"]["skillhub"]).expanduser().resolve(),
         codex=Path(data["roots"]["codex"]).expanduser(),
         claude=Path(data["roots"]["claude"]).expanduser(),
         agents=Path(data["roots"]["agents"]).expanduser(),
@@ -48,10 +83,30 @@ def load_manifest() -> tuple[Roots, list[str], list[str], list[str]]:
         raise RuntimeError(
             f"Manifest repo root {roots.repo} does not match actual repo {REPO_ROOT}"
         )
-    repo_managed = list(data["repoManaged"])
-    external_shared = list(data["externalShared"])
-    agent_compat = list(data.get("compatibilityLinks", {}).get("agents", []))
-    return roots, repo_managed, external_shared, agent_compat
+
+    source_of_truth = {
+        root_key: unique_ordered(skills, f"sourceOfTruth.{root_key}")
+        for root_key, skills in data["sourceOfTruth"].items()
+    }
+    runtime_links = {
+        runtime_key: {
+            source_key: unique_ordered(
+                skills, f"runtimeLinks.{runtime_key}.{source_key}"
+            )
+            for source_key, skills in source_map.items()
+        }
+        for runtime_key, source_map in data["runtimeLinks"].items()
+    }
+    preserved_entries = {
+        root_key: unique_ordered(entries, f"preservedEntries.{root_key}")
+        for root_key, entries in data.get("preservedEntries", {}).items()
+    }
+    return Manifest(
+        roots=roots,
+        source_of_truth=source_of_truth,
+        runtime_links=runtime_links,
+        preserved_entries=preserved_entries,
+    )
 
 
 def ensure_dir(path: Path, dry_run: bool, actions: list[str]) -> None:
@@ -127,84 +182,147 @@ def compute_backup_root(dry_run: bool, needed: bool) -> Path:
     return target
 
 
+def existing_entry_names(root_path: Path) -> set[str]:
+    if not root_path.exists():
+        return set()
+    return {
+        child.name
+        for child in root_path.iterdir()
+        if child.is_dir() or child.is_symlink()
+    }
+
+
+def validate_manifest(manifest: Manifest) -> dict[str, str]:
+    authoritative_source: dict[str, str] = {}
+    known_root_keys = set(manifest.roots.keys())
+
+    for source_key, skills in manifest.source_of_truth.items():
+        if source_key not in known_root_keys:
+            raise RuntimeError(f"Unknown sourceOfTruth root: {source_key}")
+        source_root = manifest.roots.get(source_key)
+        for skill_name in skills:
+            previous = authoritative_source.get(skill_name)
+            if previous and previous != source_key:
+                raise RuntimeError(
+                    f"Skill {skill_name} has conflicting authorities: "
+                    f"{previous} and {source_key}"
+                )
+            authoritative_source[skill_name] = source_key
+            source_path = source_root / skill_name
+            if not source_path.exists():
+                raise FileNotFoundError(
+                    f"Authoritative skill missing from {source_key}: {source_path}"
+                )
+
+    for runtime_key, source_map in manifest.runtime_links.items():
+        if runtime_key not in known_root_keys:
+            raise RuntimeError(f"Unknown runtimeLinks root: {runtime_key}")
+        seen_in_runtime: set[str] = set()
+        for source_key, skills in source_map.items():
+            if source_key not in known_root_keys:
+                raise RuntimeError(
+                    f"Unknown runtimeLinks source {source_key} for {runtime_key}"
+                )
+            for skill_name in skills:
+                if skill_name in seen_in_runtime:
+                    raise RuntimeError(
+                        f"Duplicate runtime entry {skill_name} in {runtime_key}"
+                    )
+                seen_in_runtime.add(skill_name)
+                authority = authoritative_source.get(skill_name)
+                if authority is None:
+                    raise RuntimeError(
+                        f"Skill {skill_name} is routed into {runtime_key} "
+                        "but has no sourceOfTruth entry"
+                    )
+                if authority != source_key:
+                    raise RuntimeError(
+                        f"Skill {skill_name} is routed from {source_key} into "
+                        f"{runtime_key}, but authority is {authority}"
+                    )
+
+    return authoritative_source
+
+
+def desired_entries_for_runtime(
+    runtime_key: str, runtime_sources: dict[str, list[str]]
+) -> set[str]:
+    desired: set[str] = set()
+    for skills in runtime_sources.values():
+        desired.update(skills)
+    return desired
+
+
+def collect_unmanaged_entries(manifest: Manifest) -> dict[str, list[str]]:
+    unmanaged: dict[str, list[str]] = {}
+    for runtime_key, source_map in manifest.runtime_links.items():
+        runtime_root = manifest.roots.get(runtime_key)
+        current = existing_entry_names(runtime_root)
+        desired = desired_entries_for_runtime(runtime_key, source_map)
+        preserved = set(manifest.preserved_entries.get(runtime_key, []))
+        leftovers = sorted(current - desired - preserved)
+        if leftovers:
+            unmanaged[runtime_key] = leftovers
+    return unmanaged
+
+
+def has_pending_backups(manifest: Manifest) -> bool:
+    for runtime_key, source_map in manifest.runtime_links.items():
+        runtime_root = manifest.roots.get(runtime_key)
+        for source_key, skills in source_map.items():
+            source_root = manifest.roots.get(source_key)
+            for skill_name in skills:
+                link_path = runtime_root / skill_name
+                target_path = source_root / skill_name
+                if not symlink_matches(link_path, target_path) and (
+                    link_path.exists() or link_path.is_symlink()
+                ):
+                    return True
+    return False
+
+
+def rebuild_links(
+    manifest: Manifest, backup_root: Path, dry_run: bool, actions: list[str]
+) -> None:
+    for runtime_key, source_map in manifest.runtime_links.items():
+        runtime_root = manifest.roots.get(runtime_key)
+        for source_key, skills in source_map.items():
+            source_root = manifest.roots.get(source_key)
+            for skill_name in skills:
+                replace_with_symlink(
+                    runtime_root / skill_name,
+                    source_root / skill_name,
+                    runtime_key,
+                    backup_root,
+                    dry_run,
+                    actions,
+                )
+
+
 def main() -> int:
     args = parse_args()
-    roots, repo_managed, external_shared, agent_compat = load_manifest()
+    manifest = load_manifest()
+    validate_manifest(manifest)
+    unmanaged = collect_unmanaged_entries(manifest)
+
     actions: list[str] = []
-
-    pending_backups = False
-    for skill_name in repo_managed:
-        codex_entry = roots.codex / skill_name
-        claude_entry = roots.claude / skill_name
-        repo_entry = roots.repo / skill_name
-        if not symlink_matches(codex_entry, repo_entry) and (
-            codex_entry.exists() or codex_entry.is_symlink()
-        ):
-            pending_backups = True
-        if not symlink_matches(claude_entry, repo_entry) and (
-            claude_entry.exists() or claude_entry.is_symlink()
-        ):
-            pending_backups = True
-
-    for skill_name in agent_compat:
-        compat_entry = roots.agents / skill_name
-        repo_entry = roots.repo / skill_name
-        if not symlink_matches(compat_entry, repo_entry) and (
-            compat_entry.exists() or compat_entry.is_symlink()
-        ):
-            pending_backups = True
-
+    pending_backups = has_pending_backups(manifest)
     backup_root = compute_backup_root(args.dry_run, pending_backups)
-
-    for skill_name in repo_managed:
-        repo_entry = roots.repo / skill_name
-        replace_with_symlink(
-            roots.codex / skill_name,
-            repo_entry,
-            "codex",
-            backup_root,
-            args.dry_run,
-            actions,
-        )
-        replace_with_symlink(
-            roots.claude / skill_name,
-            repo_entry,
-            "claude",
-            backup_root,
-            args.dry_run,
-            actions,
-        )
-
-    for skill_name in external_shared:
-        codex_entry = roots.codex / skill_name
-        if not (codex_entry.exists() or codex_entry.is_symlink()):
-            raise FileNotFoundError(
-                f"Codex entrypoint missing for external skill: {codex_entry}"
-            )
-        replace_with_symlink(
-            roots.claude / skill_name,
-            codex_entry.resolve(),
-            "claude",
-            backup_root,
-            args.dry_run,
-            actions,
-        )
-
-    for skill_name in agent_compat:
-        replace_with_symlink(
-            roots.agents / skill_name,
-            roots.repo / skill_name,
-            "agents",
-            backup_root,
-            args.dry_run,
-            actions,
-        )
+    rebuild_links(manifest, backup_root, args.dry_run, actions)
 
     print(f"Manifest: {MANIFEST_PATH}")
     if pending_backups:
         print(f"Backup root: {backup_root}")
     else:
         print("Backup root: not needed")
+
+    if unmanaged:
+        print("Unmanaged entries:")
+        for runtime_key, entries in unmanaged.items():
+            joined = ", ".join(entries)
+            print(f"- {runtime_key}: {joined}")
+    else:
+        print("Unmanaged entries: none")
 
     for action in actions:
         print(action)

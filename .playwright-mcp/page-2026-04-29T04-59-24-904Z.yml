@@ -1,0 +1,250 @@
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - text: Xiaomi MiMo-V2.5 系列现已开启公测！Token Plan 速率更优惠，夜间调用享 8 折，连续包月低至 7 折，Credits 全额重置。
+        - link "立即体验" [ref=e8] [cursor=pointer]:
+          - /url: /token-plan
+      - generic [ref=e9]:
+        - text: Xiaomi MiMo-V2.5 系列现已开启公测！Token Plan 速率更优惠，夜间调用享 8 折，连续包月低至 7 折，Credits 全额重置。
+        - link "立即体验" [ref=e10] [cursor=pointer]:
+          - /url: /token-plan
+      - generic [ref=e11]:
+        - text: Xiaomi MiMo-V2.5 系列现已开启公测！Token Plan 速率更优惠，夜间调用享 8 折，连续包月低至 7 折，Credits 全额重置。
+        - link "立即体验" [ref=e12] [cursor=pointer]:
+          - /url: /token-plan
+      - generic [ref=e13]:
+        - text: Xiaomi MiMo-V2.5 系列现已开启公测！Token Plan 速率更优惠，夜间调用享 8 折，连续包月低至 7 折，Credits 全额重置。
+        - link "立即体验" [ref=e14] [cursor=pointer]:
+          - /url: /token-plan
+      - generic [ref=e15]:
+        - text: Xiaomi MiMo-V2.5 系列现已开启公测！Token Plan 速率更优惠，夜间调用享 8 折，连续包月低至 7 折，Credits 全额重置。
+        - link "立即体验" [ref=e16] [cursor=pointer]:
+          - /url: /token-plan
+      - generic [ref=e17]:
+        - text: Xiaomi MiMo-V2.5 系列现已开启公测！Token Plan 速率更优惠，夜间调用享 8 折，连续包月低至 7 折，Credits 全额重置。
+        - link "立即体验" [ref=e18] [cursor=pointer]:
+          - /url: /token-plan
+    - button "关闭" [ref=e20] [cursor=pointer]:
+      - img "close" [ref=e21]:
+        - img [ref=e22]
+  - navigation [ref=e24]:
+    - generic [ref=e25]:
+      - link "返回首页" [ref=e27] [cursor=pointer]:
+        - /url: /
+        - img [ref=e29]
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - link "联系我们" [ref=e52] [cursor=pointer]:
+            - /url: /contact
+          - link "文档" [ref=e54] [cursor=pointer]:
+            - /url: /docs/zh-CN/welcome
+          - link "Token Plan" [ref=e56] [cursor=pointer]:
+            - /url: /token-plan
+            - text: Token Plan
+            - img [ref=e57]
+          - link "控制台" [ref=e60] [cursor=pointer]:
+            - /url: /console/balance
+          - link "博客" [ref=e62] [cursor=pointer]:
+            - /url: https://mimo.xiaomi.com
+        - paragraph [ref=e66] [cursor=pointer]: 中文
+        - link [ref=e68] [cursor=pointer]:
+          - /url: https://huggingface.co/XiaomiMiMo
+          - img [ref=e69]
+  - main [ref=e70]:
+    - complementary "Page navigation" [ref=e72]:
+      - generic [ref=e73]:
+        - generic [ref=e76]:
+          - textbox "搜索文档" [ref=e78]
+          - generic [ref=e79]:
+            - img [ref=e81]
+            - img [ref=e84]
+        - generic [ref=e87]:
+          - link "欢迎使用" [ref=e89] [cursor=pointer]:
+            - /url: /docs/zh-CN/welcome
+            - paragraph [ref=e91]: 欢迎使用
+          - generic [ref=e93]:
+            - generic [ref=e94] [cursor=pointer]:
+              - paragraph [ref=e96]: 快速开始
+              - img [ref=e98]
+            - generic [ref=e102]:
+              - link "首次调用 API" [ref=e105] [cursor=pointer]:
+                - /url: /docs/zh-CN/quick-start/first-api-call
+                - paragraph [ref=e107]: 首次调用 API
+              - link "模型超参" [ref=e110] [cursor=pointer]:
+                - /url: /docs/zh-CN/quick-start/model-hyperparameters
+                - paragraph [ref=e112]: 模型超参
+              - link "错误码" [ref=e115] [cursor=pointer]:
+                - /url: /docs/zh-CN/quick-start/error-codes
+                - paragraph [ref=e117]: 错误码
+          - link "定价与限速" [ref=e119] [cursor=pointer]:
+            - /url: /docs/zh-CN/pricing
+            - paragraph [ref=e121]: 定价与限速
+          - generic [ref=e123]:
+            - generic [ref=e124] [cursor=pointer]:
+              - paragraph [ref=e126]: 新闻
+              - img [ref=e128]
+            - generic [ref=e132]:
+              - link "小米 MiMo-V2.5 系列开源 & Orbit 百万亿 Token 计划启动" [ref=e135] [cursor=pointer]:
+                - /url: /docs/zh-CN/news/v2.5-open-sourced
+                - paragraph [ref=e137]: 小米 MiMo-V2.5 系列开源 & Orbit 百万亿 Token 计划启动
+              - link "Xiaomi MiMo-V2.5-TTS-Series + ASR 正式发布：你的声音，随心所“驭”" [ref=e140] [cursor=pointer]:
+                - /url: /docs/zh-CN/news/v2.5-tts-release
+                - paragraph [ref=e142]: Xiaomi MiMo-V2.5-TTS-Series + ASR 正式发布：你的声音，随心所“驭”
+              - link "Xiaomi MiMo-V2.5 系列大模型开启公测" [ref=e145] [cursor=pointer]:
+                - /url: /docs/zh-CN/news/v2.5-news
+                - paragraph [ref=e147]: Xiaomi MiMo-V2.5 系列大模型开启公测
+              - generic [ref=e151] [cursor=pointer]:
+                - paragraph [ref=e153]: 往期新闻
+                - img [ref=e155]
+          - generic [ref=e158]:
+            - generic [ref=e159] [cursor=pointer]:
+              - paragraph [ref=e161]: API 文档
+              - img [ref=e163]
+            - generic [ref=e170]:
+              - generic [ref=e171] [cursor=pointer]:
+                - paragraph [ref=e173]: 对话
+                - img [ref=e175]
+              - generic [ref=e178]:
+                - link "OpenAI API" [ref=e180] [cursor=pointer]:
+                  - /url: /docs/zh-CN/api/chat/openai-api
+                  - paragraph [ref=e182]: OpenAI API
+                - link "Anthropic API" [ref=e184] [cursor=pointer]:
+                  - /url: /docs/zh-CN/api/chat/anthropic-api
+                  - paragraph [ref=e186]: Anthropic API
+          - generic [ref=e188]:
+            - generic [ref=e189] [cursor=pointer]:
+              - paragraph [ref=e191]: Token Plan
+              - img [ref=e193]
+            - generic [ref=e197]:
+              - link "订阅说明" [ref=e200] [cursor=pointer]:
+                - /url: /docs/zh-CN/tokenplan/subscription
+                - paragraph [ref=e202]: 订阅说明
+              - link "快速接入" [ref=e205] [cursor=pointer]:
+                - /url: /docs/zh-CN/tokenplan/quick-access
+                - paragraph [ref=e207]: 快速接入
+          - generic [ref=e209]:
+            - generic [ref=e210] [cursor=pointer]:
+              - paragraph [ref=e212]: 集成扩展
+              - img [ref=e214]
+            - generic [ref=e218]:
+              - link "AI 工具总览" [ref=e221] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/tools-overview
+                - paragraph [ref=e223]: AI 工具总览
+              - link "OpenCode 配置" [ref=e226] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/opencode
+                - paragraph [ref=e228]: OpenCode 配置
+              - link "Claude Code 配置" [ref=e231] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/claudecode
+                - paragraph [ref=e233]: Claude Code 配置
+              - link "OpenClaw 配置" [ref=e236] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/openclaw
+                - paragraph [ref=e238]: OpenClaw 配置
+              - link "Hermes Agent 配置" [ref=e241] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/hermes-agent
+                - paragraph [ref=e243]: Hermes Agent 配置
+              - link "Cline 配置" [ref=e246] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/cline
+                - paragraph [ref=e248]: Cline 配置
+              - link "Kilo Code 配置" [ref=e251] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/kilocode
+                - paragraph [ref=e253]: Kilo Code 配置
+              - link "Roo Code 配置" [ref=e256] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/roocode
+                - paragraph [ref=e258]: Roo Code 配置
+              - link "Codex 配置" [ref=e261] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/codex
+                - paragraph [ref=e263]: Codex 配置
+              - link "Cherry Studio 配置" [ref=e266] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/cherrystudio
+                - paragraph [ref=e268]: Cherry Studio 配置
+              - link "Zed 配置" [ref=e271] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/zed
+                - paragraph [ref=e273]: Zed 配置
+              - link "TRAE 配置" [ref=e276] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/trae
+                - paragraph [ref=e278]: TRAE 配置
+              - link "Qwen Code 配置" [ref=e281] [cursor=pointer]:
+                - /url: /docs/zh-CN/integration/qwencode
+                - paragraph [ref=e283]: Qwen Code 配置
+          - generic [ref=e285]:
+            - generic [ref=e286] [cursor=pointer]:
+              - paragraph [ref=e288]: 使用指南
+              - img [ref=e290]
+            - generic [ref=e294]:
+              - generic [ref=e297]:
+                - generic [ref=e298] [cursor=pointer]:
+                  - paragraph [ref=e300]: 工具调用
+                  - img [ref=e302]
+                - link "联网搜索" [ref=e307] [cursor=pointer]:
+                  - /url: /docs/zh-CN/usage-guide/tool-calling/web-search
+                  - paragraph [ref=e309]: 联网搜索
+              - generic [ref=e312]:
+                - generic [ref=e313] [cursor=pointer]:
+                  - paragraph [ref=e315]: 多模态理解
+                  - img [ref=e317]
+                - generic [ref=e320]:
+                  - link "图片理解" [ref=e322] [cursor=pointer]:
+                    - /url: /docs/zh-CN/usage-guide/multimodal-understanding/image-understanding
+                    - paragraph [ref=e324]: 图片理解
+                  - link "音频理解" [ref=e326] [cursor=pointer]:
+                    - /url: /docs/zh-CN/usage-guide/multimodal-understanding/audio-understanding
+                    - paragraph [ref=e328]: 音频理解
+                  - link "视频理解" [ref=e330] [cursor=pointer]:
+                    - /url: /docs/zh-CN/usage-guide/multimodal-understanding/video-understanding
+                    - paragraph [ref=e332]: 视频理解
+              - link "语音合成（MiMo-V2.5-TTS 系列）" [ref=e335] [cursor=pointer]:
+                - /url: /docs/zh-CN/usage-guide/speech-synthesis-v2.5
+                - paragraph [ref=e337]: 语音合成（MiMo-V2.5-TTS 系列）
+              - link "语音合成（MiMo-V2-TTS）" [ref=e340] [cursor=pointer]:
+                - /url: /docs/zh-CN/usage-guide/speech-synthesis
+                - paragraph [ref=e342]: 语音合成（MiMo-V2-TTS）
+          - link "常见问题" [ref=e344] [cursor=pointer]:
+            - /url: /docs/zh-CN/faq
+            - paragraph [ref=e346]: 常见问题
+          - generic [ref=e348]:
+            - generic [ref=e349] [cursor=pointer]:
+              - paragraph [ref=e351]: 更新日志
+              - img [ref=e353]
+            - generic [ref=e357]:
+              - link "模型发布" [ref=e360] [cursor=pointer]:
+                - /url: /docs/zh-CN/updates/model
+                - paragraph [ref=e362]: 模型发布
+              - link "功能更新" [ref=e365] [cursor=pointer]:
+                - /url: /docs/zh-CN/updates/feature
+                - paragraph [ref=e367]: 功能更新
+          - generic [ref=e369]:
+            - generic [ref=e370] [cursor=pointer]:
+              - paragraph [ref=e372]: 条款与协议
+              - img [ref=e374]
+            - generic [ref=e378]:
+              - link "服务协议" [ref=e381] [cursor=pointer]:
+                - /url: /docs/terms/user-agreement
+                - paragraph [ref=e383]: 服务协议
+              - link "隐私政策" [ref=e386] [cursor=pointer]:
+                - /url: /docs/terms/privacy-policy
+                - paragraph [ref=e388]: 隐私政策
+        - generic [ref=e390]:
+          - generic [ref=e391] [cursor=pointer]:
+            - paragraph [ref=e393]: 开发者交流群
+            - img [ref=e395]
+          - link "免费体验 MiMo Claw HOT" [ref=e397] [cursor=pointer]:
+            - /url: https://aistudio.xiaomimimo.com/
+            - generic [ref=e398]:
+              - paragraph [ref=e399]: 免费体验 MiMo Claw
+              - generic [ref=e401]: HOT
+    - generic [ref=e411]:
+      - paragraph [ref=e412]:
+        - link "Xiaomi MiMo 开放平台服务协议" [ref=e413] [cursor=pointer]:
+          - /url: /docs/terms/user-agreement
+        - generic [ref=e414]: "|"
+        - link "Xiaomi MiMo 开放平台隐私政策" [ref=e415] [cursor=pointer]:
+          - /url: /docs/terms/privacy-policy
+      - paragraph [ref=e416]:
+        - generic [ref=e417]: Copyright©2025 Xiaomi. All Rights Reserved
+        - 'link "Xiaomi MiMo : 备案号 Beijing-XiaomiMiMo-202601050182" [ref=e418] [cursor=pointer]':
+          - /url: https://mp.weixin.qq.com/s/67LmJeFdhi58UpPk9Wbssg
+        - 'link "小米大语言模型算法 : 备案号 网信算备110108916280901240011号" [ref=e419] [cursor=pointer]':
+          - /url: https://aistudio-cdn.xiaomimimo.com/xiaomimimo-static/document/%E5%85%AC%E7%A4%BA%E5%86%85%E5%AE%B9_%E7%BD%91%E4%BF%A1%E7%AE%97%E5%A4%87110108916280901240011%E5%8F%B7.pdf
+        - link "京ICP备17028681号-55" [ref=e420] [cursor=pointer]:
+          - /url: https://beian.miit.gov.cn/

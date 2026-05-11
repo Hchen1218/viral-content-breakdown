@@ -4,7 +4,7 @@ description: Use for any Feishu/Lark task involving docs, sheets, drive, calenda
 license: MIT
 metadata:
   github_url: https://github.com/larksuite/cli
-  github_hash: 24e0bb38ebada463a65645a8bbbcf9c0ba570d11
+  github_hash: 7fb71c6947499cffea502fd1a060593ac3cf6515
   version: "1.0.9"
   created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
@@ -18,7 +18,7 @@ This is the single-entry wrapper for the local Feishu/Lark toolkit.
 
 Use this skill instead of exposing the underlying `lark-*` skills directly in the main skill list.
 
-This wrapper stays aligned to the upstream `larksuite/cli` repository while preserving a clean one-skill user experience. The current local toolchain is `lark-cli 1.0.9` (upstream package metadata checked at 1.0.15), with skills installed under `/Users/cecilialiu/.agents/skills`.
+This wrapper stays aligned to the upstream `larksuite/cli` repository while preserving a clean one-skill user experience. The current local toolchain is `lark-cli 1.0.9`, with skills installed under `/Users/cecilialiu/.agents/skills`.
 
 Treat `/Users/cecilialiu/.agents/skills` as the source of truth for the installed Lark skills in this environment. Do not assume stale legacy paths under `/Users/cecilialiu/.codex/.lark-internal-skills` are complete.
 
