@@ -1,0 +1,172 @@
+- generic [ref=e3]:
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - generic [ref=e9]: 新鲜事一网打尽
+      - generic [ref=e10]: X 上的用户能够抢先知道。
+    - generic [ref=e13]:
+      - link "登录" [ref=e15] [cursor=pointer]:
+        - /url: /login
+        - generic [ref=e18]: 登录
+      - link "注册" [ref=e20] [cursor=pointer]:
+        - /url: /i/flow/signup
+        - generic [ref=e23]: 注册
+  - button "跳至主页时间线" [ref=e24] [cursor=pointer]
+  - button "跳至当前趋势" [ref=e26] [cursor=pointer]
+  - banner [ref=e28]:
+    - generic [ref=e31]:
+      - heading "X" [level=1] [ref=e33] [cursor=pointer]:
+        - link "X" [ref=e34]:
+          - /url: /
+          - img [ref=e36]
+      - generic:
+        - navigation "主要"
+  - main [ref=e39]:
+    - generic [ref=e42]:
+      - generic "主页时间线" [ref=e44]:
+        - generic [ref=e45]:
+          - generic [ref=e51] [cursor=pointer]:
+            - button "返回" [ref=e53]:
+              - img [ref=e55]
+            - heading "帖子" [level=2] [ref=e60]
+          - generic:
+            - generic:
+              - status:
+                - button:
+                  - generic:
+                    - img
+                    - generic: 查看新帖子
+        - region "对话" [ref=e62]:
+          - heading "对话" [level=1] [ref=e63]
+          - generic "时间线：对话" [ref=e64]:
+            - generic [ref=e65]:
+              - article "歸藏(guizang.ai) 认证账号 @op7418 x.com/i/article/2053 59 回复、349 次转帖、1597 喜欢、2537 书签" [ref=e69]:
+                - generic [ref=e71]:
+                  - generic [ref=e75]:
+                    - link [active] [ref=e87] [cursor=pointer]:
+                      - /url: /op7418
+                    - generic [ref=e92]:
+                      - generic [ref=e95]:
+                        - link "歸藏(guizang.ai) 认证账号" [ref=e98] [cursor=pointer]:
+                          - /url: /op7418
+                          - generic [ref=e99]:
+                            - generic [ref=e101]: 歸藏(guizang.ai)
+                            - img "认证账号" [ref=e104]
+                        - link "@op7418" [ref=e110] [cursor=pointer]:
+                          - /url: /op7418
+                          - generic [ref=e111]: "@op7418"
+                      - button "更多" [ref=e117] [cursor=pointer]:
+                        - img [ref=e121]
+                  - generic [ref=e124]:
+                    - link "x.com/i/article/2053" [ref=e127] [cursor=pointer]:
+                      - /url: /i/article/2053655813877870592
+                      - text: x.com/i/article/2053 …
+                    - link "上午10:05 · 2026年5月11日" [ref=e133] [cursor=pointer]:
+                      - /url: /op7418/status/2053657613460771142
+                      - time [ref=e134]: 上午10:05 · 2026年5月11日
+                    - group "59 回复、349 次转帖、1597 喜欢、2537 书签" [ref=e137]:
+                      - button "59 回复。回复" [ref=e139] [cursor=pointer]:
+                        - generic [ref=e140]:
+                          - img [ref=e143]
+                          - generic [ref=e148]: "59"
+                      - button "349 次转帖。转帖" [ref=e150] [cursor=pointer]:
+                        - generic [ref=e151]:
+                          - img [ref=e154]
+                          - generic [ref=e159]: "349"
+                      - button "1597 喜欢次数。喜欢" [ref=e161] [cursor=pointer]:
+                        - generic [ref=e162]:
+                          - img [ref=e165]
+                          - generic [ref=e170]: 1,597
+                      - button "2537 书签。加入书签" [ref=e172] [cursor=pointer]:
+                        - generic [ref=e173]:
+                          - img [ref=e176]
+                          - generic [ref=e181]: 2,537
+                      - button "分享帖子" [ref=e184] [cursor=pointer]:
+                        - img [ref=e188]
+                    - button "查看 59 条回复" [ref=e191] [cursor=pointer]:
+                      - generic [ref=e192]:
+                        - img [ref=e193]
+                        - generic [ref=e197]: 查看 59 条回复
+              - progressbar [ref=e201]:
+                - img [ref=e203]
+      - generic "当前趋势" [ref=e210]:
+        - generic [ref=e211]:
+          - region "注册" [ref=e213]:
+            - heading "X 的新用户？" [level=2] [ref=e215]:
+              - generic [ref=e216]: X 的新用户？
+            - generic [ref=e217]: 立即注册，获取你自己的个性化时间线！
+            - generic [ref=e218]:
+              - generic [ref=e220]:
+                - button "使用 Google 账号注册。在新标签页中打开" [ref=e222] [cursor=pointer]:
+                  - generic [ref=e224]:
+                    - img [ref=e226]
+                    - generic [ref=e233]: 使用 Google 账号注册
+                - iframe
+              - button "使用 Apple 注册" [ref=e234] [cursor=pointer]:
+                - generic [ref=e235]:
+                  - img [ref=e236]
+                  - generic [ref=e240]: 使用 Apple 注册
+              - link "创建账号" [ref=e241] [cursor=pointer]:
+                - /url: /i/flow/signup
+                - generic [ref=e244]: 创建账号
+            - generic [ref=e245]:
+              - text: 注册即表示同意
+              - link "服务条款" [ref=e246] [cursor=pointer]:
+                - /url: https://x.com/tos
+              - text: 及
+              - link "隐私政策" [ref=e247] [cursor=pointer]:
+                - /url: https://x.com/privacy
+              - text: ，其中包括
+              - link "Cookie 使用条款" [ref=e248] [cursor=pointer]:
+                - /url: https://help.x.com/rules-and-policies/twitter-cookies
+              - text: 。
+          - complementary "相关用户" [ref=e250]:
+            - heading "相关用户" [level=2] [ref=e252]:
+              - generic [ref=e253]: 相关用户
+            - list [ref=e254]:
+              - listitem [ref=e255] [cursor=pointer]:
+                - generic [ref=e256]:
+                  - link [ref=e266]:
+                    - /url: /op7418
+                  - generic [ref=e269]:
+                    - generic [ref=e270]:
+                      - generic [ref=e272]:
+                        - link "歸藏(guizang.ai) 认证账号" [ref=e274]:
+                          - /url: /op7418
+                          - generic [ref=e275]:
+                            - generic [ref=e277]: 歸藏(guizang.ai)
+                            - img "认证账号" [ref=e280]
+                        - link "@op7418" [ref=e285]:
+                          - /url: /op7418
+                          - generic [ref=e287]: "@op7418"
+                      - button "关注 @op7418" [ref=e289]:
+                        - generic [ref=e292]: 关注
+                    - generic [ref=e293]: 关注人工智能、LLM 、 AI 图像视频和设计（Interested in AI, LLM, Stable Diffusion, and design） 歸藏的 AIGC 周刊｜公众号：歸藏的AI工具箱
+          - region "当前趋势" [ref=e295]:
+            - heading "当前趋势" [level=1] [ref=e296]
+            - generic "时间线：当前趋势" [ref=e297]
+          - navigation "页脚" [ref=e314]:
+            - generic [ref=e315]:
+              - link "服务条款" [ref=e316] [cursor=pointer]:
+                - /url: https://x.com/tos
+              - generic [ref=e317]: "|"
+            - generic [ref=e318]:
+              - link "隐私政策" [ref=e319] [cursor=pointer]:
+                - /url: https://x.com/privacy
+              - generic [ref=e320]: "|"
+            - generic [ref=e321]:
+              - link "Cookie 政策" [ref=e322] [cursor=pointer]:
+                - /url: https://support.x.com/articles/20170514
+              - generic [ref=e323]: "|"
+            - generic [ref=e324]:
+              - link "辅助功能" [ref=e325] [cursor=pointer]:
+                - /url: https://help.x.com/resources/accessibility
+              - generic [ref=e326]: "|"
+            - generic [ref=e327]:
+              - link "广告信息" [ref=e328] [cursor=pointer]:
+                - /url: https://business.x.com/en/help/troubleshooting/how-twitter-ads-work.html?ref=web-twc-ao-gbl-adsinfo&utm_source=twc&utm_medium=web&utm_campaign=ao&utm_content=adsinfo
+              - generic [ref=e329]: "|"
+            - button "更多" [ref=e330] [cursor=pointer]:
+              - generic [ref=e331]:
+                - text: 更多
+                - img [ref=e332]
+            - generic [ref=e335]: © 2026 X Corp.
