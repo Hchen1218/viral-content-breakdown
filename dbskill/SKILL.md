@@ -5,6 +5,7 @@ description: |
   兼容总入口触发：
   - /dbskill、/dbs、/商业、「帮我看看」
   兼容旧内部别名：
+  - /dbs-chatroom、/定向聊天室、「帮我想想」「听听不同观点」「几个人讨论一下」
   - /dbs-diagnosis、/问诊、「帮我看看商业模式」「诊断一下我的业务」「我有个商业问题」
   - /dbs-benchmark、/对标、「帮我找对标」「我该模仿谁」「我该学谁」
   - /dbs-content、/内容诊断、「这个内容怎么做」「帮我看看这个文案」
@@ -14,12 +15,18 @@ description: |
   - /dbs-slowisfast、/慢就是快、「有没有更慢的方法」「我是不是太快了」
   - /dbs-action、/action、「我知道该怎么做但就是不做」「为什么我总是拖延」
   - /dbs-deconstruct、/拆概念、「帮我拆解这个概念」「这个词到底什么意思」
+  - /dbs-goal、/目标、「帮我搞清楚目标」「我想做个人 IP」「我的目标是成为...」「我想变得更...」
+  - /dbs-learning、/dbs-learn、/交互式学习、「带我学一个课题」「继续下一篇」「根据我的反馈写下一篇」
+  - /dbs-save、/存档、「保存这次诊断」「记下来」「这个结论留着」
+  - /dbs-restore、/续上、「接着上次」「之前的结论」「上次诊断到哪了」
+  - /dbs-report、/出报告、「打包」「整理一份」「给合伙人看的」
+  - /dbs-agent-migration、/agent迁移、「迁移到 Codex」「迁移到 Claude Code」「统一 AGENTS.md」「整理 skill bridge」「我的 Agent 工作台很乱」「帮我统一 Claude 和 Codex」
   - /chatroom-austrian、/奥派、「奥派聊天室」
   - /dbskill-upgrade、/升级dbskill、「升级 dbskill」
   The upstream repo files are preserved untouched under references/. This wrapper is a local single-entry shell around them.
 metadata:
   github_url: https://github.com/dontbesilent2025/dbskill
-  github_hash: da75f9f3d6f4ebc053118415b4a906d9501f78d5
+  github_hash: 26d47c4f8dee69676bde75741dddb430fbfc0e69
   version: main
   created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
@@ -42,6 +49,7 @@ metadata:
 
 | 用户意图信号 | 路由到 | 一句话说明 |
 |---|---|---|
+| 想从多个视角讨论、说"帮我想想"、"听听不同观点"、"几个人讨论一下" | `/dbs-chatroom` | 定向聊天室，推荐或指定专家多角色讨论 |
 | 带着具体商业问题、想看商业模式、说"我有个问题" | `/dbs-diagnosis` | 商业模式诊断，消解问题优先于回答问题 |
 | 想找对标、想模仿谁、说"我该学谁" | `/dbs-benchmark` | 对标分析，五重过滤排除一切噪音 |
 | 选题通过了想知道怎么做内容、说"这个内容怎么做" | `/dbs-content` | 内容创作诊断，五维检测 |
@@ -51,6 +59,12 @@ metadata:
 | 觉得自己在走捷径、想找更深入的方法、说"有没有更慢的方法" | `/dbs-slowisfast` | 慢就是快，找到值得慢做的环节 |
 | 知道该做什么但做不动、说"我总是拖延" | `/dbs-action` | 执行力诊断，阿德勒框架找到真正原因 |
 | 某个概念搞不清楚、说"这个词什么意思" | `/dbs-deconstruct` | 概念拆解，维特根斯坦式审查 |
+| 目标模糊、说"我想做 X 但不知从何开始"、"我的目标是成为..."、"我想变得更..."、需要把愿望语法变成可检查目标 | `/dbs-goal` | 目标清晰化，维特根斯坦式语法审计 |
+| 想系统学习一个主题、想让 AI 连续写课、提到「下一篇」「学习反馈」「继续学」「带我学」 | `/dbs-learning` | 交互式学习，根据用户反馈生成下一篇 |
+| 想把这次诊断的关键状态留下来、说「保存」「记下来」「存档」「这个结论留着」 | `/dbs-save` | 把当前诊断状态写到本地，下次可恢复 |
+| 想接续上次的诊断、说「上次」「之前的」「接着」「续上」「上次诊断到哪了」 | `/dbs-restore` | 拉出最近一份存档，接着上次继续 |
+| 想出一份可分享的报告、说「出报告」「打包」「整理一份」「给合伙人看的」 | `/dbs-report` | 把多份存档合并成 markdown 报告 |
+| 明确提到 Claude Code、Codex、AGENTS.md、CLAUDE.md、skill bridge、工作台迁移、双端统一，或说“我的 Agent 工作台很乱”“帮我统一 Claude 和 Codex” | `/dbs-agent-migration` | Agent 工作台迁移，整理规则文件、真源、命名与 Claude / Codex 双端 bridge |
 | 说"/奥派"、"奥派聊天室" | `/chatroom-austrian` | 哈耶克 × 米塞斯 × Claude 多角色讨论 |
 | 说"/dbskill-upgrade"、"/升级dbskill"、"升级 dbskill" | `/dbskill-upgrade` | 显示版本变化并执行升级流程 |
 
@@ -62,18 +76,31 @@ metadata:
 
 如果用户直接说了明确的需求，或者直接使用了旧命令别名（如 `/dbs-content`、`/dbs-action`、`/奥派`），直接路由，不废话。
 
+如果用户显式写 `/dbs-chatroom`、`/定向聊天室`、`/dbs-goal`、`/目标`、`/dbs-learning`、`/dbs-learn`，也直接路由，不废话。
+
 如果用户说的模糊（如"帮我看看"），问一个问题：
 
 > 你现在最想解决的是什么？
-> 1. 有个具体的商业问题想搞清楚 → 问诊
-> 2. 想找一个值得模仿的对标 → 对标
-> 3. 有个选题或内容想让我诊断怎么做 → 内容诊断
-> 4. 有短视频文案想优化开头 → 开头优化
-> 5. 想起一个小红书标题 → 小红书标题
-> 6. 有文案想看看有没有 AI 味 → AI 检测
-> 7. 觉得自己在走捷径，想找更深入的做法 → 慢方法诊断
-> 8. 知道该做什么但就是做不动 → 自检
-> 9. 有个概念/词搞不清楚 → 拆概念
+> 1. 想从多个视角讨论一个问题 → 定向聊天室
+> 2. 有个具体的商业问题想搞清楚 → 问诊
+> 3. 想找一个值得模仿的对标 → 对标
+> 4. 有个选题或内容想让我诊断怎么做 → 内容诊断
+> 5. 有短视频文案想优化开头 → 开头优化
+> 6. 想起一个小红书标题 → 小红书标题
+> 7. 有文案想看看有没有 AI 味 → AI 检测
+> 8. 觉得自己在走捷径，想找更深入的做法 → 慢方法诊断
+> 9. 知道该做什么但就是做不动 → 自检
+> 10. 有个概念/词搞不清楚 → 拆概念
+> 11. 目标模糊，想把愿望说成可检查的目标 → 目标清晰化
+> 12. 想系统学习一个课题，按反馈推进下一篇 → 交互式学习
+
+只有当用户显式写 `/dbs-save`、`/存档`，或明确说出「保存这次诊断」「记下来」「这个结论留着」时，进入存档流程。
+
+只有当用户显式写 `/dbs-restore`、`/续上`，或明确说出「接着上次」「之前的结论」「上次诊断到哪了」时，进入恢复流程。
+
+只有当用户显式写 `/dbs-report`、`/出报告`，或明确说出「打包」「整理一份」「给合伙人看的」时，进入报告流程。
+
+只有当用户显式写 `/dbs-agent-migration`、`/agent迁移`，或明确说出「迁移到 Codex」「迁移到 Claude Code」「统一 AGENTS.md」「我的 Agent 工作台很乱」时，进入迁移流程。
 
 只有当用户显式写 `/奥派`、`/chatroom-austrian`，或明确说出「奥派聊天室」时，进入奥派聊天室。
 
@@ -98,6 +125,12 @@ metadata:
 - `/dbs-slowisfast` -> `references/dbs-slowisfast.md`
 - `/dbs-action` -> `references/dbs-action.md`
 - `/dbs-deconstruct` -> `references/dbs-deconstruct.md`
+- `/dbs-goal` -> `references/dbs-goal.md`
+- `/dbs-learning` -> `references/dbs-learning.md`
+- `/dbs-save` -> `references/dbs-save.md`
+- `/dbs-restore` -> `references/dbs-restore.md`
+- `/dbs-report` -> `references/dbs-report.md`
+- `/dbs-agent-migration` -> `references/dbs-agent-migration.md`
 - `/chatroom-austrian` -> `references/chatroom-austrian.md`
 - `/dbskill-upgrade` -> `references/dbskill-upgrade.md`
 
@@ -108,7 +141,7 @@ metadata:
 - 保持原版子 skill 的触发信号一致，不要省略或改写成更粗糙的意图判断。
 - 不新增解释性触发词，不把相近语义词自动扩大成新的触发入口。
 - 如果用户消息里直接出现旧命令或原始触发短语，优先按原版子 skill 处理，不要先走泛化澄清。
-- 只有在用户没有给出足够信号时，才使用原版 `/dbs` 的九选一澄清流程。
+- 只有在用户没有给出足够信号时，才使用原版 `/dbs` 的十二选一澄清流程。
 - 识别意图只是入口工作；一旦匹配到模块，就完整执行该模块原有流程。
 - 如果内部模块里推荐另一个模块，把它理解成内部切换建议，不要把它说成“去调用另一个独立 skill”。
 
