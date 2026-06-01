@@ -34,6 +34,7 @@ class Manifest:
     roots: Roots
     source_of_truth: dict[str, list[str]]
     runtime_links: dict[str, dict[str, list[str]]]
+    runtime_target_overrides: dict[str, dict[str, Path]]
     preserved_entries: dict[str, list[str]]
 
 
@@ -97,6 +98,13 @@ def load_manifest() -> Manifest:
         }
         for runtime_key, source_map in data["runtimeLinks"].items()
     }
+    runtime_target_overrides = {
+        runtime_key: {
+            skill_name: Path(target_path).expanduser().resolve()
+            for skill_name, target_path in override_map.items()
+        }
+        for runtime_key, override_map in data.get("runtimeTargetOverrides", {}).items()
+    }
     preserved_entries = {
         root_key: unique_ordered(entries, f"preservedEntries.{root_key}")
         for root_key, entries in data.get("preservedEntries", {}).items()
@@ -105,6 +113,7 @@ def load_manifest() -> Manifest:
         roots=roots,
         source_of_truth=source_of_truth,
         runtime_links=runtime_links,
+        runtime_target_overrides=runtime_target_overrides,
         preserved_entries=preserved_entries,
     )
 
@@ -241,6 +250,24 @@ def validate_manifest(manifest: Manifest) -> dict[str, str]:
                         f"{runtime_key}, but authority is {authority}"
                     )
 
+    for runtime_key, override_map in manifest.runtime_target_overrides.items():
+        if runtime_key not in known_root_keys:
+            raise RuntimeError(f"Unknown runtimeTargetOverrides root: {runtime_key}")
+        declared = desired_entries_for_runtime(
+            runtime_key, manifest.runtime_links.get(runtime_key, {})
+        )
+        for skill_name, target_path in override_map.items():
+            if skill_name not in declared:
+                raise RuntimeError(
+                    f"runtimeTargetOverrides.{runtime_key}.{skill_name} has no "
+                    "matching runtimeLinks entry"
+                )
+            if not target_path.exists():
+                raise FileNotFoundError(
+                    f"Override target does not exist for {runtime_key}.{skill_name}: "
+                    f"{target_path}"
+                )
+
     return authoritative_source
 
 
@@ -269,11 +296,12 @@ def collect_unmanaged_entries(manifest: Manifest) -> dict[str, list[str]]:
 def has_pending_backups(manifest: Manifest) -> bool:
     for runtime_key, source_map in manifest.runtime_links.items():
         runtime_root = manifest.roots.get(runtime_key)
+        overrides = manifest.runtime_target_overrides.get(runtime_key, {})
         for source_key, skills in source_map.items():
             source_root = manifest.roots.get(source_key)
             for skill_name in skills:
                 link_path = runtime_root / skill_name
-                target_path = source_root / skill_name
+                target_path = overrides.get(skill_name, source_root / skill_name)
                 if not symlink_matches(link_path, target_path) and (
                     link_path.exists() or link_path.is_symlink()
                 ):
@@ -286,12 +314,13 @@ def rebuild_links(
 ) -> None:
     for runtime_key, source_map in manifest.runtime_links.items():
         runtime_root = manifest.roots.get(runtime_key)
+        overrides = manifest.runtime_target_overrides.get(runtime_key, {})
         for source_key, skills in source_map.items():
             source_root = manifest.roots.get(source_key)
             for skill_name in skills:
                 replace_with_symlink(
                     runtime_root / skill_name,
-                    source_root / skill_name,
+                    overrides.get(skill_name, source_root / skill_name),
                     runtime_key,
                     backup_root,
                     dry_run,

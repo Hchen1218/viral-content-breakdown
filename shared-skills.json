@@ -19,6 +19,7 @@
       "gh-address-comments",
       "gh-fix-ci",
       "github-to-skills",
+      "guizang-social-card-skill",
       "humanizer-zh",
       "pdf",
       "playwright",
@@ -53,6 +54,7 @@
         "gh-address-comments",
         "gh-fix-ci",
         "github-to-skills",
+        "guizang-social-card-skill",
         "humanizer-zh",
         "pdf",
         "playwright",
@@ -80,6 +82,7 @@
         "gh-address-comments",
         "gh-fix-ci",
         "github-to-skills",
+        "guizang-social-card-skill",
         "humanizer-zh",
         "pdf",
         "playwright",
@@ -109,6 +112,7 @@
         "gh-address-comments",
         "gh-fix-ci",
         "github-to-skills",
+        "guizang-social-card-skill",
         "humanizer-zh",
         "pdf",
         "playwright",
@@ -124,6 +128,11 @@
         "viral-content-breakdown",
         "web-access"
       ]
+    }
+  },
+  "runtimeTargetOverrides": {
+    "codex": {
+      "dbskill": "/Users/cecilialiu/Documents/Codex/Skills/.codex-shims/dbskill"
     }
   },
   "preservedEntries": {

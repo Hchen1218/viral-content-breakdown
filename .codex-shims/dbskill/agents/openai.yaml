@@ -1,0 +1,4 @@
+interface:
+  display_name: "dbskill"
+  short_description: "dontbesilent 商业工具箱"
+  default_prompt: "Use $dbskill, then immediately read and follow /Users/cecilialiu/.skillshub/dbskill/SKILL.md."
