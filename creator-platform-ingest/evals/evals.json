@@ -42,6 +42,24 @@
       "prompt": "我刚改了 creator-platform-ingest 的写回逻辑，先别抓新网页，帮我确认历史 capture 回放还过不过。",
       "expected_output": "运行 `scripts/replay_writeback_fixtures.py --repo-root . --strict-resolved`，用历史 capture 在临时 repo 中回放 Phase 3 写回；结果必须验证 capture schema、writeback-report 的 Unmatched Rows / Created Archives / Asset Gaps / User Supplement Needed 区块，以及不会污染真实 ai-content。",
       "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "抓新一轮创作者后台数据，写回 ai-content，然后告诉我还有哪些作品需要我补档。",
+      "expected_output": "完成 Chrome/web-access 抓取与 Phase 3 写回后，读取 writeback-report.md 作为补档事实源；同时检查并按最新数据刷新 `📋 进行中的运营动作.md`、`✅ 已完成的运营动作.md`、`账号运营策略.md`、`账号能力画像.md`，最终只列出仍需用户补充的 `封面标题 / 完整口播稿 / 图文正文 / 归档合并关系`。",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "没补齐就重跑给他补齐。",
+      "expected_output": "先区分平台抓取覆盖缺口和用户资产缺口：如果 capture coverage 或列表数据不完整，重跑抓取并用完整 capture 写回；如果缺的是封面标题、口播稿、图文正文或归档合并关系，则不盲目重跑，而是从 writeback-report.md 精确告诉用户需要补哪些作品信息。",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "看下我的运营内容里还有什么需要套用最新数据更新。",
+      "expected_output": "读取最新 capture、内容数据表和已完成运营动作，检查 `📋 进行中的运营动作.md`、`✅ 已完成的运营动作.md`、`账号运营策略.md`、`账号能力画像.md` 是否仍停留在旧数据窗口；需要时直接更新这些运营判断文件，同时保留历史周复盘作为当周快照。",
+      "files": []
     }
   ]
 }

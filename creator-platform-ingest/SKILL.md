@@ -1,6 +1,6 @@
 ---
 name: creator-platform-ingest
-description: Pull logged-in Xiaohongshu Creator and Douyin Creator data from the user's normal Chrome app through the web-access proxy, normalize dashboard and content-list metrics, and feed them into ai-content's existing intake/review workflow. Use this whenever the user asks to抓取/导入/同步创作者后台数据, automate content ops intake, replace manual xlsx export, update 内容数据表, or build weekly creator reviews from creator-platform pages. Always use the user's default Chrome app via the web-access skill; do not spin up an isolated browser unless the user explicitly asks.
+description: Pull logged-in Xiaohongshu Creator and Douyin Creator data from the user's normal Chrome app through the web-access proxy, normalize dashboard and content-list metrics, and feed them into ai-content's intake, review, write-back, and operational judgment workflow. Use this whenever the user asks to抓取/导入/同步创作者后台数据, automate content ops intake, replace manual xlsx export, update 内容数据表, build weekly creator reviews, refresh运营动作/账号策略/账号能力画像, or decide what content to do next from creator-platform data. Always use the user's default Chrome app via the web-access skill; do not spin up an isolated browser unless the user explicitly asks.
 ---
 
 # Creator Platform Ingest
@@ -14,13 +14,17 @@ Phase 2 is scoped around运营录入自动化, so the capture should favor data 
 - `01-内容生产/数据统计/内容数据表.md`
 - published-archive data blocks
 - `📋 进行中的运营动作.md`
+- `✅ 已完成的运营动作.md`
 - weekly review drafts
+- `账号运营策略.md`
+- `账号能力画像.md`
 
 Phase 3 extends that pipeline into direct write-back:
 - refresh `内容数据表.md` from the latest capture
 - update matched published-archive data blocks
 - generate the current weekly review draft
 - auto-create archive stubs for newly published but still-unarchived content
+- refresh active/completed action cards and account strategy/capability docs when the latest data changes operational judgment
 - keep unmatched rows, partial coverage, and missing content assets explicit in a sidecar report
 
 ## What success looks like
@@ -31,6 +35,7 @@ The run is successful when all of the following are true:
 - the capture is saved under `.cache/content-pipeline/creator-captures/`
 - the structured output makes it obvious what was captured, what is partial, and what is still missing
 - the assistant can use that capture to update `01-内容生产/数据统计/内容数据表.md` and related review docs if the user asked for write-back
+- after write-back, downstream operational judgment docs are updated to the latest window or explicitly reported as unchanged
 
 ## Mandatory browser rule
 
@@ -100,6 +105,7 @@ If the user asked for data intake or review updates:
 - follow the `记录数据 / 归档已发布内容` flow
 - update `01-内容生产/数据统计/内容数据表.md`
 - if requested, update weekly review docs and related published archives
+- after write-back, check whether the current action, completed-action, strategy, and capability docs need to be refreshed from the newest metrics
 
 Do not invent unavailable metrics. If a field is not exposed by the page capture, keep it blank and say why.
 
@@ -125,6 +131,28 @@ It does **not** fabricate missing fields and does **not** silently edit `📋 �
 When a freshly published row does not match any existing archive, it now creates a stub under `03-已发布选题/` first, then reruns archive matching so later write-back can land on a real file.
 When the archive still lacks `口播稿正文 / 图文正文 / 封面标题`, the script records those gaps in `writeback-report.md` instead of pretending the archive is complete.
 The write-back report also includes `User Supplement Needed`; this section must only ask the user for `封面标题 / 完整口播稿 / 图文正文 / 归档合并关系`. Do not ask the user to provide platform-published titles, body copy, or tags, because those should be captured from creator-platform pages.
+
+### 4.5 Refresh operational judgment docs
+
+After Phase 3 write-back, run an operational judgment pass whenever the user asked to update/write back data, generate a review, or decide what content to do next. The script updates deterministic data surfaces; the assistant aligns the judgment layer.
+
+Check:
+- `02-业务运营/业务规划/📋 进行中的运营动作.md`
+- `02-业务运营/业务规划/✅ 已完成的运营动作.md`
+- `02-业务运营/业务规划/账号运营策略.md`
+- `02-业务运营/业务规划/账号能力画像.md`
+
+Use source priority: latest `capture.json` -> `内容数据表.md` -> `<capture-dir>/writeback-report.md` -> existing completed-action decisions.
+
+Update rules:
+- Update `📋 进行中的运营动作.md` when the latest sample changes what should be executed next, what should be continued, or what should be stopped.
+- Move or summarize completed actions into `✅ 已完成的运营动作.md` only when there is enough result data and a clear decision.
+- Update `账号运营策略.md` and `账号能力画像.md` from current `内容数据表.md` plus completed-action evidence, not from impression.
+- Keep historical weekly reviews as dated snapshots; do not rewrite old week reviews unless the user asks.
+- Fix stale action IDs, wrong platform/title matching, generic old-data wording, or current-week recommendations based on old metrics.
+- If a newly published row is cross-platform with different platform titles, merge it into one archive only with high-confidence evidence. Otherwise ask for `归档合并关系` in `User Supplement Needed`.
+
+Report capture path, write-back report path, content/stat docs changed, operational judgment docs updated or intentionally unchanged, and `User Supplement Needed` limited to `封面标题 / 完整口播稿 / 图文正文 / 归档合并关系`.
 
 ### 5. Replay write-back fixtures when changing pipeline logic
 
@@ -164,6 +192,7 @@ The script writes:
 - `writeback-report.md`
   - generated by Phase 3 write-back
   - must include changed files, unmatched rows, created archives, asset gaps, and user supplement needs
+  - is the source of truth for deciding what user-supplied assets are still needed after any manual supplement
 
 Recommended storage location:
 
@@ -191,6 +220,7 @@ Recommended storage location:
 - Phase 3 write-back into `内容数据表.md` / published archives / weekly review
 - Phase 3 archive-gap reporting for `口播稿正文 / 图文正文 / 封面标题`
 - Phase 3 auto-stub creation for newly published unmatched rows
+- post-write-back operational refresh for `进行中的运营动作` / `已完成的运营动作` / `账号运营策略` / `账号能力画像`
 
 ## Phase 2 data priorities
 
@@ -358,7 +388,7 @@ Stop and ask the user only if one of these is true:
 
 ## Minimal review format
 
-When reporting back after a capture, keep it concise:
+When reporting back after a capture-only run, keep it concise:
 
 ```markdown
 ## Capture result
@@ -371,6 +401,17 @@ When reporting back after a capture, keep it concise:
 - update ai-content docs
 - inspect a changed parser path
 - extend to a deeper page
+```
+
+When reporting back after write-back, use this shape:
+
+```markdown
+## Write-back result
+- capture:
+- writeback report:
+- updated content/stat docs:
+- updated operational docs:
+- user supplement needed:
 ```
 
 ## Bundled files
