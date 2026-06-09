@@ -1,0 +1,41 @@
+{
+  "skill_name": "ppt-skill-collection",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我要做一套线下分享的杂志风 HTML deck。",
+      "expected_output": "第一推荐应该是 guizang-ppt-skill，并说明它更适合杂志风 / 瑞士风 / 个人表达型 talk。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "团队里有不会代码的同事，最好还能改 PPTX。",
+      "expected_output": "第一推荐应该是 huashu-design，并明确它覆盖 HTML deck + 可编辑 PPTX + 更宽泛设计交付。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我想要 React 组件化 slides，还能点元素留 comment 改稿。",
+      "expected_output": "第一推荐应该是 open-slide，并诚实说明它是 framework / runtime，不是单一可触发 skill。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "我想批量做统一视觉的 deck 模板库，给团队里的 agent 自动选模板。",
+      "expected_output": "第一推荐应该是 beautiful-html-templates，并说明它是模板库，不是现成 deck workflow。",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "我不要单个 PPT skill，我要整套 design platform。",
+      "expected_output": "第一推荐应该是 open-design，并说明它是平台而不是轻量 deck skill。",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "我想快速出一版能看、模板多的分享稿。",
+      "expected_output": "第一推荐应该是 html-ppt-skill，并强调模板 / 主题 / presenter mode 的密度优势。",
+      "files": []
+    }
+  ]
+}

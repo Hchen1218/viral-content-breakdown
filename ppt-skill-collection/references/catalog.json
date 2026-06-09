@@ -1,0 +1,601 @@
+{
+  "skill_name": "ppt-skill-collection",
+  "version": "0.1.0",
+  "projects": [
+    {
+      "id": "frontend-slides",
+      "name": "frontend-slides",
+      "kind": "skill",
+      "repo_url": "https://github.com/zarazhangrui/frontend-slides",
+      "tagline": "Show-don't-tell HTML presentation skill with visual style previews and a strong anti-AI-slop aesthetic system.",
+      "best_for": [
+        "快速做出有设计感的 HTML deck",
+        "不想描述审美，只想看 3 个方向再选",
+        "想要单文件 HTML、轻依赖、固定 16:9 舞台"
+      ],
+      "not_for": [
+        "必须交付可编辑 PPTX",
+        "要 React 组件化 authoring 作为第一诉求",
+        "只想要模板库，不要完整 workflow"
+      ],
+      "outputs": [
+        "单文件或目录式 HTML presentation",
+        "PPT 转网页 deck",
+        "可选部署和 PDF 导出"
+      ],
+      "recommend_signals": [
+        "快速出一套有设计感的网页演示",
+        "对外 pitch / talk / 分享",
+        "想让 agent 帮我先给 3 个视觉方向"
+      ],
+      "counter_signals": [
+        "重点是 PPTX 协作而不是 HTML deck",
+        "重点是 React 源码级高频迭代",
+        "重点是建设模板库或平台"
+      ],
+      "install_routes": {
+        "claude_code": {
+          "status": "chat_command",
+          "commands": [],
+          "display_steps": [
+            "在 Claude Code 里先发送 `/plugin marketplace add https://github.com/zarazhangrui/frontend-slides`。",
+            "等待上一步完成后，再发送 `/plugin install frontend-slides@frontend-slides`。",
+            "安装后可用 `/frontend-slides:frontend-slides`，或手动安装后用 `/frontend-slides`。"
+          ],
+          "notes": [
+            "这是官方 README 的 Claude Code plugin 安装路径。",
+            "短写成 `zarazhangrui/frontend-slides` 可能触发 SSH 路径，不如 HTTPS 稳。"
+          ]
+        },
+        "codex": {
+          "status": "manual",
+          "commands": [],
+          "display_steps": [
+            "把仓库链接交给当前 agent：`https://github.com/zarazhangrui/frontend-slides`。",
+            "让 agent 从 `SKILL.md` 开始，并按 README 的 `Other Coding Agents` 说明只读取需要的支持文件。",
+            "如果当前 agent 支持本地安装 skills，也可以按官方 README 的手动安装思路把仓库内容放到它自己的 skills 目录。"
+          ],
+          "notes": [
+            "官方文档没有给 Codex 专属的一键安装命令。",
+            "官方明确支持其他 coding agents 直接使用仓库和 `SKILL.md`。"
+          ]
+        },
+        "generic": {
+          "status": "manual",
+          "commands": [],
+          "display_steps": [
+            "将 `https://github.com/zarazhangrui/frontend-slides` 发给你的本地 coding agent。",
+            "要求它从 `SKILL.md` 开始，并按需读取 `STYLE_PRESETS.md`、`viewport-base.css`、`html-template.md`、`animation-patterns.md`、`bold-template-pack/` 和 `scripts/`。",
+            "如果当前 agent 有自己的 skills 安装目录，再按它自己的机制做本地挂载。"
+          ],
+          "notes": [
+            "官方说明里把其他 coding agents 的路径定义为“直接使用仓库 / SKILL.md”。",
+            "这不是一个通用 CLI 一键安装路线。"
+          ]
+        }
+      },
+      "secondary_pairings": [
+        "beautiful-html-templates"
+      ]
+    },
+    {
+      "id": "huashu-design",
+      "name": "huashu-design",
+      "kind": "skill",
+      "repo_url": "https://github.com/alchaincyf/huashu-design",
+      "tagline": "Agent-agnostic HTML-native design skill for decks, editable PPTX, prototypes, animations, and design review.",
+      "best_for": [
+        "HTML deck 同时要可编辑 PPTX",
+        "不仅做 PPT，还可能做原型、动画、信息图",
+        "团队里既有技术也有非技术协作者"
+      ],
+      "not_for": [
+        "只要极简单文件 HTML 演示，不要更重的设计工作流",
+        "只想要固定模板库",
+        "只想做 React slides runtime"
+      ],
+      "outputs": [
+        "HTML deck",
+        "可编辑 PPTX",
+        "交互原型",
+        "MP4 / GIF 动画",
+        "设计评审结果"
+      ],
+      "recommend_signals": [
+        "要 PPTX 协作",
+        "一句话生成 deck / prototype / animation",
+        "想要多格式交付"
+      ],
+      "counter_signals": [
+        "只想快速做一个纯 HTML deck",
+        "更在意杂志风或瑞士风的个人表达",
+        "更在意模板数量而不是整体设计系统"
+      ],
+      "install_routes": {
+        "claude_code": {
+          "status": "direct_command",
+          "commands": [
+            [
+              "npx",
+              "skills",
+              "add",
+              "alchaincyf/huashu-design"
+            ]
+          ],
+          "display_steps": [
+            "运行官方命令：`npx skills add alchaincyf/huashu-design`。",
+            "安装完成后，直接用自然语言描述你要做的 deck、原型、动画或设计评审任务。"
+          ],
+          "notes": [
+            "官方 README 标注它是 agent-agnostic。",
+            "前提是当前环境支持 `npx skills add` 这类 AgentSkills 安装方式。"
+          ]
+        },
+        "codex": {
+          "status": "direct_command",
+          "commands": [
+            [
+              "npx",
+              "skills",
+              "add",
+              "alchaincyf/huashu-design"
+            ]
+          ],
+          "display_steps": [
+            "运行官方命令：`npx skills add alchaincyf/huashu-design`。",
+            "安装后直接给出任务，例如做 keynote、交互原型、动画或 5 维设计评审。"
+          ],
+          "notes": [
+            "官方 README 明确写了 Codex 可用。",
+            "如果当前 Codex 环境没有 AgentSkills 运行面，再退回到手动读取仓库 / `SKILL.md` 的路径。"
+          ]
+        },
+        "generic": {
+          "status": "direct_command",
+          "commands": [
+            [
+              "npx",
+              "skills",
+              "add",
+              "alchaincyf/huashu-design"
+            ]
+          ],
+          "display_steps": [
+            "运行官方命令：`npx skills add alchaincyf/huashu-design`。",
+            "安装完成后，直接把设计任务交给支持 markdown skill 的本地 agent。"
+          ],
+          "notes": [
+            "官方说明是 agent-agnostic。",
+            "需要当前 agent 支持 `npx skills` 这类公开 skills 生态。"
+          ]
+        }
+      },
+      "secondary_pairings": [
+        "frontend-slides"
+      ]
+    },
+    {
+      "id": "guizang-ppt-skill",
+      "name": "guizang-ppt-skill",
+      "kind": "skill",
+      "repo_url": "https://github.com/op7418/guizang-ppt-skill",
+      "tagline": "Magazine and Swiss-style web deck skill for narrative talks, facts-first slides, visuals, and social covers.",
+      "best_for": [
+        "线下分享、私享会、强个人表达",
+        "杂志风、瑞士风、horizontal swipe deck",
+        "要单文件 HTML 演示和相关封面"
+      ],
+      "not_for": [
+        "必须交付可编辑 PPTX",
+        "重点是 React 组件化高迭代",
+        "重点是构建模板库或整套平台"
+      ],
+      "outputs": [
+        "单文件 HTML 横向翻页 deck",
+        "deck 配图",
+        "21:9 / 1:1 / 3:4 社交封面"
+      ],
+      "recommend_signals": [
+        "杂志风 PPT",
+        "瑞士风 PPT",
+        "个人表达型线下分享",
+        "horizontal swipe deck"
+      ],
+      "counter_signals": [
+        "要 editable PPTX",
+        "要模板多而不是美学强约束",
+        "要一整套设计平台"
+      ],
+      "install_routes": {
+        "claude_code": {
+          "status": "direct_command",
+          "commands": [
+            [
+              "npx",
+              "skills",
+              "add",
+              "https://github.com/op7418/guizang-ppt-skill",
+              "--skill",
+              "guizang-ppt-skill"
+            ]
+          ],
+          "display_steps": [
+            "运行官方命令：`npx skills add https://github.com/op7418/guizang-ppt-skill --skill guizang-ppt-skill`。",
+            "装好后，直接对 agent 说“做一份杂志风 PPT”或“做一份瑞士风 PPT”。"
+          ],
+          "notes": [
+            "README 同时提供了一行命令安装、发给 AI 的安装话术和手动 clone 三种方式。",
+            "这个官方命令最接近“公开可复现”的标准安装路径。"
+          ]
+        },
+        "codex": {
+          "status": "direct_command",
+          "commands": [
+            [
+              "npx",
+              "skills",
+              "add",
+              "https://github.com/op7418/guizang-ppt-skill",
+              "--skill",
+              "guizang-ppt-skill"
+            ]
+          ],
+          "display_steps": [
+            "运行官方命令：`npx skills add https://github.com/op7418/guizang-ppt-skill --skill guizang-ppt-skill`。",
+            "如果当前环境不支持这条公开 skills 命令，就退回到 README 里的 clone / paste-to-agent 路线。"
+          ],
+          "notes": [
+            "官方 README 明确写到 Claude Code、Codex 等类似 coding-agent 环境。",
+            "该命令仍以前提“当前运行面支持 AgentSkills”为准。"
+          ]
+        },
+        "generic": {
+          "status": "direct_command",
+          "commands": [
+            [
+              "npx",
+              "skills",
+              "add",
+              "https://github.com/op7418/guizang-ppt-skill",
+              "--skill",
+              "guizang-ppt-skill"
+            ]
+          ],
+          "display_steps": [
+            "运行官方命令：`npx skills add https://github.com/op7418/guizang-ppt-skill --skill guizang-ppt-skill`。",
+            "如果当前 agent 只有 shell 权限没有公开 skills 运行面，就改用官方 clone 安装步骤。"
+          ],
+          "notes": [
+            "README 还提供了“把安装说明直接贴给 AI”的路线。",
+            "它适合有 shell 权限的本地 agent。"
+          ]
+        }
+      },
+      "secondary_pairings": [
+        "frontend-slides"
+      ]
+    },
+    {
+      "id": "open-slide",
+      "name": "open-slide",
+      "kind": "framework",
+      "repo_url": "https://github.com/1weiho/open-slide",
+      "tagline": "React slide framework and runtime for agent-authored decks with comments, present mode, and export.",
+      "best_for": [
+        "React 组件化 slides",
+        "要在浏览器里点元素留 comment 再回改",
+        "高频迭代、多轮改稿、源码级 authoring"
+      ],
+      "not_for": [
+        "只想安装一个现成 PPT skill",
+        "只想最快出一个单文件 HTML deck",
+        "只想要模板库或静态主题"
+      ],
+      "outputs": [
+        "React slide workspace",
+        "静态 HTML / PDF 导出",
+        "带 presenter notes 的 slide project"
+      ],
+      "recommend_signals": [
+        "React components",
+        "comment to apply changes",
+        "high iteration",
+        "slide framework"
+      ],
+      "counter_signals": [
+        "one-click skill install",
+        "editable PPTX",
+        "template-only workflow"
+      ],
+      "install_routes": {
+        "claude_code": {
+          "status": "manual",
+          "commands": [],
+          "display_steps": [
+            "这是 framework，不是单一 skill 安装。",
+            "官方起步命令是：`npx @open-slide/cli init my-slide`。",
+            "进入新目录后运行 `pnpm dev`，再用内置 skills 或直接让 agent 改 `slides/<id>/index.tsx`。"
+          ],
+          "notes": [
+            "官方 README 把它定义成 `slide framework built for agents`。",
+            "脚手架会创建新工作区，因此不把它当成当前 skill 的自动安装目标。"
+          ]
+        },
+        "codex": {
+          "status": "manual",
+          "commands": [],
+          "display_steps": [
+            "官方起步命令是：`npx @open-slide/cli init my-slide`。",
+            "进入项目目录后运行 `pnpm dev`，再让 Codex 或其他 agent 生成 / 修改 React slides。"
+          ],
+          "notes": [
+            "官方 README 明确写它适用于 Claude Code、Codex、Cursor 等 coding agents。",
+            "它本质上是初始化一个项目，不是装一个可直接触发的独立 skill。"
+          ]
+        },
+        "generic": {
+          "status": "manual",
+          "commands": [],
+          "display_steps": [
+            "官方起步命令是：`npx @open-slide/cli init my-slide`。",
+            "随后进入项目目录，运行 `pnpm dev`，再在这个 workspace 里使用你的 agent。"
+          ],
+          "notes": [
+            "它是 runtime / framework 路线。",
+            "如果用户只是想装一个现成的 deck skill，优先不要把它排第一。"
+          ]
+        }
+      },
+      "secondary_pairings": [
+        "frontend-slides"
+      ]
+    },
+    {
+      "id": "html-ppt-skill",
+      "name": "html-ppt-skill",
+      "kind": "skill",
+      "repo_url": "https://github.com/lewislulu/html-ppt-skill",
+      "tagline": "Template-rich HTML PPT skill with many themes, layouts, animations, and a presenter mode.",
+      "best_for": [
+        "模板多、快速出第一版",
+        "不想从零设计，希望直接套成熟 deck 骨架",
+        "想要 presenter mode、主题和布局库存"
+      ],
+      "not_for": [
+        "想要强烈的杂志风 / 瑞士风个人表达路线",
+        "必须要 editable PPTX",
+        "想要 React 组件化高迭代流程"
+      ],
+      "outputs": [
+        "HTML presentations",
+        "多主题 deck",
+        "presenter mode 演讲稿视图",
+        "小红书图文相关页面"
+      ],
+      "recommend_signals": [
+        "模板党",
+        "快速出一版能看",
+        "主题多",
+        "presenter mode"
+      ],
+      "counter_signals": [
+        "想要超强审美约束系统而不是模板密度",
+        "想做框架级 React authoring",
+        "要完整设计平台"
+      ],
+      "install_routes": {
+        "claude_code": {
+          "status": "direct_command",
+          "commands": [
+            [
+              "npx",
+              "skills",
+              "add",
+              "https://github.com/lewislulu/html-ppt-skill"
+            ]
+          ],
+          "display_steps": [
+            "运行官方命令：`npx skills add https://github.com/lewislulu/html-ppt-skill`。",
+            "安装后直接让 agent 把大纲变成 pitch deck、tech sharing slides 或小红书图文。"
+          ],
+          "notes": [
+            "README 直接把这条写成 one-command install。",
+            "适合任何支持 AgentSkills 的运行面。"
+          ]
+        },
+        "codex": {
+          "status": "direct_command",
+          "commands": [
+            [
+              "npx",
+              "skills",
+              "add",
+              "https://github.com/lewislulu/html-ppt-skill"
+            ]
+          ],
+          "display_steps": [
+            "运行官方命令：`npx skills add https://github.com/lewislulu/html-ppt-skill`。",
+            "安装后直接用自然语言描述你要的主题、页数和场景。"
+          ],
+          "notes": [
+            "README 的表述是“any agent that supports AgentSkills”。",
+            "如果当前 Codex 环境没有这类技能安装面，需要回退到手动读取仓库。"
+          ]
+        },
+        "generic": {
+          "status": "direct_command",
+          "commands": [
+            [
+              "npx",
+              "skills",
+              "add",
+              "https://github.com/lewislulu/html-ppt-skill"
+            ]
+          ],
+          "display_steps": [
+            "运行官方命令：`npx skills add https://github.com/lewislulu/html-ppt-skill`。",
+            "安装完成后，让当前 agent 直接生成 deck 或图文。"
+          ],
+          "notes": [
+            "该项目对公开 skills 生态兼容度高。",
+            "它的强项是模板和 presenter mode，不是独特审美判断。"
+          ]
+        }
+      },
+      "secondary_pairings": [
+        "guizang-ppt-skill"
+      ]
+    },
+    {
+      "id": "beautiful-html-templates",
+      "name": "beautiful-html-templates",
+      "kind": "template_library",
+      "repo_url": "https://github.com/zarazhangrui/beautiful-html-templates",
+      "tagline": "A reusable HTML slide template library for agents to pick, adapt, and fill automatically.",
+      "best_for": [
+        "建立团队统一视觉模板库",
+        "批量生成风格一致的 deck",
+        "给别的 agent skill 提供更丰富的模板来源"
+      ],
+      "not_for": [
+        "只想装一个能马上做 deck 的现成 skill",
+        "不想维护模板选择逻辑",
+        "只想要单一工作流而不是素材库"
+      ],
+      "outputs": [
+        "34 套模板库",
+        "index.json 模板索引",
+        "供 agent 选择和改造的 HTML 模板集合"
+      ],
+      "recommend_signals": [
+        "template library",
+        "team visual system",
+        "批量 deck",
+        "给 agent 自动挑模板"
+      ],
+      "counter_signals": [
+        "希望一装即用、立即产出 deck",
+        "不想自己做模板选择",
+        "希望得到完整平台或完整 skill 工作流"
+      ],
+      "install_routes": {
+        "claude_code": {
+          "status": "manual",
+          "commands": [],
+          "display_steps": [
+            "官方起步方式不是“安装一个 skill”，而是克隆仓库并按 `AGENTS.md` 使用。",
+            "按照 README 的指引：`Clone https://github.com/zarazhangrui/beautiful-html-templates and follow the instructions in AGENTS.md to build me a beautiful HTML slide deck.`",
+            "如果你已经有 deck skill，可把它当模板源接进去。"
+          ],
+          "notes": [
+            "它是模板库，不是独立工作流 skill。",
+            "最常见的搭配对象是 `frontend-slides`。"
+          ]
+        },
+        "codex": {
+          "status": "manual",
+          "commands": [],
+          "display_steps": [
+            "把仓库 `https://github.com/zarazhangrui/beautiful-html-templates` 交给当前 agent。",
+            "让它先读 `AGENTS.md`，再按 `index.json` 挑模板并改造内容。"
+          ],
+          "notes": [
+            "官方 README 的定位是“library of reusable HTML slide templates”。",
+            "不要把它说成现成的一键安装 skill。"
+          ]
+        },
+        "generic": {
+          "status": "manual",
+          "commands": [],
+          "display_steps": [
+            "克隆仓库或把 repo 链接发给当前 agent：`https://github.com/zarazhangrui/beautiful-html-templates`。",
+            "让 agent 从 `AGENTS.md` 开始，再按 `index.json` 和模板目录完成模板选择与内容替换。"
+          ],
+          "notes": [
+            "这是模板库接入路径，不是 skills 安装路径。",
+            "它更适合作为上游视觉素材层。"
+          ]
+        }
+      },
+      "secondary_pairings": [
+        "frontend-slides",
+        "open-slide"
+      ]
+    },
+    {
+      "id": "open-design",
+      "name": "open-design",
+      "kind": "platform",
+      "repo_url": "https://github.com/nexu-io/open-design",
+      "tagline": "Local-first design platform with skills, plugins, design systems, and agent-specific install routes.",
+      "best_for": [
+        "我要整套本地优先设计平台，不只要 PPT",
+        "要 slides、prototype、image、video、design systems 一起做",
+        "要长期工作流和平台能力，而不是单个 skill"
+      ],
+      "not_for": [
+        "只想装一个轻量 deck skill",
+        "只想先快速出一套演示文稿",
+        "不愿意接受更重的平台安装和学习成本"
+      ],
+      "outputs": [
+        "设计平台",
+        "skills / plugins / design systems",
+        "web / app / deck / image / video artifacts"
+      ],
+      "recommend_signals": [
+        "完整设计工作流",
+        "local-first platform",
+        "design systems",
+        "open-source Claude Design alternative"
+      ],
+      "counter_signals": [
+        "只想做 PPT",
+        "只需要模板或单一 skill",
+        "要最低安装成本"
+      ],
+      "install_routes": {
+        "claude_code": {
+          "status": "manual",
+          "commands": [],
+          "display_steps": [
+            "官方一行安装示例是：`curl -fsSL https://open-design.ai/install.sh | sh -s claude`。",
+            "如果不想走 CLI，也可以下载安装桌面 app。",
+            "安装完成后，在 agent 中直接要求使用 open-design 生成目标设计产物。"
+          ],
+          "notes": [
+            "官方 README 还提供桌面 app、Docker 和源码运行路线。",
+            "由于官方命令依赖 shell pipe，这里只按手动路径展示，不自动执行。"
+          ]
+        },
+        "codex": {
+          "status": "manual",
+          "commands": [],
+          "display_steps": [
+            "官方一行安装示例是：`curl -fsSL https://open-design.ai/install.sh | sh -s codex`。",
+            "装好后，可在 Codex 里直接要求使用 open-design 生成 landing page、deck 或其他设计产物。"
+          ],
+          "notes": [
+            "官方 README 明确列出了 Codex agent adapter。",
+            "这是平台级安装，不是单一 PPT skill。"
+          ]
+        },
+        "generic": {
+          "status": "manual",
+          "commands": [],
+          "display_steps": [
+            "官方说明是：`curl -fsSL https://open-design.ai/install.sh | sh -s <agent>`。",
+            "把 `<agent>` 替换为当前支持的 agent 名称，或改用官方桌面 app。"
+          ],
+          "notes": [
+            "官方提供 16+ agent adapter。",
+            "这里展示的是官方安装入口，不自动执行 shell pipe。"
+          ]
+        }
+      },
+      "secondary_pairings": [
+        "huashu-design"
+      ]
+    }
+  ]
+}
