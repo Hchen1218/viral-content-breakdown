@@ -1,0 +1,47 @@
+{
+  "expectations": [
+    {
+      "text": "识别比赛身份不足，先追问最少必要信息。",
+      "passed": false,
+      "evidence": "Assumes Germany vs Curacao without asking."
+    },
+    {
+      "text": "不在缺少对手、赛事或日期时硬给比分。",
+      "passed": false,
+      "evidence": "Provides Germany 3-0 Curacao despite insufficient input."
+    },
+    {
+      "text": "说明至少需要两队、赛事或比赛日期等信息。",
+      "passed": false,
+      "evidence": "Does not ask for the minimum missing match information."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 0,
+    "errors_encountered": 0,
+    "output_chars": 794,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "total_duration_seconds": 0.0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Subagent completion notifications did not include token or duration data, so timing/tokens are not recoverable."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "overall": "Assertions were graded against the saved final_report.md outputs using deterministic human-authored evidence notes."
+  }
+}

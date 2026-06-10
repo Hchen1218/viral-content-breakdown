@@ -1,0 +1,57 @@
+{
+  "expectations": [
+    {
+      "text": "先联网锁定美国队首战的对手、日期、地点和赛事身份，而不是直接假设。",
+      "passed": true,
+      "evidence": "Identifies USA vs Paraguay with date, location, and sources."
+    },
+    {
+      "text": "主场因素、旅行因素、伤停、近期状态、赔率和媒体动态分开处理。",
+      "passed": true,
+      "evidence": "Separates home/travel, injuries, form, odds, and media context."
+    },
+    {
+      "text": "更衣室或媒体动态只采用可靠来源；没有可靠来源时明确说明。",
+      "passed": true,
+      "evidence": "Uses named media sources and does not rely on unsourced dressing-room rumors."
+    },
+    {
+      "text": "使用 3-5 位真实名人视角的模拟专家会议，并说明不代表本人实时观点。",
+      "passed": false,
+      "evidence": "No 3-5 named simulated expert-room section or disclaimer."
+    },
+    {
+      "text": "最终由章鱼保罗给比分判决和娱乐免责声明。",
+      "passed": true,
+      "evidence": "Gives a Paul-style final score and states it is not betting advice."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 0,
+    "errors_encountered": 0,
+    "output_chars": 4825,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "total_duration_seconds": 0.0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Subagent completion notifications did not include token or duration data, so timing/tokens are not recoverable."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "overall": "Assertions were graded against the saved final_report.md outputs using deterministic human-authored evidence notes."
+  }
+}

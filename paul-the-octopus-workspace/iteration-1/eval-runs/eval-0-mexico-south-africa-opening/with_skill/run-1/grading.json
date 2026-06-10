@@ -1,0 +1,62 @@
+{
+  "expectations": [
+    {
+      "text": "联网核验并列出来源台账，包含链接、时间、支持事实和可信度。",
+      "passed": true,
+      "evidence": "Report includes a source ledger table with URLs, timestamps/access times, supported facts, and credibility labels."
+    },
+    {
+      "text": "覆盖官方赛程或比赛身份、名单状态、伤停停赛、可靠更衣室动态、历史交锋、近期状态和赔率。",
+      "passed": true,
+      "evidence": "Covers match identity, squad/list status, injury/suspension status, dressing-room/team context, head-to-head, recent form, and Oddschecker odds."
+    },
+    {
+      "text": "明确声明专家会议是基于公开方法论的模拟分析席，不代表本人实时观点。",
+      "passed": true,
+      "evidence": "Includes the required simulated expert-room disclaimer before named expert views."
+    },
+    {
+      "text": "章鱼保罗给出最可能比分、备选比分、胜平负倾向、信心等级、关键分歧点和最大反转变量。",
+      "passed": true,
+      "evidence": "Paul section includes most likely score, alternatives, 1X2 tendency, confidence, key disagreement, and reversal variable."
+    },
+    {
+      "text": "真实正确比分赔率没有可靠来源时明确说明，且不编造赔率。",
+      "passed": true,
+      "evidence": "Uses Oddschecker for correct-score odds and records the update time rather than inventing numbers."
+    },
+    {
+      "text": "包含仅供娱乐、不构成投注建议的声明。",
+      "passed": true,
+      "evidence": "Ends with the entertainment disclaimer and no betting advice."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 0,
+    "errors_encountered": 0,
+    "output_chars": 6432,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "total_duration_seconds": 0.0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Subagent completion notifications did not include token or duration data, so timing/tokens are not recoverable."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "overall": "Assertions were graded against the saved final_report.md outputs using deterministic human-authored evidence notes."
+  }
+}

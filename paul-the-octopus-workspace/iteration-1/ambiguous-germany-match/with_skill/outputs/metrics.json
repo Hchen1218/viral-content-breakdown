@@ -1,0 +1,21 @@
+{
+  "skill": "paul-the-octopus",
+  "task": "预测德国这场，比分多少？",
+  "generated_date": "2026-06-10",
+  "match_identity_status": "insufficient",
+  "prediction_made": false,
+  "clarification_requested": true,
+  "reason": "The request names Germany but does not specify the opponent, competition, match date, or kickoff time, so the skill requires clarification instead of prediction.",
+  "web_verification_performed": false,
+  "web_verification_reason": "The skill forbids predicting when the match identity is unclear; web verification is only appropriate after the specific match can be locked.",
+  "skill_files_read": [
+    "paul-the-octopus/SKILL.md",
+    "paul-the-octopus/references/source-policy.md",
+    "paul-the-octopus/references/expert-room.md",
+    "paul-the-octopus/references/report-template.md"
+  ],
+  "outputs": [
+    "final_report.md",
+    "metrics.json"
+  ]
+}

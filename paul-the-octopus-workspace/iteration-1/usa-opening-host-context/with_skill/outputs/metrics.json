@@ -1,0 +1,25 @@
+{
+  "skill_used": "paul-the-octopus",
+  "generated_at": "2026-06-10 15:35:39 Asia/Shanghai",
+  "internet_used": true,
+  "web_search_batches_estimate": 17,
+  "web_open_batches": 2,
+  "unique_source_links_in_report": 17,
+  "output_files": [
+    "final_report.md",
+    "metrics.json"
+  ],
+  "prediction": {
+    "match": "United States vs Paraguay",
+    "competition": "2026 FIFA World Cup",
+    "date": "2026-06-12",
+    "venue": "Los Angeles Stadium / SoFi Stadium",
+    "most_likely_score": "United States 2-1 Paraguay",
+    "confidence": "medium"
+  },
+  "known_limitations": [
+    "FIFA schedule page was reachable but not text-extractable in the browsing environment.",
+    "Specific kickoff time was not found from a stable public source during this run.",
+    "Reliable public correct-score odds were not found; only moneyline and group-winner odds were cited from media reports."
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "expectations": [
+    {
+      "text": "识别比赛身份不足，先追问最少必要信息。",
+      "passed": true,
+      "evidence": "Recognizes that 'Germany this match' does not uniquely identify a match."
+    },
+    {
+      "text": "不在缺少对手、赛事或日期时硬给比分。",
+      "passed": true,
+      "evidence": "Does not provide a score prediction."
+    },
+    {
+      "text": "说明至少需要两队、赛事或比赛日期等信息。",
+      "passed": true,
+      "evidence": "Asks for opponent plus competition/date/kickoff context."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 0,
+    "errors_encountered": 0,
+    "output_chars": 177,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "total_duration_seconds": 0.0
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Subagent completion notifications did not include token or duration data, so timing/tokens are not recoverable."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "overall": "Assertions were graded against the saved final_report.md outputs using deterministic human-authored evidence notes."
+  }
+}
