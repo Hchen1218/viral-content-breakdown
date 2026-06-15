@@ -8,6 +8,7 @@
   },
   "sourceOfTruth": {
     "skillhub": [
+      "agent-browser",
       "aihot",
       "anthropic-skill-creator",
       "creator-platform-ingest",
@@ -41,6 +42,7 @@
   "runtimeLinks": {
     "codex": {
       "skillhub": [
+        "agent-browser",
         "aihot",
         "anthropic-skill-creator",
         "creator-platform-ingest",
@@ -68,6 +70,7 @@
     },
     "claude": {
       "skillhub": [
+        "agent-browser",
         "aihot",
         "anthropic-skill-creator",
         "creator-platform-ingest",
@@ -97,6 +100,7 @@
     },
     "agents": {
       "skillhub": [
+        "agent-browser",
         "aihot",
         "anthropic-skill-creator",
         "creator-platform-ingest",
