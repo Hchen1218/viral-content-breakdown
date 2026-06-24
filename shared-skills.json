@@ -10,6 +10,7 @@
     "skillhub": [
       "agent-browser",
       "aihot",
+      "beautiful-html-templates",
       "anthropic-skill-creator",
       "creator-platform-ingest",
       "dbskill",
