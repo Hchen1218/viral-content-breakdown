@@ -1,0 +1,35 @@
+{
+  "skill_name": "douyin-focus-shuttle",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我要你帮我整理这个项目的 README。你开始工作的时候把我切到抖音，做完以后再把我切回来。",
+      "expected_output": "Agent starts by running the enter command, performs the task, and runs the return command before final response.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "这个任务可能要等很久。你先让我去刷抖音，中途如果还要等，就再切回抖音，但是不要重新打开一个新的抖音网页。",
+      "expected_output": "Repeated enter calls reuse the saved or existing douyin.com tab, navigate that same tab to https://www.douyin.com/?recommend=1 if needed, and avoid creating duplicate tabs.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "你先做一版方案。我去刷抖音，如果你中途有问题要问我，就自动切回来问。",
+      "expected_output": "Agent runs enter at task start and runs return before asking any clarifying question.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "这是一个很长的任务。你先把我送到抖音推荐页，后面跑测试、改代码、再跑测试都可以，但你最后一定要记得先切回 Codex 再跟我说结果。",
+      "expected_output": "Agent records an explicit unresolved plan/checklist item to run return before asking or finalizing, relies on script state for the saved tab and return target, and runs return before the final response.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "我在一个不能控制 macOS 前台窗口的远程环境里，用这个 skill 让我去刷抖音，做完叫我回来。",
+      "expected_output": "Agent does not pretend focus control is available; it explains the manual fallback clearly.",
+      "files": []
+    }
+  ]
+}
