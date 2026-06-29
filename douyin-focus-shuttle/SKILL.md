@@ -1,6 +1,6 @@
 ---
 name: douyin-focus-shuttle
-description: Use this skill when the user wants the agent to send them to the Douyin recommendation page while the agent works, then bring them back when input is needed or the task is done. Trigger for requests like "任务期间让我去刷抖音", "开始任务时切到抖音推荐页", "做完叫我回来", "Agent 工作时让我等一下", "长线任务别忘了最后切回来", "中途再切回浏览器但别新开页面", or any workflow where the user wants focus shuttled between an agent window and Douyin. The skill prioritizes reusing the same douyin.com browser tab instead of opening duplicates.
+description: Use this skill when the user wants the agent to send them to the Douyin recommendation page while the agent works, then bring them back when input is needed or the task is done. Trigger for requests like "任务期间让我去刷抖音", "开始任务时切到抖音推荐页", "做完叫我回来", "Agent 工作时让我等一下", "长线任务别忘了最后切回来", "中途再切回浏览器但别新开页面", or any workflow where the user wants focus shuttled between an agent window and Douyin. The skill prioritizes reusing the same douyin.com browser tab instead of opening duplicates and uses lifecycle commands so long tasks remember to return before replying.
 license: MIT
 compatibility: macOS-first. Requires shell access plus AppleScript automation permission for reliable app and browser focus control. Other platforms should use the documented manual fallback.
 metadata:
@@ -23,52 +23,57 @@ Use it when the user explicitly wants to wait in Douyin while the agent works, t
 - When a Douyin tab exists but is not on the recommendation page, navigate that same tab to `https://www.douyin.com/?recommend=1` instead of opening another page.
 - Do not hide failures. If browser focus control is unavailable, say what could not be automated and give the manual fallback.
 
-## First step
+## Lifecycle commands
 
 At the start of a task that triggers this skill, run:
+
+```bash
+python3 scripts/douyin_focus.py start
+```
+
+Resolve `scripts/douyin_focus.py` relative to this skill directory. If the agent is working from another project directory, use the absolute path to this skill's script.
+
+If the current frontmost app might already be a browser because of a preflight check, pass the return target explicitly:
+
+```bash
+python3 scripts/douyin_focus.py start --return-app Codex
+```
+
+Then continue the user's actual task.
+
+`start` records the return target, marks the session active, then looks for an existing `douyin.com` tab in supported browsers. If it finds one, it reuses that tab and moves it to `https://www.douyin.com/?recommend=1` if needed. If it does not find one, it opens exactly one new recommendation-page tab in a controllable browser and saves that tab as the one to reuse.
+
+If the user later asks to be sent back to Douyin during the same task, run `enter` again. The command is intentionally idempotent: repeated calls should focus the saved or existing Douyin tab, not open more copies.
 
 ```bash
 python3 scripts/douyin_focus.py enter
 ```
 
-Resolve `scripts/douyin_focus.py` relative to this skill directory. If the agent is working from another project directory, use the absolute path to this skill's script.
-
-Then continue the user's actual task.
-
-`enter` records the current frontmost macOS app as the return target. It then looks for an existing `douyin.com` tab in supported browsers. If it finds one, it reuses that tab and moves it to `https://www.douyin.com/?recommend=1` if needed. If it does not find one, it opens exactly one new recommendation-page tab in a controllable browser and saves that tab as the one to reuse.
-
-If the user later asks to be sent back to Douyin during the same task, run `enter` again. The command is intentionally idempotent: repeated calls should focus the saved or existing Douyin tab, not open more copies.
-
 ## Long-running task memory
 
-Do not rely on remembering this skill only in natural language. After the first successful `enter`, create or update the agent's task plan, checklist, or working notes with an explicit unresolved item:
-
-```text
-Before asking the user, reporting a blocker, or finalizing, run douyin_focus.py return.
-```
-
-Keep that item unresolved until `return` has actually run. In long-running work, check this item before every user-facing message, especially after tool calls, build/test loops, background waits, or context-heavy analysis.
-
-The script also writes persistent state under the user's cache directory, so the saved return target and Douyin tab survive long command sequences. Use `status` if the task has been running for a long time and you need to refresh what was saved.
-
-## Return step
-
-Before any moment that needs the user's attention, run:
+Do not rely on remembering this skill only in natural language. The script writes active session state under the user's cache directory. Before any user-visible message, run:
 
 ```bash
-python3 scripts/douyin_focus.py return
+python3 scripts/douyin_focus.py before-reply
 ```
 
-Resolve the script path the same way as in the first step.
+If the session is active and still needs return, `before-reply` restores the agent app. If no return is needed, it exits cleanly. This keeps the prompt short and makes long build/test loops safer.
 
-Run this before:
+At final task completion, run:
 
-- asking a clarifying question
-- reporting a blocker
-- giving the final answer
-- asking the user to review a result
+```bash
+python3 scripts/douyin_focus.py finish
+```
 
-If the command cannot restore focus, explain the failure briefly and name the saved app it attempted to restore.
+Use `finish` rather than plain `return` when the task is complete, because it also clears the active session flag.
+
+For long shell commands, prefer wrapping them:
+
+```bash
+python3 scripts/douyin_focus.py guard -- <command> <args>
+```
+
+`guard` starts the shuttle, runs the command, returns focus when the command ends, marks the session finished, and exits with the wrapped command's exit code.
 
 ## Status checks
 

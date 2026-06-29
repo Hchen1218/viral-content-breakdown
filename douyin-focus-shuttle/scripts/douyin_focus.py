@@ -45,6 +45,9 @@ BROWSERS = [
     },
 ]
 
+BROWSER_APPS = {browser["app"] for browser in BROWSERS}
+AGENT_APP_CANDIDATES = ("Codex", "Claude", "Terminal", "iTerm2", "Warp", "Visual Studio Code")
+
 
 def cache_dir() -> Path:
     base = os.environ.get("XDG_CACHE_HOME")
@@ -364,19 +367,89 @@ def saved_tab_status(state: dict[str, Any]) -> tuple[dict[str, str], int, int] |
         return None
 
 
-def remember_return_target(state: dict[str, Any]) -> dict[str, str]:
+def app_window_title(app_name: str) -> str:
+    script = f'''
+tell application "System Events"
+  set windowTitle to ""
+  try
+    set targetProc to first application process whose name is "{app_name}"
+    set windowTitle to name of front window of targetProc
+  end try
+  return windowTitle
+end tell
+'''
+    try:
+        return osascript(script)
+    except RuntimeError:
+        return ""
+
+
+def make_return_target(app_name: str, window_title: str = "") -> dict[str, str]:
+    return {"app": app_name, "window": window_title}
+
+
+def infer_agent_return_target() -> dict[str, str] | None:
+    for app_name in AGENT_APP_CANDIDATES:
+        try:
+            if app_is_running(app_name):
+                return make_return_target(app_name, app_window_title(app_name))
+        except RuntimeError:
+            continue
+    return None
+
+
+def remember_return_target(
+    state: dict[str, Any],
+    *,
+    return_app: str | None = None,
+    force: bool = False,
+) -> dict[str, str]:
+    if return_app:
+        target = make_return_target(return_app, app_window_title(return_app))
+        state["return_target"] = target
+        return target
+
     target = frontmost_app()
-    if target["app"] and target["app"] not in {browser["app"] for browser in BROWSERS}:
+    if target["app"] and target["app"] not in BROWSER_APPS:
         state["return_target"] = target
-    elif "return_target" not in state and target["app"]:
-        state["return_target"] = target
-    return state.get("return_target", target)
+        return target
+
+    if state.get("return_target") and not force:
+        return state["return_target"]
+
+    inferred = infer_agent_return_target()
+    if inferred:
+        state["return_target"] = inferred
+        return inferred
+
+    if target["app"]:
+        return target
+    return state.get("return_target", {})
 
 
-def enter() -> int:
+def mark_active(state: dict[str, Any]) -> None:
+    state["active"] = True
+    state["must_return"] = True
+    state.setdefault("started_at", time.strftime("%Y-%m-%dT%H:%M:%S%z"))
+
+
+def mark_returned(state: dict[str, Any]) -> None:
+    state["must_return"] = False
+    state["returned_at"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
+
+
+def mark_finished(state: dict[str, Any]) -> None:
+    state["active"] = False
+    state["must_return"] = False
+    state["finished_at"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
+
+
+def enter(*, return_app: str | None = None, active: bool = False) -> int:
     ensure_macos()
     state = load_state()
-    return_target = remember_return_target(state)
+    return_target = remember_return_target(state, return_app=return_app)
+    if active:
+        mark_active(state)
 
     saved = saved_tab_available(state)
     if saved:
@@ -428,7 +501,11 @@ def enter() -> int:
     return 0
 
 
-def restore_return_target() -> int:
+def start(return_app: str | None = None) -> int:
+    return enter(return_app=return_app, active=True)
+
+
+def restore_return_target(*, clear_must_return: bool = True) -> int:
     ensure_macos()
     state = load_state()
     target = state.get("return_target", {})
@@ -436,8 +513,44 @@ def restore_return_target() -> int:
     if not app_name:
         raise RuntimeError("no saved return target")
     activate_app(app_name)
+    if clear_must_return:
+        mark_returned(state)
+        save_state(state)
     print(f"Returned focus to {app_name}.")
     return 0
+
+
+def before_reply() -> int:
+    ensure_macos()
+    state = load_state()
+    if state.get("active") and state.get("must_return"):
+        return restore_return_target(clear_must_return=True)
+    print("No pending return needed.")
+    return 0
+
+
+def finish() -> int:
+    ensure_macos()
+    state = load_state()
+    if state.get("active") and state.get("must_return"):
+        restore_return_target(clear_must_return=True)
+        state = load_state()
+    mark_finished(state)
+    save_state(state)
+    print("Finished douyin focus shuttle session.")
+    return 0
+
+
+def guard(command: list[str], return_app: str | None = None) -> int:
+    if not command:
+        raise RuntimeError("guard requires a command after --")
+    start(return_app=return_app)
+    proc = subprocess.run(command)
+    restore_return_target(clear_must_return=True)
+    state = load_state()
+    mark_finished(state)
+    save_state(state)
+    return proc.returncode
 
 
 def status() -> int:
@@ -457,6 +570,8 @@ def status() -> int:
     print(json.dumps(
         {
             "state_path": str(STATE_PATH),
+            "active": state.get("active", False),
+            "must_return": state.get("must_return", False),
             "return_target": return_target or None,
             "douyin_target": douyin or None,
             "douyin_availability": availability,
@@ -469,16 +584,34 @@ def status() -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Focus shuttle between an agent app and a reusable Douyin tab.")
-    parser.add_argument("command", choices=["enter", "return", "status"])
-    args = parser.parse_args()
+    parser.add_argument(
+        "command",
+        choices=["start", "enter", "before-reply", "finish", "return", "status", "guard"],
+    )
+    parser.add_argument(
+        "--return-app",
+        help="Explicit app to return to, for example Codex. Useful when the current frontmost app is a browser.",
+    )
+    args, remainder = parser.parse_known_args()
 
     try:
+        if args.command == "start":
+            return start(return_app=args.return_app)
         if args.command == "enter":
-            return enter()
+            return enter(return_app=args.return_app)
+        if args.command == "before-reply":
+            return before_reply()
+        if args.command == "finish":
+            return finish()
         if args.command == "return":
             return restore_return_target()
         if args.command == "status":
             return status()
+        if args.command == "guard":
+            command = remainder
+            if command and command[0] == "--":
+                command = command[1:]
+            return guard(command, return_app=args.return_app)
     except RuntimeError as exc:
         print(f"douyin-focus-shuttle: {exc}", file=sys.stderr)
         return 2
