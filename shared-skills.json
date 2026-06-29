@@ -15,7 +15,6 @@
       "creator-platform-ingest",
       "dbskill",
       "doc",
-      "find-skills",
       "frontend-design",
       "frontend-slides",
       "gh-address-comments",
@@ -33,7 +32,6 @@
       "token-receipt",
       "transcribe",
       "vercel-deploy",
-      "viral-content-breakdown",
       "web-access"
     ],
     "repo": [
@@ -49,7 +47,6 @@
         "creator-platform-ingest",
         "dbskill",
         "doc",
-        "find-skills",
         "frontend-design",
         "frontend-slides",
         "gh-address-comments",
@@ -65,7 +62,6 @@
         "token-receipt",
         "transcribe",
         "vercel-deploy",
-        "viral-content-breakdown",
         "web-access"
       ]
     },
@@ -77,7 +73,6 @@
         "creator-platform-ingest",
         "dbskill",
         "doc",
-        "find-skills",
         "frontend-design",
         "frontend-slides",
         "gh-address-comments",
@@ -95,7 +90,6 @@
         "token-receipt",
         "transcribe",
         "vercel-deploy",
-        "viral-content-breakdown",
         "web-access"
       ]
     },
@@ -107,7 +101,6 @@
         "creator-platform-ingest",
         "dbskill",
         "doc",
-        "find-skills",
         "frontend-design",
         "frontend-slides",
         "gh-address-comments",
@@ -125,14 +118,8 @@
         "token-receipt",
         "transcribe",
         "vercel-deploy",
-        "viral-content-breakdown",
         "web-access"
       ]
-    }
-  },
-  "runtimeTargetOverrides": {
-    "codex": {
-      "dbskill": "/Users/cecilialiu/Documents/Codex/Skills/.codex-shims/dbskill"
     }
   },
   "preservedEntries": {
