@@ -46,7 +46,16 @@ BROWSERS = [
 ]
 
 BROWSER_APPS = {browser["app"] for browser in BROWSERS}
-AGENT_APP_CANDIDATES = ("Codex", "Claude", "Terminal", "iTerm2", "Warp", "Visual Studio Code")
+AGENT_APP_CANDIDATES = (
+    "Codex",
+    "Claude",
+    "Claude Code",
+    "Terminal",
+    "iTerm2",
+    "Warp",
+    "Visual Studio Code",
+    "Cursor",
+)
 
 
 def cache_dir() -> Path:
@@ -388,6 +397,10 @@ def make_return_target(app_name: str, window_title: str = "") -> dict[str, str]:
     return {"app": app_name, "window": window_title}
 
 
+def is_agent_app(app_name: str | None) -> bool:
+    return bool(app_name) and app_name in AGENT_APP_CANDIDATES
+
+
 def infer_agent_return_target() -> dict[str, str] | None:
     for app_name in AGENT_APP_CANDIDATES:
         try:
@@ -409,18 +422,28 @@ def remember_return_target(
         state["return_target"] = target
         return target
 
+    saved_target = state.get("return_target", {})
+    if state.get("active") and saved_target and not force:
+        if is_agent_app(saved_target.get("app")):
+            return saved_target
+        inferred = infer_agent_return_target()
+        if inferred:
+            state["return_target"] = inferred
+            return inferred
+        return saved_target
+
     target = frontmost_app()
     if target["app"] and target["app"] not in BROWSER_APPS:
         state["return_target"] = target
         return target
 
-    if state.get("return_target") and not force:
-        return state["return_target"]
-
     inferred = infer_agent_return_target()
     if inferred:
         state["return_target"] = inferred
         return inferred
+
+    if saved_target and not force:
+        return saved_target
 
     if target["app"]:
         return target
@@ -501,8 +524,12 @@ def enter(*, return_app: str | None = None, active: bool = False) -> int:
     return 0
 
 
-def start(return_app: str | None = None) -> int:
+def away(return_app: str | None = None) -> int:
     return enter(return_app=return_app, active=True)
+
+
+def start(return_app: str | None = None) -> int:
+    return away(return_app=return_app)
 
 
 def restore_return_target(*, clear_must_return: bool = True) -> int:
@@ -539,6 +566,10 @@ def finish() -> int:
     save_state(state)
     print("Finished douyin focus shuttle session.")
     return 0
+
+
+def back() -> int:
+    return finish()
 
 
 def guard(command: list[str], return_app: str | None = None) -> int:
@@ -586,7 +617,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Focus shuttle between an agent app and a reusable Douyin tab.")
     parser.add_argument(
         "command",
-        choices=["start", "enter", "before-reply", "finish", "return", "status", "guard"],
+        choices=["away", "back", "start", "enter", "before-reply", "finish", "return", "status", "guard"],
     )
     parser.add_argument(
         "--return-app",
@@ -595,6 +626,10 @@ def main() -> int:
     args, remainder = parser.parse_known_args()
 
     try:
+        if args.command == "away":
+            return away(return_app=args.return_app)
+        if args.command == "back":
+            return back()
         if args.command == "start":
             return start(return_app=args.return_app)
         if args.command == "enter":
