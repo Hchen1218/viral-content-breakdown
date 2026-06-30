@@ -35,6 +35,7 @@
       "web-access"
     ],
     "repo": [
+      "douyin-focus-shuttle",
       "skill-evolution-manager"
     ]
   },
@@ -63,6 +64,9 @@
         "transcribe",
         "vercel-deploy",
         "web-access"
+      ],
+      "repo": [
+        "douyin-focus-shuttle"
       ]
     },
     "claude": {
@@ -91,6 +95,9 @@
         "transcribe",
         "vercel-deploy",
         "web-access"
+      ],
+      "repo": [
+        "douyin-focus-shuttle"
       ]
     },
     "agents": {
@@ -119,6 +126,9 @@
         "transcribe",
         "vercel-deploy",
         "web-access"
+      ],
+      "repo": [
+        "douyin-focus-shuttle"
       ]
     }
   },
