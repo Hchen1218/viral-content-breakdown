@@ -36,6 +36,7 @@
     ],
     "repo": [
       "douyin-focus-shuttle",
+      "heytea-doodle-poster",
       "skill-evolution-manager"
     ]
   },
@@ -66,7 +67,8 @@
         "web-access"
       ],
       "repo": [
-        "douyin-focus-shuttle"
+        "douyin-focus-shuttle",
+        "heytea-doodle-poster"
       ]
     },
     "claude": {
@@ -97,7 +99,8 @@
         "web-access"
       ],
       "repo": [
-        "douyin-focus-shuttle"
+        "douyin-focus-shuttle",
+        "heytea-doodle-poster"
       ]
     },
     "agents": {
@@ -128,7 +131,8 @@
         "web-access"
       ],
       "repo": [
-        "douyin-focus-shuttle"
+        "douyin-focus-shuttle",
+        "heytea-doodle-poster"
       ]
     }
   },

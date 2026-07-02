@@ -7,3 +7,5 @@ follow-builders/.git/
 follow-builders/feed-*.json
 follow-builders/state-feed.json
 follow-builders/scripts/node_modules/
+heytea-doodle-poster/private-assets/
+generated-skills/heytea-doodle-poster.skill
