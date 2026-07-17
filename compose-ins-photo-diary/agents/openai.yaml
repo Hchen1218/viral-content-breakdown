@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ins Photo Diary"
+  short_description: "Route 3–6 photos into adaptive Ins diary styles"
+  default_prompt: "Use $compose-ins-photo-diary to turn my uploaded photos into the best-fitting Ins-style photo diary."

@@ -1,0 +1,55 @@
+{
+  "skill": "compose-ins-photo-diary",
+  "cases": [
+    {
+      "name": "three-travel-photos",
+      "prompt": "Use the skill to combine these three travel photos into one Ins-style photo diary.",
+      "expect": [
+        "uses all three foreground photos exactly once",
+        "selects place-note only when a shared trip or place is supported",
+        "does not invent a city or date",
+        "generates only the background",
+        "preserves one substantial quiet region"
+      ]
+    },
+    {
+      "name": "five-mixed-life-photos",
+      "prompt": "Turn these five food, weather, music, and mood photos into one cohesive life-log collage.",
+      "expect": [
+        "routes mixed subjects to bold-index unless a stronger coherent mood exists",
+        "generates and scores two background candidates",
+        "preserves every source image without retouching",
+        "delivers a 1536 by 2048 composition"
+      ]
+    },
+    {
+      "name": "six-photos-with-people-and-text",
+      "prompt": "Make an Ins photo diary from these six photos; some contain faces and readable text.",
+      "expect": [
+        "does not rotate images with people or text",
+        "uses every source exactly once in the selected mode",
+        "does not send foreground images to the image generator",
+        "produces provenance for all six sources"
+      ]
+    },
+    {
+      "name": "four-muted-rainy-photos",
+      "prompt": "Turn these four muted rainy-day photos into a quiet poetic Ins diary.",
+      "expect": [
+        "routes the set to quiet-journal",
+        "uses literary serif typography and restrained lowercase copy",
+        "keeps the fragments in one compact cluster",
+        "does not fabricate weather details not visible or supplied"
+      ]
+    },
+    {
+      "name": "missing-image-generation-capability",
+      "prompt": "Create the collage in an agent that has vision but no image-generation tool.",
+      "expect": [
+        "stops before composition",
+        "explains that background generation is unavailable",
+        "does not request an API key or offer a provider fallback"
+      ]
+    }
+  ]
+}

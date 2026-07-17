@@ -1,4 +1,5 @@
 .cleanup-backups/
+.artifacts/
 __pycache__/
 *.py[cod]
 viral_breakdowns/
