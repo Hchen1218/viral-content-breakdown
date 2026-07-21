@@ -14,27 +14,26 @@ description: |
   - /dbs-hook、/hook、「帮我优化开头」「开头怎么写」
   - /dbs-xhs-title、/小红书标题、「帮我起个小红书标题」「小红书标题公式」
   - /dbs-ai-check、/AI检测、「帮我看看有没有 AI 味」「检测一下 AI 特征」
-  - /dbs-wechat-html、/公众号版本、/微信排版、「生成公众号 HTML」「做微信公众号版」
   - /dbs-slowisfast、/慢就是快、「有没有更慢的方法」「我是不是太快了」
   - /dbs-action、/action、「我知道该怎么做但就是不做」「为什么我总是拖延」
   - /dbs-deconstruct、/拆概念、「帮我拆解这个概念」「这个词到底什么意思」
   - /dbs-goal、/目标、「帮我搞清楚目标」「我想做个人 IP」「我的目标是成为...」「我想变得更...」
   - /dbs-good-question、/好问题、/问题说明书、「这个问题能不能自动化解决」「帮我把问题说清楚」
   - /dbs-decision、/决策系统、/决策立案、/结果回填、/状态画像、「帮我记下这个决策」「看看我是不是又在重复老问题」
-  - /dbs-content-system、/内容结构化系统、「把我的内容做成结构化系统」「把本地素材变成可重组系统」「帮我搭内容资产工程」「我想把旧内容变成可复用资产」
   - /dbs-learning、/dbs-learn、/交互式学习、「带我学一个课题」「继续下一篇」「根据我的反馈写下一篇」
   - /dbs-save、/存档、「保存这次诊断」「记下来」「这个结论留着」
   - /dbs-restore、/续上、「接着上次」「之前的结论」「上次诊断到哪了」
   - /dbs-report、/出报告、「打包」「整理一份」「给合伙人看的」
   - /dbs-agent-migration、/agent迁移、「迁移到 Codex」「迁移到 Claude Code」「迁移到 Grok」「统一 AGENTS.md」「整理 skill bridge」「我的 Agent 工作台很乱」「帮我统一 Claude 和 Codex 和 Grok」
   - /dbs-chatroom-austrian、/chatroom-austrian、/奥派、「奥派聊天室」
-  - /dbskill-upgrade、/升级dbskill、「升级 dbskill」
   - /dbs-script-flow、/逻辑延续、「检查逻辑延续」「看看逻辑有没有断」「帮我看看这个稿子顺不顺」
-  - /dbs-bridge、/bridge、「桥接这个 skill」「桥接整个 skills 目录」「查看桥接状态」
-  The upstream repo files are preserved untouched under references/. This wrapper is a local single-entry shell around them.
+  - /dbs-update、/升级dbskill、「更新 dbskill」「把 dbskill 更新到最新版」「检查 dbskill 更新」
+  - /dbs-knowledge、/知识库、「搭建知识库」「更新知识库导航」「从知识库找资料」
+  - /dbs-skill-cleaner、/清理 skill、/检查 skill、「扫描本地 skill」「审查我的 skill」
+  上游内部模块规则同步为 references/*.md，根入口仍是本地唯一入口包装，不把内部模块注册成独立 Skill。
 metadata:
   github_url: https://github.com/dontbesilent2025/dbskill
-  github_hash: 658c41cf96e5c8662dd321bfc23d647f51ff3037
+  github_hash: daca0716446c255ba19ede90950450ddd2908595
   version: main
   created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
@@ -80,23 +79,22 @@ metadata:
 | 有短视频文案想优化开头、说"开头怎么写" | `/dbs-hook` | 短视频开头优化，诊断 + 生成方案 |
 | 想起小红书标题、说"帮我起个标题"、要写标题 | `/dbs-xhs-title` | 小红书标题公式，75 个验证过的爆款公式匹配 |
 | 发来文案问有没有 AI 味、说"检测一下" | `/dbs-ai-check` | AI 写作特征识别，只诊断不改 |
-| 想把 Markdown 转成微信公众号 HTML、说"公众号版本"、"微信排版"、"生成公众号 HTML"、"做微信公众号版" | `/dbs-wechat-html` | 微信公众号 HTML 生成，支持风格选择、预览和全量生成 |
-| 觉得自己在关键决策上走捷径、想找更深入的方法、说"有没有更慢的方法" | `/dbs-slowisfast` | 慢就是快，找到值得慢做的环节 |
+  | 觉得自己在关键决策上走捷径、想找更深入的方法、说"有没有更慢的方法" | `/dbs-slowisfast` | 慢就是快，找到值得慢做的环节 |
 | 知道该做什么但做不动、说"我总是拖延" | `/dbs-action` | 执行力诊断，阿德勒框架找到真正原因 |
 | 某个概念搞不清楚、说"这个词什么意思" | `/dbs-deconstruct` | 概念拆解，维特根斯坦式审查 |
 | 目标模糊、说"我想做 X 但不知从何开始"、"我的目标是成为..."、"我想变得更..."、需要把愿望语法变成可检查目标 | `/dbs-goal` | 目标清晰化，维特根斯坦式语法审计 |
-| 问题模糊、想把问题说清楚、判断能不能让 Agent 自动解决、说"这个问题能不能自动化"、"帮我写问题说明书" | `/dbs-good-question` | 好问题生成器，把模糊问题改成 Agent 可推理、可验证的问题说明书 |
-| 想把重大决策长期记录下来、回填结果、复盘规律，或说"帮我记下这个决策"、"看看我是不是又在重复老问题" | `/dbs-decision` | 决策系统，在本地沉淀可回填、可复盘的项目 |
-| 明确提到 Claude Code、Codex、Grok、AGENTS.md、CLAUDE.md、skill bridge、工作台迁移、三端统一，或说"我的 Agent 工作台很乱"、"帮我统一 Claude 和 Codex 和 Grok" | `/dbs-agent-migration` | Agent 工作台迁移，整理规则文件、真源、命名与三端 bridge |
-| 有逐字稿想检查段落衔接、信息密度、口播流畅度，或说"稿子顺不顺"、"哪里会划走" | `/dbs-script-flow` | 逻辑延续检查，找出观众划走的风险点 |
-| 想把某个 Skill 或整个 skills 目录桥接到多个 Agent，或查看/取消桥接 | `/dbs-bridge` | 多端 Skill 桥接，改一处多端同步 |
-| 想把本地大量文稿、推文、选题、案例做成可重组系统，或提到「内容结构化系统」「内容资产工程化」「主题地图」「选题装配」「旧内容变成可复用资产」 | `/dbs-content-system` | 内容结构化系统，先审计规模与边界，再建立工程 |
+  | 问题模糊、想把问题说清楚、判断能不能让 Agent 自动解决、说"这个问题能不能自动化"、"帮我写问题说明书" | `/dbs-good-question` | 好问题生成器，把模糊问题改成 Agent 可推理、可验证的问题说明书 |
+  | 想把重大决策长期记录下来、回填结果、复盘规律，或说"帮我记下这个决策"、"看看我是不是又在重复老问题" | `/dbs-decision` | 决策系统，在本地沉淀可回填、可复盘的项目 |
+  | 说「更新 dbskill」「升级 dbskill」「检查 dbskill 更新」 | `/dbs-update` | 只同步官方 dbskill，不碰其他 Skill 和用户存档 |
+  | 想搭建知识库、让 AI 读懂本地文件夹、把资料放进知识库、从知识库找资料、更新知识库导航或检查资料结构 | `/dbs-knowledge` | 文件夹知识库，建立知识库导航并持续处理资料的查找、收录、调用和健康检查 |
+  | 想检查、审查或清理本地 skill；担心广告导流、任务劫持、可疑外部调用或敏感数据读取 | `/dbs-skill-cleaner` | 先出带证据的只读审查报告，再按用户确认隔离问题 skill |
+  | 明确提到 Claude Code、Codex、Grok、AGENTS.md、CLAUDE.md、skill bridge、工作台迁移、三端统一，或说"我的 Agent 工作台很乱"、"帮我统一 Claude 和 Codex 和 Grok" | `/dbs-agent-migration` | Agent 工作台迁移，整理规则文件、真源、命名与三端 bridge |
+  | 有逐字稿想检查段落衔接、信息密度、口播流畅度，或说"稿子顺不顺"、"哪里会划走" | `/dbs-script-flow` | 逻辑延续检查，找出观众划走的风险点 |
 | 想把这次诊断的关键状态留下来、说「保存」「记下来」「存档」「这个结论留着」 | `/dbs-save` | 把当前诊断状态写到本地，下次可恢复 |
 | 想接续上次的诊断、说「上次」「之前的」「接着」「续上」「上次诊断到哪了」 | `/dbs-restore` | 拉出最近一份存档，接着上次继续 |
 | 想出一份可分享的报告、说「出报告」「打包」「整理一份」「给合伙人看的」 | `/dbs-report` | 把多份存档合并成 markdown 报告 |
 | 想系统学习一个主题、想让 AI 连续写课、提到「下一篇」「学习反馈」「继续学」「带我学」 | `/dbs-learning` | 交互式学习，根据用户反馈生成下一篇 |
-| 说"/dbs-chatroom-austrian"、"/chatroom-austrian"、"奥派聊天室" | `/dbs-chatroom-austrian` | 哈耶克 × 米塞斯 × Claude 多角色讨论 |
-| 说"/dbskill-upgrade"、"/升级dbskill"、"升级 dbskill" | `/dbskill-upgrade` | 显示版本变化并执行升级流程 |
+  | 说"/dbs-chatroom-austrian"、"/chatroom-austrian"、"奥派聊天室" | `/dbs-chatroom-austrian` | 哈耶克 × 米塞斯 × Claude 多角色讨论 |
 
 ### 工作流程
 
@@ -113,11 +111,11 @@ metadata:
 4. 内容诊断
 5. 传播心理解码
 6. 文稿共鸣诊断
-7. 内容结构化系统
+7. 知识库
 8. 开头优化
 9. 小红书标题
 10. AI 检测
-11. 微信公众号 HTML
+11. Skill 审查与清理
 12. 慢方法诊断
 13. 执行力诊断
 14. 概念拆解
@@ -136,26 +134,25 @@ metadata:
 - `/dbs-hook` -> `references/dbs-hook.md`
 - `/dbs-xhs-title` -> `references/dbs-xhs-title.md`
 - `/dbs-ai-check` -> `references/dbs-ai-check.md`
-- `/dbs-wechat-html` -> `references/dbs-wechat-html/SKILL.md`
-- `/dbs-slowisfast` -> `references/dbs-slowisfast.md`
+  - `/dbs-slowisfast` -> `references/dbs-slowisfast.md`
 - `/dbs-action` -> `references/dbs-action.md`
 - `/dbs-deconstruct` -> `references/dbs-deconstruct.md`
 - `/dbs-goal` -> `references/dbs-goal.md`
 - `/dbs-good-question` -> `references/dbs-good-question.md`
 - `/dbs-decision` -> `references/dbs-decision.md`
-- `/dbs-content-system` -> `references/dbs-content-system/SKILL.md`
-- `/dbs-learning` -> `references/dbs-learning.md`
+  - `/dbs-learning` -> `references/dbs-learning.md`
 - `/dbs-save` -> `references/dbs-save.md`
 - `/dbs-restore` -> `references/dbs-restore.md`
 - `/dbs-report` -> `references/dbs-report.md`
 - `/dbs-agent-migration` -> `references/dbs-agent-migration.md`
 - `/dbs-script-flow` -> `references/dbs-script-flow.md`
-- `/dbs-bridge` -> `references/dbs-bridge/SKILL.md`
-- `/dbs-chatroom-austrian` -> `references/dbs-chatroom-austrian.md`
-- `/chatroom-austrian` -> `references/chatroom-austrian.md`
-- `/dbskill-upgrade` -> `references/dbskill-upgrade.md`
+  - `/dbs-chatroom-austrian` -> `references/dbs-chatroom-austrian.md`
+  - `/chatroom-austrian` -> `references/chatroom-austrian.md`
+  - `/dbs-update` -> `references/dbs-update.md`
+  - `/dbs-knowledge` -> `references/dbs-knowledge.md`
+  - `/dbs-skill-cleaner` -> `references/dbs-skill-cleaner.md`
 
-如果某个参考文件引用了额外模板或资源，相对它自己的目录解析。例如 `/dbs-wechat-html` 的模板位于 `references/dbs-wechat-html/templates/`。
+如果某个参考文件引用了额外脚本或资源，按该文件中记录的 `references/` 相对路径解析。
 
 ---
 
