@@ -8,6 +8,7 @@ description: |
   - /dbs-chatroom、/定向聊天室、「帮我想想」「听听不同观点」「几个人讨论一下」
   - /dbs-diagnosis、/问诊、「帮我看看商业模式」「诊断一下我的业务」「我有个商业问题」
   - /dbs-benchmark、/对标、「帮我找对标」「我该模仿谁」「我该学谁」
+  - /dbs-standard-answer、/标准答案、「历史上谁遇到过类似问题」「这种情况以前有人经历过吗」「有没有经典解法」
   - /dbs-content、/内容诊断、「这个内容怎么做」「帮我看看这个文案」
   - /dbs-spread、「为什么这个能火」「受众想听什么」
   - /dbs-resonate、「这个文稿有没有问题」「能不能发」
@@ -33,8 +34,8 @@ description: |
   上游内部模块规则同步为 references/*.md，根入口仍是本地唯一入口包装，不把内部模块注册成独立 Skill。
 metadata:
   github_url: https://github.com/dontbesilent2025/dbskill
-  github_hash: daca0716446c255ba19ede90950450ddd2908595
-  version: main
+  github_hash: 195f8f0dcb05afee73fe9b0f3e3052809eebf273
+  version: 2.18.14
   created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
   dependencies: []
@@ -73,28 +74,29 @@ metadata:
 | 想从多个视角讨论、说"帮我想想"、"听听不同观点"、"几个人讨论一下" | `/dbs-chatroom` | 定向聊天室，推荐或指定专家多角色讨论 |
 | 带着具体商业问题、想看商业模式、说"我有个问题" | `/dbs-diagnosis` | 商业模式诊断，消解问题优先于回答问题 |
 | 想找对标、想模仿谁、说"我该学谁" | `/dbs-benchmark` | 对标分析，五重过滤排除一切噪音 |
+| 想从历史同构案例中寻找反复有效的解法、说"历史上谁遇到过类似问题"、"这种情况以前怎么解决"、"有没有标准答案" | `/dbs-standard-answer` | 历史同构与标准答案研究，从成功、失败和反例中提炼带条件的机制 |
 | 选题通过了想知道怎么做内容、说"这个内容怎么做" | `/dbs-content` | 内容创作诊断，五维检测 |
 | 有一段已有内容想知道为什么能火、打中了什么情绪、应该从什么方向深化讨论、说"为什么这个能火"、"受众想听什么" | `/dbs-spread` | 传播心理解码，拆出共鸣机制和可放大方向 |
 | 写完文稿心里没底、怕没流量、怕没戳中受众、说"这个文稿有没有问题"、"能不能发" | `/dbs-resonate` | 文稿共鸣诊断，识别“全面但没刺中核心”的问题 |
 | 有短视频文案想优化开头、说"开头怎么写" | `/dbs-hook` | 短视频开头优化，诊断 + 生成方案 |
 | 想起小红书标题、说"帮我起个标题"、要写标题 | `/dbs-xhs-title` | 小红书标题公式，75 个验证过的爆款公式匹配 |
 | 发来文案问有没有 AI 味、说"检测一下" | `/dbs-ai-check` | AI 写作特征识别，只诊断不改 |
-  | 觉得自己在关键决策上走捷径、想找更深入的方法、说"有没有更慢的方法" | `/dbs-slowisfast` | 慢就是快，找到值得慢做的环节 |
+| 觉得自己在关键决策上走捷径、想找更深入的方法、说"有没有更慢的方法" | `/dbs-slowisfast` | 慢就是快，找到值得慢做的环节 |
 | 知道该做什么但做不动、说"我总是拖延" | `/dbs-action` | 执行力诊断，阿德勒框架找到真正原因 |
 | 某个概念搞不清楚、说"这个词什么意思" | `/dbs-deconstruct` | 概念拆解，维特根斯坦式审查 |
 | 目标模糊、说"我想做 X 但不知从何开始"、"我的目标是成为..."、"我想变得更..."、需要把愿望语法变成可检查目标 | `/dbs-goal` | 目标清晰化，维特根斯坦式语法审计 |
-  | 问题模糊、想把问题说清楚、判断能不能让 Agent 自动解决、说"这个问题能不能自动化"、"帮我写问题说明书" | `/dbs-good-question` | 好问题生成器，把模糊问题改成 Agent 可推理、可验证的问题说明书 |
-  | 想把重大决策长期记录下来、回填结果、复盘规律，或说"帮我记下这个决策"、"看看我是不是又在重复老问题" | `/dbs-decision` | 决策系统，在本地沉淀可回填、可复盘的项目 |
-  | 说「更新 dbskill」「升级 dbskill」「检查 dbskill 更新」 | `/dbs-update` | 只同步官方 dbskill，不碰其他 Skill 和用户存档 |
-  | 想搭建知识库、让 AI 读懂本地文件夹、把资料放进知识库、从知识库找资料、更新知识库导航或检查资料结构 | `/dbs-knowledge` | 文件夹知识库，建立知识库导航并持续处理资料的查找、收录、调用和健康检查 |
-  | 想检查、审查或清理本地 skill；担心广告导流、任务劫持、可疑外部调用或敏感数据读取 | `/dbs-skill-cleaner` | 先出带证据的只读审查报告，再按用户确认隔离问题 skill |
-  | 明确提到 Claude Code、Codex、Grok、AGENTS.md、CLAUDE.md、skill bridge、工作台迁移、三端统一，或说"我的 Agent 工作台很乱"、"帮我统一 Claude 和 Codex 和 Grok" | `/dbs-agent-migration` | Agent 工作台迁移，整理规则文件、真源、命名与三端 bridge |
-  | 有逐字稿想检查段落衔接、信息密度、口播流畅度，或说"稿子顺不顺"、"哪里会划走" | `/dbs-script-flow` | 逻辑延续检查，找出观众划走的风险点 |
+| 问题模糊、想把问题说清楚、判断能不能让 Agent 自动解决、说"这个问题能不能自动化"、"帮我写问题说明书" | `/dbs-good-question` | 好问题生成器，把模糊问题改成 Agent 可推理、可验证的问题说明书 |
+| 想把重大决策长期记录下来、回填结果、复盘规律，或说"帮我记下这个决策"、"看看我是不是又在重复老问题" | `/dbs-decision` | 决策系统，在本地沉淀可回填、可复盘的项目 |
+| 说「更新 dbskill」「升级 dbskill」「检查 dbskill 更新」 | `/dbs-update` | 只同步官方 dbskill，不碰其他 Skill 和用户存档 |
+| 想搭建知识库、让 AI 读懂本地文件夹、把资料放进知识库、从知识库找资料、更新知识库导航或检查资料结构 | `/dbs-knowledge` | 文件夹知识库，建立知识库导航并持续处理资料的查找、收录、调用和健康检查 |
+| 想检查、审查或清理本地 skill；担心广告导流、任务劫持、可疑外部调用或敏感数据读取 | `/dbs-skill-cleaner` | 先出带证据的只读审查报告，再按用户确认隔离问题 skill |
+| 明确提到 Claude Code、Codex、Grok、AGENTS.md、CLAUDE.md、skill bridge、工作台迁移、三端统一，或说"我的 Agent 工作台很乱"、"帮我统一 Claude 和 Codex 和 Grok" | `/dbs-agent-migration` | Agent 工作台迁移，整理规则文件、真源、命名与三端 bridge |
+| 有逐字稿想检查段落衔接、信息密度、口播流畅度，或说"稿子顺不顺"、"哪里会划走" | `/dbs-script-flow` | 逻辑延续检查，找出观众划走的风险点 |
 | 想把这次诊断的关键状态留下来、说「保存」「记下来」「存档」「这个结论留着」 | `/dbs-save` | 把当前诊断状态写到本地，下次可恢复 |
 | 想接续上次的诊断、说「上次」「之前的」「接着」「续上」「上次诊断到哪了」 | `/dbs-restore` | 拉出最近一份存档，接着上次继续 |
 | 想出一份可分享的报告、说「出报告」「打包」「整理一份」「给合伙人看的」 | `/dbs-report` | 把多份存档合并成 markdown 报告 |
 | 想系统学习一个主题、想让 AI 连续写课、提到「下一篇」「学习反馈」「继续学」「带我学」 | `/dbs-learning` | 交互式学习，根据用户反馈生成下一篇 |
-  | 说"/dbs-chatroom-austrian"、"/chatroom-austrian"、"奥派聊天室" | `/dbs-chatroom-austrian` | 哈耶克 × 米塞斯 × Claude 多角色讨论 |
+| 说"/dbs-chatroom-austrian"、"/chatroom-austrian"、"奥派聊天室" | `/dbs-chatroom-austrian` | 哈耶克 × 米塞斯 × Claude 多角色讨论 |
 
 ### 工作流程
 
@@ -108,26 +110,28 @@ metadata:
 1. 多角色讨论
 2. 商业模式诊断
 3. 对标分析
-4. 内容诊断
-5. 传播心理解码
-6. 文稿共鸣诊断
-7. 知识库
-8. 开头优化
-9. 小红书标题
-10. AI 检测
-11. Skill 审查与清理
-12. 慢方法诊断
-13. 执行力诊断
-14. 概念拆解
-15. 目标清晰化
-16. 好问题生成器
-17. 交互式学习
-18. 决策系统
+4. 历史同构与标准答案研究
+5. 内容诊断
+6. 传播心理解码
+7. 文稿共鸣诊断
+8. 知识库
+9. 开头优化
+10. 小红书标题
+11. AI 检测
+12. Skill 审查与清理
+13. 慢方法诊断
+14. 执行力诊断
+15. 概念拆解
+16. 目标清晰化
+17. 好问题生成器
+18. 交互式学习
+19. 决策系统
 
 ### 内部文件映射
 
 - `/dbs-diagnosis` -> `references/dbs-diagnosis.md`
 - `/dbs-benchmark` -> `references/dbs-benchmark.md`
+- `/dbs-standard-answer` -> `references/dbs-standard-answer.md`
 - `/dbs-content` -> `references/dbs-content.md`
 - `/dbs-spread` -> `references/dbs-spread.md`
 - `/dbs-resonate` -> `references/dbs-resonate.md`
