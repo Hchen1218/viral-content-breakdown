@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ins Photo Diary — HTML Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* === BROADSIDE DESIGN TOKENS === */
+    :root {
+      --ink: #111111;
+      --ink-alt: #1a1a18;
+      --fire: #e85d26;
+      --cream: #f0ece5;
+      --muted: #888880;
+      --hint: #505048;
+      --line: #282826;
+      --stage-bg: #090909;
+      --slide-bg: var(--ink);
+      --display: "Barlow", "Noto Sans SC", sans-serif;
+      --body: "Barlow", "Noto Sans SC", sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --cut: cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    /* === RESET === */
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; padding: 0; }
+
+    /* ===========================================
+       FIXED 16:9 STAGE: MANDATORY BASE STYLES
+       Slides are authored at 1920×1080 and scaled as a whole.
+       =========================================== */
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: var(--stage-bg, #000);
+    }
+
+    .deck-viewport {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      background: var(--stage-bg, #000);
+    }
+
+    .deck-stage {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      transform-origin: 0 0;
+      background: var(--slide-bg, #fff);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      background: var(--slide-bg, #fff);
+    }
+
+    .slide.active,
+    .slide.visible {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 1;
+    }
+
+    img,
+    video,
+    canvas,
+    svg {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .deck-controls {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      z-index: 1000;
+    }
+
+    @media print {
+      html, body { width: 1920px; height: auto; overflow: visible; background: #fff; }
+      .deck-viewport { position: static; overflow: visible; background: #fff; }
+      .deck-stage { position: static; width: auto; height: auto; transform: none !important; background: none; }
+      .slide {
+        position: relative;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        width: 1920px;
+        height: 1080px;
+        break-after: page;
+        page-break-after: always;
+      }
+      .slide:last-child { break-after: auto; page-break-after: auto; }
+      .deck-controls { display: none !important; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+      }
+    }
+
+    /* === GLOBAL SLIDE GRAMMAR === */
+    body {
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    .slide.dark { background: var(--ink); color: var(--cream); }
+    .slide.orange { background: var(--fire); color: var(--ink); }
+    .slide-pad { position: absolute; inset: 0; padding: 58px 92px 54px; }
+    .slide-grid { display: grid; grid-template-rows: 52px 1fr 44px; height: 100%; }
+
+    .chrome,
+    .foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--hint);
+    }
+    .chrome { border-bottom: 1px solid var(--line); }
+    .foot { border-top: 1px solid var(--line); }
+    .orange .chrome,
+    .orange .foot { border-color: rgba(17,17,17,.2); color: rgba(17,17,17,.48); }
+
+    .kicker {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--fire);
+    }
+    .orange .kicker { color: rgba(17,17,17,.56); }
+    .headline {
+      font-family: var(--display);
+      font-size: 92px;
+      font-weight: 900;
+      line-height: .94;
+      letter-spacing: -.045em;
+    }
+    .display {
+      font-family: var(--display);
+      font-size: 154px;
+      font-weight: 900;
+      line-height: .86;
+      letter-spacing: -.052em;
+    }
+    .lead { font-size: 30px; line-height: 1.42; }
+    .muted { color: var(--muted); }
+    .accent { color: var(--fire); }
+    .orange .accent { color: var(--ink); }
+    .rule { width: 46px; height: 3px; background: var(--fire); }
+    .orange .rule { background: var(--ink); }
+
+    /* === ENTRANCE ANIMATION SYSTEM === */
+    [data-anim] { opacity: 0; }
+    .slide.visible [data-anim] {
+      animation-duration: .72s;
+      animation-timing-function: var(--ease);
+      animation-fill-mode: forwards;
+      animation-delay: var(--delay, 0s);
+    }
+    .slide.visible [data-anim="fade"] { animation-name: fade; }
+    .slide.visible [data-anim="up"] { animation-name: up; }
+    .slide.visible [data-anim="left"] { animation-name: left; }
+    .slide.visible [data-anim="right"] { animation-name: right; }
+    .slide.visible [data-anim="scale"] { animation-name: scale; }
+    .slide.visible [data-anim="wipe"] { animation-name: wipe; opacity: 1; }
+    @keyframes fade { to { opacity: 1; } }
+    @keyframes up { from { transform: translateY(42px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes left { from { transform: translateX(-70px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes right { from { transform: translateX(70px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes scale { from { transform: scale(.92); } to { opacity: 1; transform: scale(1); } }
+    @keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+    /* === SLIDE 01 · RESULT HOOK === */
+    .hook-copy {
+      position: absolute;
+      left: 90px;
+      top: 82px;
+      width: 760px;
+      z-index: 4;
+    }
+    .hook-copy .headline { font-size: 72px; margin-top: 20px; }
+    .source-strip {
+      position: absolute;
+      left: 92px;
+      bottom: 78px;
+      width: 770px;
+      height: 550px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: end;
+      gap: 12px;
+      z-index: 2;
+    }
+    .source-strip figure {
+      height: var(--h);
+      overflow: hidden;
+      background: var(--ink-alt);
+      border-top: 2px solid var(--fire);
+    }
+    .source-strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-final {
+      position: absolute;
+      right: 78px;
+      top: 62px;
+      width: 744px;
+      height: 992px;
+      overflow: hidden;
+      background: var(--ink-alt);
+      z-index: 3;
+    }
+    .hero-final img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .hero-final::before {
+      content: "FINAL / 01";
+      position: absolute;
+      left: 20px;
+      top: 18px;
+      z-index: 2;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .16em;
+      color: rgba(240,236,229,.72);
+    }
+    .hook-arrow {
+      position: absolute;
+      left: 890px;
+      top: 520px;
+      font-family: var(--mono);
+      font-size: 48px;
+      color: var(--fire);
+      z-index: 4;
+    }
+
+    /* === SLIDE 02 · EDITORIAL COLLAGE === */
+    .po-stage { position: absolute; inset: 104px 92px 72px; }
+    .po-title {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 900px;
+      font-family: var(--display);
+      font-size: 130px;
+      font-weight: 900;
+      line-height: .85;
+      letter-spacing: -.055em;
+      z-index: 3;
+    }
+    .po-title em { color: var(--fire); font-style: normal; }
+    .po-composition {
+      position: absolute;
+      right: 0;
+      top: 10px;
+      width: 950px;
+      height: 820px;
+      border-left: 1px solid var(--line);
+    }
+    .po-word {
+      position: absolute;
+      font-family: var(--display);
+      font-weight: 700;
+      letter-spacing: -.025em;
+      color: var(--cream);
+      white-space: nowrap;
+    }
+    .po-word span { color: var(--fire); }
+    .po-block { position: absolute; background: var(--c); overflow: hidden; }
+    .po-block::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(240,236,229,.38);
+    }
+    .po-note {
+      position: absolute;
+      left: 0;
+      bottom: 20px;
+      font-family: var(--mono);
+      font-size: 16px;
+      letter-spacing: .12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* === SLIDE 03 · MANUAL BURDEN === */
+    .burden-body { height: 100%; display: grid; grid-template-columns: 620px 1fr; gap: 80px; align-items: center; }
+    .burden-title { font-size: 118px; }
+    .burden-list { border-top: 1px solid var(--line); }
+    .burden-step {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      align-items: center;
+      min-height: 112px;
+      border-bottom: 1px solid var(--line);
+    }
+    .burden-step .num { font-family: var(--mono); font-size: 15px; letter-spacing: .12em; color: var(--fire); }
+    .burden-step strong { font-size: 42px; font-weight: 700; letter-spacing: -.02em; }
+    .burden-step .mark { font-family: var(--mono); font-size: 14px; color: var(--hint); }
+    .burden-punch {
+      position: absolute;
+      right: 92px;
+      bottom: 48px;
+      font-family: var(--mono);
+      font-size: 15px;
+      letter-spacing: .14em;
+      color: var(--fire);
+      text-transform: uppercase;
+    }
+
+    /* === SLIDE 04 · AI SHORTCUT === */
+    .shortcut-body { height: 100%; position: relative; }
+    .shortcut-title { position: absolute; left: 0; top: 70px; width: 660px; }
+    .shortcut-title .headline { font-size: 112px; }
+    .abstract-stack { position: absolute; left: 100px; bottom: 82px; width: 540px; height: 330px; }
+    .abstract-photo {
+      position: absolute;
+      width: 190px;
+      height: 250px;
+      background: var(--ink-alt);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .abstract-photo::before {
+      content: "";
+      position: absolute;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: var(--fire);
+      left: var(--x);
+      top: var(--y);
+      opacity: .82;
+    }
+    .abstract-photo::after {
+      content: "";
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 28px;
+      height: 2px;
+      background: var(--muted);
+    }
+    .ai-box {
+      position: absolute;
+      right: 20px;
+      top: 120px;
+      width: 740px;
+      height: 580px;
+      border: 3px solid var(--fire);
+      display: grid;
+      place-items: center;
+      background: var(--ink-alt);
+    }
+    .ai-box::before {
+      content: "AI";
+      font-family: var(--display);
+      font-size: 270px;
+      font-weight: 900;
+      letter-spacing: -.07em;
+      color: var(--cream);
+    }
+    .ai-box .prompt-label {
+      position: absolute;
+      left: 22px;
+      top: 20px;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: .15em;
+      color: var(--fire);
+    }
+    .feed-arrow {
+      position: absolute;
+      left: 745px;
+      top: 470px;
+      width: 260px;
+      height: 2px;
+      background: var(--fire);
+    }
+    .feed-arrow::after {
+      content: "";
+      position: absolute;
+      right: -2px;
+      top: -8px;
+      border-left: 16px solid var(--fire);
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+    }
+
+    /* === SLIDE 05 · FAILED RESULTS === */
+    .failure-body { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; height: 100%; align-items: center; padding: 34px 0 14px; }
+    .failure-card { display: grid; grid-template-columns: 350px 1fr; gap: 26px; align-items: center; min-width: 0; }
+    .failure-card img { width: 350px; height: 596px; object-fit: contain; display: block; background: var(--ink-alt); }
+    .failure-card figcaption { font-family: var(--mono); color: var(--hint); font-size: 13px; letter-spacing: .12em; line-height: 1.8; text-transform: uppercase; }
+    .failure-divider { position: absolute; left: 50%; top: 128px; bottom: 100px; width: 1px; background: var(--line); }
+    .failure-quote {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      width: 500px;
+      padding: 28px 32px;
+      background: var(--fire);
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -.035em;
+      text-align: center;
+    }
+
+    /* === SLIDE 06 · SKILL DECLARATION === */
+    .declaration {
+      position: absolute;
+      inset: 0;
+      padding: 64px 94px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .declaration .display { font-size: 154px; line-height: .95; max-width: 1600px; }
+    .declaration .mono-row { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 14px; letter-spacing: .15em; text-transform: uppercase; color: rgba(17,17,17,.48); border-top: 1px solid rgba(17,17,17,.2); padding-top: 18px; }
+
+    /* === SLIDE 07 · WORKFLOW === */
+    .workflow-body { height: 100%; display: flex; flex-direction: column; justify-content: center; }
+    .workflow-title { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
+    .workflow-title .headline { font-size: 82px; }
+    .workflow-note { font-family: var(--mono); font-size: 13px; line-height: 1.8; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; text-align: right; }
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr 46px 1fr 46px 1fr 46px 1fr 46px 1fr;
+      align-items: stretch;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .flow-step { min-height: 360px; padding: 30px 22px 26px 0; display: flex; flex-direction: column; justify-content: space-between; }
+    .flow-step + .flow-arrow + .flow-step { padding-left: 22px; }
+    .flow-num { font-family: var(--mono); font-size: 15px; letter-spacing: .14em; color: var(--fire); }
+    .flow-title { font-family: var(--display); font-size: 42px; font-weight: 800; line-height: 1.05; letter-spacing: -.03em; }
+    .flow-desc { font-size: 19px; line-height: 1.5; color: var(--muted); }
+    .flow-arrow { display: grid; place-items: center; font-family: var(--mono); font-size: 28px; color: var(--fire); border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+    .flow-step.original-step { background: var(--fire); color: var(--ink); margin: 18px 0; padding: 20px 18px; min-height: 324px; }
+    .flow-step.original-step .flow-num,
+    .flow-step.original-step .flow-desc { color: rgba(17,17,17,.66); }
+
+    /* === SLIDE 08 · THREE VISUAL LANGUAGES === */
+    .modes-pad { position: absolute; inset: 0; padding: 42px 72px 30px; }
+    .modes-title { display: flex; align-items: baseline; justify-content: space-between; height: 90px; border-bottom: 1px solid var(--line); }
+    .modes-title h2 { font-family: var(--display); font-size: 62px; font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+    .modes-title span { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; color: var(--hint); text-transform: uppercase; }
+    .modes-grid { height: 844px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding-top: 20px; }
+    .mode-col { position: relative; display: grid; grid-template-rows: 62px 26px 618px 1fr; min-width: 0; }
+    .route-condition {
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.4;
+      letter-spacing: .1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .route-condition b { color: var(--fire); font-weight: 500; }
+    .route-line { width: 2px; height: 26px; background: var(--fire); justify-self: center; transform-origin: top; }
+    .mode-image { width: 100%; height: 618px; object-fit: contain; display: block; background: var(--ink-alt); }
+    .mode-meta { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: start; padding-top: 14px; border-top: 1px solid var(--line); }
+    .mode-name { font-family: var(--display); font-size: 34px; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+    .mode-keywords { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; line-height: 1.55; color: var(--muted); text-align: right; text-transform: uppercase; }
+    .route-baseline { position: absolute; left: 72px; right: 72px; top: 183px; height: 1px; background: var(--line); z-index: -1; }
+    .mode-choice {
+      position: absolute;
+      left: 72px;
+      right: 72px;
+      bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .14em;
+      color: var(--fire);
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    /* === SLIDE 09 · LIFE WITH AI === */
+    .final-statement {
+      position: absolute;
+      inset: 0;
+      padding: 66px 92px 62px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    .final-statement .topline,
+    .final-statement .bottomline {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: .15em;
+      color: rgba(17,17,17,.48);
+      text-transform: uppercase;
+    }
+    .final-statement .topline { border-bottom: 1px solid rgba(17,17,17,.2); padding-bottom: 18px; }
+    .final-statement .bottomline { border-top: 1px solid rgba(17,17,17,.2); padding-top: 18px; }
+    .final-copy { display: flex; flex-direction: column; justify-content: center; }
+    .final-copy .display { font-size: 144px; line-height: .95; }
+    .final-copy .display span { display: block; }
+    .final-copy .display span:nth-child(2) { opacity: .56; }
+    .final-copy .display span:nth-child(3) { opacity: .24; }
+
+    /* === RECORDING-SAFE NAVIGATION === */
+    .nav-dots,
+    .slide-counter {
+      position: fixed;
+      z-index: 10010;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease;
+    }
+    body.show-nav .nav-dots,
+    body.show-nav .slide-counter { opacity: 1; pointer-events: auto; }
+    .nav-dots { left: 50%; bottom: 24px; transform: translateX(-50%); display: flex; gap: 8px; }
+    .nav-dot { width: 7px; height: 7px; border: 0; border-radius: 50%; background: rgba(240,236,229,.28); cursor: pointer; }
+    .nav-dot.active { background: var(--fire); transform: scale(1.35); }
+    .slide-counter { right: 28px; bottom: 22px; font-family: var(--mono); font-size: 11px; color: rgba(240,236,229,.42); letter-spacing: .12em; }
+
+    /* === INLINE EDITOR === */
+    .edit-hotzone { position: fixed; top: 0; left: 0; width: 80px; height: 80px; z-index: 10020; cursor: pointer; }
+    .edit-toggle {
+      position: fixed;
+      left: 18px;
+      top: 18px;
+      z-index: 10021;
+      opacity: 0;
+      pointer-events: none;
+      border: 1px solid rgba(240,236,229,.3);
+      background: rgba(17,17,17,.9);
+      color: var(--cream);
+      padding: 10px 13px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .1em;
+      transition: opacity .3s ease;
+    }
+    .edit-toggle.show,
+    .edit-toggle.active { opacity: 1; pointer-events: auto; }
+    body.editing [data-edit] { outline: 1px dashed var(--fire); outline-offset: 5px; cursor: text; }
+    .edit-status {
+      position: fixed;
+      left: 50%;
+      top: 18px;
+      transform: translateX(-50%);
+      z-index: 10022;
+      opacity: 0;
+      padding: 9px 14px;
+      background: var(--fire);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      pointer-events: none;
+      transition: opacity .25s ease;
+    }
+    body.editing .edit-status { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="deck-viewport">
+    <main class="deck-stage" id="deckStage" aria-label="Ins Photo Diary presentation">
+
+      <!-- === SLIDE 01 · RESULT HOOK === -->
+      <section class="slide dark active visible" aria-label="随手拍变成 Ins 照片日记">
+        <div class="hook-copy">
+          <div class="kicker" data-anim="fade" style="--delay:.05s" data-edit>Ins Photo Diary / 01</div>
+          <h1 class="headline" data-anim="up" style="--delay:.12s" data-edit>随手拍<br><span class="accent">变成</span>照片日记</h1>
+        </div>
+        <div class="source-strip" aria-label="五张原始照片">
+          <figure data-anim="up" style="--delay:.08s; --h:300px"><img src="ins-photo-diary-demo-assets/source-01.jpg" alt="教堂夜景随手拍" /></figure>
+          <figure data-anim="up" style="--delay:.18s; --h:410px"><img src="ins-photo-diary-demo-assets/source-02.jpg" alt="饮品随手拍" /></figure>
+          <figure data-anim="up" style="--delay:.28s; --h:350px"><img src="ins-photo-diary-demo-assets/source-03.jpg" alt="赛车游戏随手拍" /></figure>
+          <figure data-anim="up" style="--delay:.38s; --h:470px"><img src="ins-photo-diary-demo-assets/source-04.jpg" alt="足球拥抱随手拍" /></figure>
+          <figure data-anim="up" style="--delay:.48s; --h:330px"><img src="ins-photo-diary-demo-assets/source-05.jpg" alt="蓝色足球随手拍" /></figure>
+        </div>
+        <div class="hook-arrow" data-anim="fade" style="--delay:.78s">→</div>
+        <figure class="hero-final" data-anim="wipe" style="--delay:.95s">
+          <img src="ins-photo-diary-demo-assets/bold-index.png" alt="Bold Index Ins 照片日记成品" />
+        </figure>
+      </section>
+
+      <!-- === SLIDE 02 · NEW PO FORMAT === -->
+      <section class="slide dark" aria-label="新的 po 图方式">
+        <div class="po-stage">
+          <h2 class="po-title" data-anim="up" style="--delay:.08s" data-edit>一种很新的<br><em>po 图方式</em></h2>
+          <div class="po-note" data-anim="fade" style="--delay:.9s" data-edit>type × photos × atmosphere / made for the first image</div>
+          <div class="po-composition">
+            <div class="po-word" data-anim="left" style="--delay:.16s; left:78px; top:94px; font-size:76px" data-edit>weekend <span>(</span></div>
+            <div class="po-block" data-anim="scale" style="--delay:.28s; --c:#153e76; left:540px; top:70px; width:180px; height:180px"></div>
+            <div class="po-word" data-anim="right" style="--delay:.38s; right:38px; top:104px; font-size:76px" data-edit><span>)</span></div>
+            <div class="po-word" data-anim="left" style="--delay:.48s; left:150px; top:320px; font-size:96px" data-edit>mood <span>(</span></div>
+            <div class="po-block" data-anim="scale" style="--delay:.58s; --c:#e85d26; left:520px; top:300px; width:260px; height:150px"></div>
+            <div class="po-word" data-anim="right" style="--delay:.68s; right:18px; top:325px; font-size:96px" data-edit><span>)</span></div>
+            <div class="po-word" data-anim="left" style="--delay:.78s; left:300px; top:560px; font-size:82px" data-edit>small rituals</div>
+            <div class="po-block" data-anim="scale" style="--delay:.88s; --c:#f0ece5; left:100px; top:560px; width:150px; height:120px"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- === SLIDE 03 · MANUAL BURDEN === -->
+      <section class="slide dark" aria-label="手工制作步骤很多">
+        <div class="slide-pad slide-grid">
+          <header class="chrome"><span data-edit>Manual workflow</span><span>03 / 09</span></header>
+          <div class="burden-body">
+            <div>
+              <div class="kicker" data-anim="fade" style="--delay:.05s" data-edit>Good-looking, but...</div>
+              <h2 class="headline burden-title" data-anim="up" style="--delay:.12s" data-edit>为了发<br>一次照片</h2>
+            </div>
+            <div class="burden-list">
+              <div class="burden-step" data-anim="right" style="--delay:.12s"><span class="num">01</span><strong data-edit>下载软件</strong><span class="mark">DOWNLOAD</span></div>
+              <div class="burden-step" data-anim="right" style="--delay:.23s"><span class="num">02</span><strong data-edit>选择模板</strong><span class="mark">SELECT</span></div>
+              <div class="burden-step" data-anim="right" style="--delay:.34s"><span class="num">03</span><strong data-edit>自己裁图</strong><span class="mark">CROP</span></div>
+              <div class="burden-step" data-anim="right" style="--delay:.45s"><span class="num">04</span><strong data-edit>手动排版</strong><span class="mark">LAYOUT</span></div>
+              <div class="burden-step" data-anim="right" style="--delay:.56s"><span class="num">05</span><strong data-edit>调整文字</strong><span class="mark">TYPE</span></div>
+            </div>
+          </div>
+          <footer class="foot"><span>Ins Photo Diary</span><span>Looks simple. Takes time.</span></footer>
+        </div>
+        <div class="burden-punch" data-anim="fade" style="--delay:.9s" data-edit>好看是真的好看 / 麻烦也是真的麻烦</div>
+      </section>
+
+      <!-- === SLIDE 04 · AI SHORTCUT === -->
+      <section class="slide dark" aria-label="直接把照片交给 AI">
+        <div class="slide-pad slide-grid">
+          <header class="chrome"><span data-edit>The first idea</span><span>04 / 09</span></header>
+          <div class="shortcut-body">
+            <div class="shortcut-title">
+              <div class="kicker" data-anim="fade" style="--delay:.05s" data-edit>Shortcut attempt</div>
+              <h2 class="headline" data-anim="up" style="--delay:.12s" data-edit>直接全部<br>交给 <span class="accent">AI</span></h2>
+              <p class="lead muted" data-anim="up" style="--delay:.24s; margin-top:24px" data-edit>让它照着模板生成，不就好了？</p>
+            </div>
+            <div class="abstract-stack" aria-hidden="true">
+              <div class="abstract-photo" data-anim="up" style="--delay:.18s; left:0; top:64px; --x:25px; --y:24px"></div>
+              <div class="abstract-photo" data-anim="up" style="--delay:.28s; left:118px; top:12px; --x:54px; --y:44px"></div>
+              <div class="abstract-photo" data-anim="up" style="--delay:.38s; left:238px; top:68px; --x:18px; --y:36px"></div>
+            </div>
+            <div class="feed-arrow" data-anim="wipe" style="--delay:.56s"></div>
+            <div class="ai-box" data-anim="scale" style="--delay:.7s"><span class="prompt-label">PROMPT / REFERENCE / GENERATE</span></div>
+          </div>
+          <footer class="foot"><span>Ins Photo Diary</span><span>Prompt-only attempt</span></footer>
+        </div>
+      </section>
+
+      <!-- === SLIDE 05 · FAILED RESULTS === -->
+      <section class="slide dark" aria-label="AI 生成结果与目标感觉不同">
+        <div class="slide-pad slide-grid">
+          <header class="chrome"><span data-edit>The result</span><span>05 / 09</span></header>
+          <div class="failure-body">
+            <figure class="failure-card" data-anim="left" style="--delay:.08s">
+              <img src="ins-photo-diary-demo-assets/failure-a.png" alt="第一次 AI 尝试结果" />
+              <figcaption data-edit>attempt 01<br>clean / literal<br>too expected</figcaption>
+            </figure>
+            <figure class="failure-card" data-anim="right" style="--delay:.18s">
+              <figcaption data-edit style="text-align:right">attempt 02<br>beautiful / polished<br>wrong rhythm</figcaption>
+              <img src="ins-photo-diary-demo-assets/failure-b.png" alt="第二次 AI 尝试结果" />
+            </figure>
+          </div>
+          <footer class="foot"><span>Ins Photo Diary</span><span>Not bad. Not the feeling.</span></footer>
+        </div>
+        <div class="failure-divider" aria-hidden="true"></div>
+        <div class="failure-quote" data-anim="scale" style="--delay:.62s" data-edit>其实也不错<br>但不是我要的感觉</div>
+      </section>
+
+      <!-- === SLIDE 06 · SKILL DECLARATION === -->
+      <section class="slide orange" aria-label="为了稳定产出制作 Skill">
+        <div class="declaration">
+          <div class="broadside-num" data-anim="fade" style="--delay:.05s; font-family:var(--mono); letter-spacing:.14em" data-edit>06 / A REPEATABLE SYSTEM</div>
+          <h2 class="display" data-anim="up" style="--delay:.16s" data-edit>为了稳定产出，<br>我做了一个 Skill。</h2>
+          <div class="mono-row" data-anim="fade" style="--delay:.55s"><span data-edit>From visual taste</span><span data-edit>to repeatable workflow</span></div>
+        </div>
+      </section>
+
+      <!-- === SLIDE 07 · WORKFLOW === -->
+      <section class="slide dark" aria-label="Skill 的完整工作流">
+        <div class="slide-pad slide-grid">
+          <header class="chrome"><span data-edit>How it works</span><span>07 / 09</span></header>
+          <div class="workflow-body">
+            <div class="workflow-title">
+              <h2 class="headline" data-anim="up" style="--delay:.05s" data-edit>一组照片，<span class="accent">一条工作流</span></h2>
+              <div class="workflow-note" data-anim="fade" style="--delay:.18s" data-edit>Agent understands first<br>then makes the visual decision</div>
+            </div>
+            <div class="flow">
+              <div class="flow-step" data-anim="up" style="--delay:.12s"><span class="flow-num">01</span><strong class="flow-title" data-edit>上传<br>3–6 张照片</strong><span class="flow-desc" data-edit>用户只需要提供生活中的原始照片。</span></div>
+              <div class="flow-arrow" data-anim="fade" style="--delay:.24s">→</div>
+              <div class="flow-step" data-anim="up" style="--delay:.28s"><span class="flow-num">02</span><strong class="flow-title" data-edit>理解内容<br>色彩与情绪</strong><span class="flow-desc" data-edit>先理解照片之间的关系，而不是立刻套模板。</span></div>
+              <div class="flow-arrow" data-anim="fade" style="--delay:.4s">→</div>
+              <div class="flow-step" data-anim="up" style="--delay:.44s"><span class="flow-num">03</span><strong class="flow-title" data-edit>判断<br>视觉语言</strong><span class="flow-desc" data-edit>自动选择更合适的构图与文字系统。</span></div>
+              <div class="flow-arrow" data-anim="fade" style="--delay:.56s">→</div>
+              <div class="flow-step" data-anim="up" style="--delay:.6s"><span class="flow-num">04</span><strong class="flow-title" data-edit>生成匹配<br>背景图</strong><span class="flow-desc" data-edit>背景负责统一气氛，保持画面克制。</span></div>
+              <div class="flow-arrow" data-anim="fade" style="--delay:.72s">→</div>
+              <div class="flow-step original-step" data-anim="scale" style="--delay:.78s"><span class="flow-num">05</span><strong class="flow-title" data-edit>使用原图<br>完成排版</strong><span class="flow-desc" data-edit>前景小图来自用户上传的照片。</span></div>
+            </div>
+          </div>
+          <footer class="foot"><span>Ins Photo Diary</span><span>Understand → decide → compose</span></footer>
+        </div>
+      </section>
+
+      <!-- === SLIDE 08 · THREE MODES + ROUTING === -->
+      <section class="slide dark" aria-label="三种视觉模式和自动路由">
+        <div class="modes-pad">
+          <div class="modes-title">
+            <h2 data-anim="up" style="--delay:.04s" data-edit>one set of photos, three visual languages</h2>
+            <span data-anim="fade" style="--delay:.18s" data-edit>Agent routes by relationship / or specify a mode</span>
+          </div>
+          <div class="route-baseline" data-anim="wipe" style="--delay:.84s"></div>
+          <div class="modes-grid">
+            <article class="mode-col">
+              <div class="route-condition" data-anim="up" style="--delay:.72s"><span data-edit>内容丰富 · 跳跃</span><b>01</b></div>
+              <div class="route-line" data-anim="scale" style="--delay:.84s"></div>
+              <img class="mode-image" data-anim="scale" style="--delay:.12s" src="ins-photo-diary-demo-assets/bold-index.png" alt="Bold Index 模式成品" />
+              <div class="mode-meta" data-anim="up" style="--delay:.24s"><strong class="mode-name" data-edit>bold-index</strong><span class="mode-keywords" data-edit>rich content<br>editorial energy</span></div>
+            </article>
+            <article class="mode-col">
+              <div class="route-condition" data-anim="up" style="--delay:.82s"><span data-edit>色调统一 · 安静</span><b>02</b></div>
+              <div class="route-line" data-anim="scale" style="--delay:.94s"></div>
+              <img class="mode-image" data-anim="scale" style="--delay:.28s" src="ins-photo-diary-demo-assets/quiet-journal.png" alt="Quiet Journal 模式成品" />
+              <div class="mode-meta" data-anim="up" style="--delay:.4s"><strong class="mode-name" data-edit>quiet-journal</strong><span class="mode-keywords" data-edit>unified tone<br>quiet mood</span></div>
+            </article>
+            <article class="mode-col">
+              <div class="route-condition" data-anim="up" style="--delay:.92s"><span data-edit>旅行城市 · 连续故事</span><b>03</b></div>
+              <div class="route-line" data-anim="scale" style="--delay:1.04s"></div>
+              <img class="mode-image" data-anim="scale" style="--delay:.44s" src="ins-photo-diary-demo-assets/place-note.png" alt="Place Note 模式成品" />
+              <div class="mode-meta" data-anim="up" style="--delay:.56s"><strong class="mode-name" data-edit>place-note</strong><span class="mode-keywords" data-edit>travel / city<br>place narrative</span></div>
+            </article>
+          </div>
+          <div class="mode-choice" data-anim="fade" style="--delay:1.2s"><span data-edit>Agent 自动判断</span><span data-edit>也可以直接指定</span></div>
+        </div>
+      </section>
+
+      <!-- === SLIDE 09 · LIFE WITH AI === -->
+      <section class="slide orange" aria-label="把生活中麻烦的事交给 Agent">
+        <div class="final-statement">
+          <div class="topline" data-anim="fade" style="--delay:.04s"><span data-edit>09 / LIFE WITH AI</span><span data-edit>Small problems, reusable systems</span></div>
+          <div class="final-copy">
+            <div class="display" data-edit>
+              <span data-anim="left" style="--delay:.12s">你能做，</span>
+              <span data-anim="left" style="--delay:.28s">但很麻烦的事，</span>
+              <span data-anim="left" style="--delay:.44s">不妨交给 Agent。</span>
+            </div>
+          </div>
+          <div class="bottomline" data-anim="fade" style="--delay:.72s"><span data-edit>not magic</span><span data-edit>just a better workflow</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Recording-safe controls stay invisible unless N is pressed. -->
+  <nav class="nav-dots" id="navDots" aria-label="页面导航"></nav>
+  <div class="slide-counter" id="slideCounter" aria-live="polite"></div>
+
+  <!-- Inline editing is hidden until the top-left hotzone or E is used. -->
+  <div class="edit-hotzone" aria-hidden="true"></div>
+  <button class="edit-toggle" id="editToggle" type="button" title="编辑模式 (E)">EDIT</button>
+  <div class="edit-status">Editing · Ctrl/⌘ + S saves</div>
+
+  <script>
+    /* === FIXED-STAGE SLIDE CONTROLLER === */
+    class SlidePresentation {
+      constructor() {
+        this.stage = document.getElementById("deckStage");
+        this.slides = Array.from(document.querySelectorAll(".slide"));
+        this.current = 0;
+        this.locked = false;
+        this.touchStartX = 0;
+        this.navDots = document.getElementById("navDots");
+        this.counter = document.getElementById("slideCounter");
+        this.buildDots();
+        this.setupStageScale();
+        this.setupInput();
+        this.showSlide(0, true);
+      }
+
+      setupStageScale() {
+        const scale = () => {
+          const factor = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+          const x = (window.innerWidth - 1920 * factor) / 2;
+          const y = (window.innerHeight - 1080 * factor) / 2;
+          this.stage.style.transform = `translate(${x}px, ${y}px) scale(${factor})`;
+        };
+        scale();
+        window.addEventListener("resize", scale);
+      }
+
+      buildDots() {
+        this.slides.forEach((_, index) => {
+          const button = document.createElement("button");
+          button.className = "nav-dot";
+          button.type = "button";
+          button.setAttribute("aria-label", `前往第 ${index + 1} 页`);
+          button.addEventListener("click", () => this.showSlide(index));
+          this.navDots.appendChild(button);
+        });
+      }
+
+      replay(slide) {
+        slide.querySelectorAll("[data-anim]").forEach((element) => {
+          element.style.animation = "none";
+          void element.offsetHeight;
+          element.style.animation = "";
+        });
+      }
+
+      showSlide(index, force = false) {
+        const target = Math.max(0, Math.min(index, this.slides.length - 1));
+        if (!force && (this.locked || target === this.current)) return;
+        this.locked = true;
+        this.slides.forEach((slide, i) => {
+          const isCurrent = i === target;
+          slide.classList.toggle("active", isCurrent);
+          slide.classList.toggle("visible", isCurrent);
+          slide.setAttribute("aria-hidden", String(!isCurrent));
+        });
+        this.current = target;
+        this.replay(this.slides[target]);
+        Array.from(this.navDots.children).forEach((dot, i) => dot.classList.toggle("active", i === target));
+        this.counter.textContent = `${String(target + 1).padStart(2, "0")} / ${String(this.slides.length).padStart(2, "0")}`;
+        window.setTimeout(() => { this.locked = false; }, 780);
+      }
+
+      setupInput() {
+        document.addEventListener("keydown", (event) => {
+          if (document.body.classList.contains("editing") && event.target.isContentEditable) return;
+          if (["ArrowRight", "ArrowDown", " ", "PageDown"].includes(event.key)) {
+            event.preventDefault();
+            this.showSlide(this.current + 1);
+          }
+          if (["ArrowLeft", "ArrowUp", "PageUp"].includes(event.key)) {
+            event.preventDefault();
+            this.showSlide(this.current - 1);
+          }
+          if (event.key === "Home") this.showSlide(0);
+          if (event.key === "End") this.showSlide(this.slides.length - 1);
+          if (event.key.toLowerCase() === "f") {
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+            else document.exitFullscreen?.();
+          }
+          if (event.key.toLowerCase() === "n") document.body.classList.toggle("show-nav");
+        });
+
+        document.addEventListener("touchstart", (event) => { this.touchStartX = event.touches[0].clientX; }, { passive: true });
+        document.addEventListener("touchend", (event) => {
+          const delta = event.changedTouches[0].clientX - this.touchStartX;
+          if (Math.abs(delta) > 40) this.showSlide(this.current + (delta < 0 ? 1 : -1));
+        }, { passive: true });
+
+        document.addEventListener("wheel", (event) => {
+          if (this.locked) return;
+          const primary = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+          if (Math.abs(primary) > 8) this.showSlide(this.current + (primary > 0 ? 1 : -1));
+        }, { passive: true });
+      }
+    }
+
+    /* === INLINE TEXT EDITOR === */
+    class InlineEditor {
+      constructor() {
+        this.key = "ins-photo-diary-demo-edits-v1";
+        this.items = Array.from(document.querySelectorAll("[data-edit]"));
+        this.isActive = false;
+        this.toggle = document.getElementById("editToggle");
+        this.load();
+        this.setup();
+      }
+
+      setup() {
+        const hotzone = document.querySelector(".edit-hotzone");
+        let hideTimeout = null;
+        const show = () => { clearTimeout(hideTimeout); this.toggle.classList.add("show"); };
+        const hide = () => {
+          hideTimeout = setTimeout(() => {
+            if (!this.isActive) this.toggle.classList.remove("show");
+          }, 400);
+        };
+        hotzone.addEventListener("mouseenter", show);
+        hotzone.addEventListener("mouseleave", hide);
+        this.toggle.addEventListener("mouseenter", show);
+        this.toggle.addEventListener("mouseleave", hide);
+        hotzone.addEventListener("click", () => this.toggleEditMode());
+        this.toggle.addEventListener("click", () => this.toggleEditMode());
+        document.addEventListener("keydown", (event) => {
+          const editingText = event.target && event.target.isContentEditable;
+          if ((event.key === "e" || event.key === "E") && !editingText) this.toggleEditMode();
+          if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "s") {
+            event.preventDefault();
+            this.save();
+          }
+        });
+      }
+
+      toggleEditMode() {
+        this.isActive = !this.isActive;
+        document.body.classList.toggle("editing", this.isActive);
+        this.toggle.classList.toggle("active", this.isActive);
+        this.toggle.textContent = this.isActive ? "DONE" : "EDIT";
+        this.items.forEach((item) => item.setAttribute("contenteditable", String(this.isActive)));
+        if (!this.isActive) this.save();
+      }
+
+      save() {
+        localStorage.setItem(this.key, JSON.stringify(this.items.map((item) => item.innerHTML)));
+      }
+
+      load() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(this.key) || "null");
+          if (Array.isArray(saved) && saved.length === this.items.length) {
+            saved.forEach((value, index) => { this.items[index].innerHTML = value; });
+          }
+        } catch (_) { /* Ignore malformed local edits. */ }
+      }
+    }
+
+    const presentation = new SlidePresentation();
+    const editor = new InlineEditor();
+  </script>
+</body>
+</html>
