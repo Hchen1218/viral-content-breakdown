@@ -34,8 +34,8 @@ description: |
   上游内部模块规则同步为 references/*.md，根入口仍是本地唯一入口包装，不把内部模块注册成独立 Skill。
 metadata:
   github_url: https://github.com/dontbesilent2025/dbskill
-  github_hash: 195f8f0dcb05afee73fe9b0f3e3052809eebf273
-  version: 2.18.14
+  github_hash: 8282f010964601070334dd7350973386abff6d2b
+  version: 2.18.15
   created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
   dependencies: []
