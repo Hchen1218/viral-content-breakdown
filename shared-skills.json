@@ -4,17 +4,19 @@
     "skillhub": "/Users/cecilialiu/.skillshub",
     "codex": "/Users/cecilialiu/.codex/skills",
     "claude": "/Users/cecilialiu/.claude/skills",
-    "agents": "/Users/cecilialiu/.agents/skills"
+    "agents": "/Users/cecilialiu/.agents/skills",
+    "external": "/Users/cecilialiu/Documents/Codex/ai-content/generated-skills"
   },
   "sourceOfTruth": {
-    "skillhub": [
+    "skillhub": [],
+    "codex": [
       "agent-browser",
       "aihot",
       "beautiful-html-templates",
       "anthropic-skill-creator",
-      "creator-platform-ingest",
       "dbskill",
       "doc",
+      "eva",
       "frontend-design",
       "frontend-slides",
       "gh-address-comments",
@@ -34,6 +36,9 @@
       "vercel-deploy",
       "web-access"
     ],
+    "external": [
+      "creator-platform-ingest"
+    ],
     "repo": [
       "douyin-focus-shuttle",
       "heytea-doodle-poster",
@@ -41,31 +46,39 @@
       "skill-evolution-manager"
     ]
   },
+  "directEntries": {
+    "codex": [
+      "agent-browser",
+      "aihot",
+      "beautiful-html-templates",
+      "anthropic-skill-creator",
+      "dbskill",
+      "doc",
+      "eva",
+      "frontend-design",
+      "frontend-slides",
+      "gh-address-comments",
+      "gh-fix-ci",
+      "github-to-skills",
+      "guizang-social-card-skill",
+      "pdf",
+      "playwright",
+      "playwright-interactive",
+      "screenshot",
+      "skill-manager",
+      "slides",
+      "speech",
+      "spreadsheet",
+      "token-receipt",
+      "transcribe",
+      "vercel-deploy",
+      "web-access"
+    ]
+  },
   "runtimeLinks": {
     "codex": {
-      "skillhub": [
-        "agent-browser",
-        "aihot",
-        "anthropic-skill-creator",
-        "creator-platform-ingest",
-        "dbskill",
-        "doc",
-        "frontend-design",
-        "frontend-slides",
-        "gh-address-comments",
-        "gh-fix-ci",
-        "github-to-skills",
-        "guizang-social-card-skill",
-        "pdf",
-        "playwright",
-        "playwright-interactive",
-        "screenshot",
-        "skill-manager",
-        "speech",
-        "token-receipt",
-        "transcribe",
-        "vercel-deploy",
-        "web-access"
+      "external": [
+        "creator-platform-ingest"
       ],
       "repo": [
         "douyin-focus-shuttle",
@@ -74,13 +87,14 @@
       ]
     },
     "claude": {
-      "skillhub": [
+      "codex": [
         "agent-browser",
         "aihot",
+        "beautiful-html-templates",
         "anthropic-skill-creator",
-        "creator-platform-ingest",
         "dbskill",
         "doc",
+        "eva",
         "frontend-design",
         "frontend-slides",
         "gh-address-comments",
@@ -100,6 +114,9 @@
         "vercel-deploy",
         "web-access"
       ],
+      "external": [
+        "creator-platform-ingest"
+      ],
       "repo": [
         "douyin-focus-shuttle",
         "heytea-doodle-poster",
@@ -107,13 +124,14 @@
       ]
     },
     "agents": {
-      "skillhub": [
+      "codex": [
         "agent-browser",
         "aihot",
+        "beautiful-html-templates",
         "anthropic-skill-creator",
-        "creator-platform-ingest",
         "dbskill",
         "doc",
+        "eva",
         "frontend-design",
         "frontend-slides",
         "gh-address-comments",
@@ -132,6 +150,9 @@
         "transcribe",
         "vercel-deploy",
         "web-access"
+      ],
+      "external": [
+        "creator-platform-ingest"
       ],
       "repo": [
         "douyin-focus-shuttle",

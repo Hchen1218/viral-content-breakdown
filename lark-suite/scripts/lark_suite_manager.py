@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 import selectors
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
@@ -491,8 +492,54 @@ def command_mcp(args: argparse.Namespace) -> int:
     except RuntimeError as exc:
         print(str(exc), file=sys.stderr)
         return 2
-    os.execvpe(command[0], command, env)
-    return 1
+
+    # Keep the npm launcher and its Node child in one process group.  Codex
+    # terminates the configured MCP command when a session ends, but npm may
+    # otherwise exit without reaping lark-mcp, leaving a large orphaned Node
+    # process behind.  Forward lifecycle signals to the entire group and also
+    # clean it up when stdin closes or the launcher exits unexpectedly.
+    process = subprocess.Popen(command, env=env, start_new_session=True)
+    process_group = process.pid
+    forwarded_signals = (signal.SIGINT, signal.SIGTERM, signal.SIGHUP)
+    previous_handlers: dict[signal.Signals, Any] = {}
+
+    def group_exists() -> bool:
+        try:
+            os.killpg(process_group, 0)
+            return True
+        except ProcessLookupError:
+            return False
+        except PermissionError:
+            return True
+
+    def forward(signum: int, _frame: Any) -> None:
+        try:
+            os.killpg(process_group, signum)
+        except ProcessLookupError:
+            pass
+
+    for signum in forwarded_signals:
+        previous_handlers[signum] = signal.getsignal(signum)
+        signal.signal(signum, forward)
+
+    try:
+        return process.wait()
+    finally:
+        for signum, handler in previous_handlers.items():
+            signal.signal(signum, handler)
+        if group_exists():
+            try:
+                os.killpg(process_group, signal.SIGTERM)
+            except ProcessLookupError:
+                pass
+            deadline = time.monotonic() + 2
+            while group_exists() and time.monotonic() < deadline:
+                time.sleep(0.05)
+            if group_exists():
+                try:
+                    os.killpg(process_group, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
 
 
 def build_parser() -> argparse.ArgumentParser:

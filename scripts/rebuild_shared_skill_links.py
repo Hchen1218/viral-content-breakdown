@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 from dataclasses import dataclass
 from datetime import datetime
@@ -18,6 +19,7 @@ class Roots:
     codex: Path
     claude: Path
     agents: Path
+    external: Path
 
     def get(self, key: str) -> Path:
         try:
@@ -26,7 +28,7 @@ class Roots:
             raise KeyError(f"Unknown root key: {key}") from exc
 
     def keys(self) -> tuple[str, ...]:
-        return ("repo", "skillhub", "codex", "claude", "agents")
+        return ("repo", "skillhub", "codex", "claude", "agents", "external")
 
 
 @dataclass(frozen=True)
@@ -34,6 +36,7 @@ class Manifest:
     roots: Roots
     source_of_truth: dict[str, list[str]]
     runtime_links: dict[str, dict[str, list[str]]]
+    direct_entries: dict[str, list[str]]
     runtime_target_overrides: dict[str, dict[str, Path]]
     preserved_entries: dict[str, list[str]]
 
@@ -79,6 +82,7 @@ def load_manifest() -> Manifest:
         codex=Path(data["roots"]["codex"]).expanduser(),
         claude=Path(data["roots"]["claude"]).expanduser(),
         agents=Path(data["roots"]["agents"]).expanduser(),
+        external=Path(data["roots"].get("external", REPO_ROOT)).expanduser().resolve(),
     )
     if roots.repo != REPO_ROOT:
         raise RuntimeError(
@@ -98,6 +102,12 @@ def load_manifest() -> Manifest:
         }
         for runtime_key, source_map in data["runtimeLinks"].items()
     }
+    direct_entries = {
+        runtime_key: unique_ordered(
+            skills, f"directEntries.{runtime_key}"
+        )
+        for runtime_key, skills in data.get("directEntries", {}).items()
+    }
     runtime_target_overrides = {
         runtime_key: {
             skill_name: Path(target_path).expanduser().resolve()
@@ -113,6 +123,7 @@ def load_manifest() -> Manifest:
         roots=roots,
         source_of_truth=source_of_truth,
         runtime_links=runtime_links,
+        direct_entries=direct_entries,
         runtime_target_overrides=runtime_target_overrides,
         preserved_entries=preserved_entries,
     )
@@ -150,8 +161,11 @@ def symlink_matches(link_path: Path, target_path: Path) -> bool:
     if not link_path.is_symlink():
         return False
     try:
-        return link_path.resolve() == target_path.resolve()
-    except FileNotFoundError:
+        declared_target = Path(
+            os.path.abspath(os.path.join(str(link_path.parent), os.readlink(link_path)))
+        )
+        return declared_target == Path(os.path.abspath(str(target_path)))
+    except (FileNotFoundError, OSError):
         return False
 
 
@@ -227,12 +241,18 @@ def validate_manifest(manifest: Manifest) -> dict[str, str]:
         if runtime_key not in known_root_keys:
             raise RuntimeError(f"Unknown runtimeLinks root: {runtime_key}")
         seen_in_runtime: set[str] = set()
+        direct = set(manifest.direct_entries.get(runtime_key, []))
         for source_key, skills in source_map.items():
             if source_key not in known_root_keys:
                 raise RuntimeError(
                     f"Unknown runtimeLinks source {source_key} for {runtime_key}"
                 )
             for skill_name in skills:
+                if skill_name in direct:
+                    raise RuntimeError(
+                        f"Skill {skill_name} is both a direct entry and a runtime link "
+                        f"in {runtime_key}"
+                    )
                 if skill_name in seen_in_runtime:
                     raise RuntimeError(
                         f"Duplicate runtime entry {skill_name} in {runtime_key}"
@@ -249,6 +269,27 @@ def validate_manifest(manifest: Manifest) -> dict[str, str]:
                         f"Skill {skill_name} is routed from {source_key} into "
                         f"{runtime_key}, but authority is {authority}"
                     )
+
+    for runtime_key, skills in manifest.direct_entries.items():
+        if runtime_key not in known_root_keys:
+            raise RuntimeError(f"Unknown directEntries root: {runtime_key}")
+        runtime_root = manifest.roots.get(runtime_key)
+        for skill_name in skills:
+            authority = authoritative_source.get(skill_name)
+            if authority != runtime_key:
+                raise RuntimeError(
+                    f"Direct entry {runtime_key}.{skill_name} must be authoritative "
+                    f"from {runtime_key}, got {authority}"
+                )
+            direct_path = runtime_root / skill_name
+            if not direct_path.exists():
+                raise FileNotFoundError(
+                    f"Direct skill missing from {runtime_key}: {direct_path}"
+                )
+            if direct_path.is_symlink() or not direct_path.is_dir():
+                raise RuntimeError(
+                    f"Direct skill must be a real directory: {direct_path}"
+                )
 
     for runtime_key, override_map in manifest.runtime_target_overrides.items():
         if runtime_key not in known_root_keys:
@@ -272,11 +313,14 @@ def validate_manifest(manifest: Manifest) -> dict[str, str]:
 
 
 def desired_entries_for_runtime(
-    runtime_key: str, runtime_sources: dict[str, list[str]]
+    runtime_key: str,
+    runtime_sources: dict[str, list[str]],
+    direct_entries: list[str] | None = None,
 ) -> set[str]:
     desired: set[str] = set()
     for skills in runtime_sources.values():
         desired.update(skills)
+    desired.update(direct_entries or [])
     return desired
 
 
@@ -285,7 +329,9 @@ def collect_unmanaged_entries(manifest: Manifest) -> dict[str, list[str]]:
     for runtime_key, source_map in manifest.runtime_links.items():
         runtime_root = manifest.roots.get(runtime_key)
         current = existing_entry_names(runtime_root)
-        desired = desired_entries_for_runtime(runtime_key, source_map)
+        desired = desired_entries_for_runtime(
+            runtime_key, source_map, manifest.direct_entries.get(runtime_key, [])
+        )
         preserved = set(manifest.preserved_entries.get(runtime_key, []))
         leftovers = sorted(current - desired - preserved)
         if leftovers:
