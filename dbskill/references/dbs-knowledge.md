@@ -1,8 +1,6 @@
 ---
 name: dbs-knowledge
-description: |
-  dontbesilent 文件夹知识库。把用户已有的本地文件夹变成 Agent 能稳定查找、收录和维护的知识库；用户没有资料时建立最小知识库，有资料时生成知识库导航，后续支持放入新资料、查找答案、识别当前版本、检查知识库、精确更新导航，以及对膨胀的知识库导航进行瘦身和分层治理。用户提到「搭建知识库」「我的文件夹就是知识库」「让 AI 读懂这些文件」「把资料放进知识库」「从知识库找东西」「更新知识库」「更新知识库导航」「优化 SOT」「SOT 太大」「瘦身 Source of Truth」「知识库导航太长」「把明细下沉到 README」「刚才的文件加入知识库」「这条路径写错了」「把这个设为最新版」「哪个文件是最新版」「资料太乱」「建立 Source of Truth」时都应使用。用户无需理解 Source of Truth、RAG 或 Agent 配置。
-  Folder-based knowledge base for AI agents. Use whenever the user wants to build, populate, query, organize, audit, slim, or connect a local folder as a knowledge base, including source-of-truth navigation, layered indexing, and version resolution.
+description: 把本地文件夹建成 Agent 可稳定查找、收录和维护的知识库，并支持导航、版本判断、健康检查及 SOT 分层治理。用户要求搭建、查询、更新、整理或瘦身知识库时使用。
 ---
 
 # dbs-knowledge：文件夹知识库
@@ -425,7 +423,7 @@ Grok bridge 需要 `user_invocable: true`。豆包等通用 Agent 优先通过 `
 - `/dbs-knowledge`：管理一般本地资料的导航、收录、调用、版本关系和健康检查。
 - `/dbs-content-system`：用户要把大量文稿、推文、选题、案例或课程稿加工成内容单元、主题地图和选题装配稿时使用。
 - `/dbs-agent-migration`：用户要整理整个 Agent 工作台、规则真源、宿主命名和多端迁移时使用。
-- `/dbs-bridge`：知识库已经可用，用户只需要把某个 Skill 挂到多个 Agent 时使用。
+- `/dbs-install-skill`：知识库已经可用，用户只需要把某个 Skill 安装到多个 Agent 时使用。
 - `/dbs-decision`：用户要持续记录决策、回填结果并提炼个人规律时使用。
 
 用户的请求越过上述边界时，先完成当前知识库任务，把越界需求和已有结果写进结论，再交回 `/dbs`。可以说明相邻 Skill 的职责，不在当前 Skill 内选择下一站，也不安排固定的多 Skill 长链。
@@ -488,12 +486,4 @@ Grok bridge 需要 `user_invocable: true`。豆包等通用 Agent 优先通过 `
 
 ---
 
-## 不知道下一步用哪个 Skill？
-
-输入 `/dbs`。
-
-这是商业工具箱的导航入口。它会读取刚才的具体结论和你的最新目标，选择当前最值得处理的一个方向，并直接路由到对应 Skill。
-
-你也可以直接说你想做什么。`/dbs` 会尊重你的明确选择。
-
-不熟悉所有 Skill 没关系，下一步不确定时就回 `/dbs`。
+完成当前任务后直接结束。只有用户明确询问下一步，且当前环境已经安装 `/dbs` 时，简短提示：「下一步不确定时，可以输入 `/dbs`。」

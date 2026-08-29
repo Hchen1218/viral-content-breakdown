@@ -1,10 +1,6 @@
 ---
 name: dbs-deconstruct
-description: |
-  dontbesilent 概念拆解。用维特根斯坦 + 奥派经济学的方法，把模糊的商业概念拆到原子级别。
-  触发方式：/dbs-deconstruct、/拆概念、「帮我拆解这个概念」「这个词到底什么意思」
-  Concept deconstruction using Wittgenstein + Austrian economics framework.
-  Trigger: /dbs-deconstruct, "deconstruct this concept", "what does this really mean"
+description: 用维特根斯坦与奥派经济学方法拆解模糊的商业概念。用户要求解释一个词、澄清概念边界或识别概念混用时使用。
 ---
 
 # dbs-deconstruct：概念拆解
@@ -204,12 +200,4 @@ description: |
 
 ---
 
-## 不知道下一步用哪个 Skill？
-
-输入 `/dbs`。
-
-这是商业工具箱的导航入口。它会读取刚才的具体结论和你的最新目标，选择当前最值得处理的一个方向，并直接路由到对应 Skill。
-
-你也可以直接说你想做什么。`/dbs` 会尊重你的明确选择。
-
-不熟悉所有 Skill 没关系，下一步不确定时就回 `/dbs`。
+完成当前任务后直接结束。只有用户明确询问下一步，且当前环境已经安装 `/dbs` 时，简短提示：「下一步不确定时，可以输入 `/dbs`。」

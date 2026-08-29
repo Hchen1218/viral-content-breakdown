@@ -1,10 +1,6 @@
 ---
 name: dbs-skill-cleaner
-description: |
-  本地 skill 清理器。扫描 Claude Code、Codex、Grok、通用 Agents 及指定目录中的 skill，识别广告导流、隐蔽商业意图、任务劫持、可疑外部调用、敏感数据读取等违背用户授权的内容；默认只出报告，经用户确认后隔离问题 skill。
-  触发方式：/dbs-skill-cleaner、/清理 skill、/检查 skill、「扫描本地 skill」「检测 skill 广告」「清除有问题的 skill」「审查我的 skill」
-  Local skill cleaner. Scans installed or specified skills for advertising, covert commercial intent, task hijacking, suspicious external calls, and sensitive-data access. Reports first and quarantines only after explicit confirmation.
-  Trigger: /dbs-skill-cleaner, /clean skills, /check skills, "scan my local skills", "detect skill ads", "clean problematic skills"
+description: 扫描本地 Skill 中的广告导流、隐蔽商业意图、任务劫持、可疑外部调用和敏感数据读取，默认只报告。用户要求审查、清理或隔离问题 Skill 时使用。
 ---
 
 # dbs-skill-cleaner：本地 skill 清理器
@@ -29,7 +25,7 @@ description: |
 用户说「扫描本地 skill」「检查 skill」「检测广告」或没有指定动作时，运行：
 
 ```bash
-python3 references/dbs-skill-cleaner-scripts/skill_cleaner.py scan
+python3 skills/dbs-skill-cleaner/scripts/skill_cleaner.py scan
 ```
 
 脚本会扫描存在的目录：
@@ -42,8 +38,8 @@ python3 references/dbs-skill-cleaner-scripts/skill_cleaner.py scan
 用户指定项目或目录时，追加一个或多个 `--root`：
 
 ```bash
-python3 references/dbs-skill-cleaner-scripts/skill_cleaner.py scan --root "/absolute/path/to/skills"
-python3 references/dbs-skill-cleaner-scripts/skill_cleaner.py scan --root "/path/a" --root "/path/b"
+python3 skills/dbs-skill-cleaner/scripts/skill_cleaner.py scan --root "/absolute/path/to/skills"
+python3 skills/dbs-skill-cleaner/scripts/skill_cleaner.py scan --root "/path/a" --root "/path/b"
 ```
 
 只读扫描。脚本只检查 `SKILL.md` 与实际可执行的代码／脚本文件，跳过 `CHANGELOG`、`TODO`、`docs`、示例、测试与二进制文件；它不会联网、执行被扫描的脚本或修改文件。
@@ -76,7 +72,7 @@ python3 references/dbs-skill-cleaner-scripts/skill_cleaner.py scan --root "/path
 用户明确指定要处理的 skill 后，先复述目标路径和原因，得到确认后运行：
 
 ```bash
-python3 references/dbs-skill-cleaner-scripts/skill_cleaner.py quarantine "/absolute/path/to/skill" --yes --reason "用户确认：<原因>"
+python3 skills/dbs-skill-cleaner/scripts/skill_cleaner.py quarantine "/absolute/path/to/skill" --yes --reason "用户确认：<原因>"
 ```
 
 规则：
@@ -92,13 +88,13 @@ python3 references/dbs-skill-cleaner-scripts/skill_cleaner.py quarantine "/absol
 用户要求恢复时，先列出隔离区内容：
 
 ```bash
-python3 references/dbs-skill-cleaner-scripts/skill_cleaner.py list-quarantine
+python3 skills/dbs-skill-cleaner/scripts/skill_cleaner.py list-quarantine
 ```
 
 确认来源与恢复目标均无冲突后运行：
 
 ```bash
-python3 references/dbs-skill-cleaner-scripts/skill_cleaner.py restore "/absolute/path/to/quarantined/skill" "/absolute/path/to/target" --yes
+python3 skills/dbs-skill-cleaner/scripts/skill_cleaner.py restore "/absolute/path/to/quarantined/skill" "/absolute/path/to/target" --yes
 ```
 
 恢复前应重新扫描该 skill，说明仍然命中的风险；用户仍决定恢复时再执行。
@@ -156,14 +152,4 @@ python3 references/dbs-skill-cleaner-scripts/skill_cleaner.py restore "/absolute
 
 ---
 
-## 不知道下一步用哪个 Skill？
-
-只在审查或隔离任务完成、当前回复不再等待用户确认时使用下面的收尾。
-
-输入 `/dbs`。
-
-这是商业工具箱的导航入口。它会读取刚才的具体结论和你的最新目标，选择当前最值得处理的一个方向，并直接路由到对应 Skill。
-
-你也可以直接说你想做什么。`/dbs` 会尊重你的明确选择。
-
-不熟悉所有 Skill 没关系，下一步不确定时就回 `/dbs`。
+完成当前任务后直接结束。只有用户明确询问下一步，且当前环境已经安装 `/dbs` 时，简短提示：「下一步不确定时，可以输入 `/dbs`。」

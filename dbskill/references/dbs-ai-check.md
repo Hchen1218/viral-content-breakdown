@@ -1,10 +1,6 @@
 ---
 name: dbs-ai-check
-description: |
-  dontbesilent AI 写作特征识别。扫描文案中的 AI 生成痕迹，输出检测报告。默认只诊断不改。
-  触发方式：/dbs-ai-check、/AI检测、「帮我看看有没有 AI 味」「检测一下 AI 特征」
-  AI writing fingerprint detection. Scans copy for AI-generated patterns and outputs a diagnostic report. Diagnosis only by default.
-  Trigger: /dbs-ai-check, "check for AI writing", "does this sound like AI"
+description: 扫描文案中的 AI 写作特征并输出检测报告，默认只诊断不改写。用户要求检查 AI 味、AI 痕迹或机器化表达时使用。
 ---
 
 # dbs-ai-check：AI 写作特征识别
@@ -263,12 +259,4 @@ AI 写作的问题不是写得差，是写得太好、太光滑、太均匀。�
 
 ---
 
-## 不知道下一步用哪个 Skill？
-
-输入 `/dbs`。
-
-这是商业工具箱的导航入口。它会读取刚才的具体结论和你的最新目标，选择当前最值得处理的一个方向，并直接路由到对应 Skill。
-
-你也可以直接说你想做什么。`/dbs` 会尊重你的明确选择。
-
-不熟悉所有 Skill 没关系，下一步不确定时就回 `/dbs`。
+完成当前任务后直接结束。只有用户明确询问下一步，且当前环境已经安装 `/dbs` 时，简短提示：「下一步不确定时，可以输入 `/dbs`。」

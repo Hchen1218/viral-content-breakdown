@@ -1,10 +1,6 @@
 ---
 name: dbs-content
-description: |
-  dontbesilent 内容创作诊断。选题通过后，诊断怎么把这个选题做成好内容。
-  触发方式：/dbs-content、/内容诊断、「这个内容怎么做」「帮我看看这个文案」
-  Content creation diagnosis. After topic passes, diagnose how to turn it into good content.
-  Trigger: /dbs-content, "how should I create this content", "review my copy"
+description: 诊断如何把已经确定的选题做成好内容。用户要求设计内容、检查文案或改善内容表达时使用。
 ---
 
 # dbs-content：内容创作诊断
@@ -217,12 +213,4 @@ AI 写的内容被限流不是 AI 的问题，是用 AI 的人对文字没有洁
 
 ---
 
-## 不知道下一步用哪个 Skill？
-
-输入 `/dbs`。
-
-这是商业工具箱的导航入口。它会读取刚才的具体结论和你的最新目标，选择当前最值得处理的一个方向，并直接路由到对应 Skill。
-
-你也可以直接说你想做什么。`/dbs` 会尊重你的明确选择。
-
-不熟悉所有 Skill 没关系，下一步不确定时就回 `/dbs`。
+完成当前任务后直接结束。只有用户明确询问下一步，且当前环境已经安装 `/dbs` 时，简短提示：「下一步不确定时，可以输入 `/dbs`。」

@@ -1,10 +1,6 @@
 ---
 name: dbs-restore
-description: |
-  把上次诊断的状态拉出来，接着用。配合 dbs-save 使用。
-  触发方式：/dbs-restore、/续上、「接着上次」「之前的结论」「上次诊断到哪了」
-  Restore the most recent diagnosis snapshot saved by dbs-save.
-  Trigger: /dbs-restore, "continue from last time", "where did we leave off"
+description: 恢复由 dbs-save 保存的最近诊断状态。用户要求接着上次、查看此前结论或继续未完成诊断时使用。
 ---
 
 # dbs-restore：接续诊断
@@ -206,12 +202,4 @@ frontmatter 字段名（status / title / source_skill / next_skill）和文件�
 
 ---
 
-## 不知道下一步用哪个 Skill？
-
-输入 `/dbs`。
-
-这是商业工具箱的导航入口。它会读取刚才的具体结论和你的最新目标，选择当前最值得处理的一个方向，并直接路由到对应 Skill。
-
-你也可以直接说你想做什么。`/dbs` 会尊重你的明确选择。
-
-不熟悉所有 Skill 没关系，下一步不确定时就回 `/dbs`。
+完成当前任务后直接结束。只有用户明确询问下一步，且当前环境已经安装 `/dbs` 时，简短提示：「下一步不确定时，可以输入 `/dbs`。」

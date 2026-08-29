@@ -1,10 +1,6 @@
 ---
 name: dbs-report
-description: |
-  把多次 dbs-save 攒下来的诊断状态合并成一份可交付的 markdown 报告。
-  触发方式：/dbs-report、/出报告、「打包」「整理一份」「给合伙人看的」
-  Generate a deliverable diagnosis report by merging all dbs-save snapshots.
-  Trigger: /dbs-report, "package this up", "make me a report"
+description: 把多次 dbs-save 存档合并成可交付的 Markdown 报告。用户要求汇总诊断、整理报告或生成可分享材料时使用。
 ---
 
 # dbs-report：诊断报告
@@ -196,11 +192,11 @@ frontmatter 字段名（status / title / source_skill / next_skill）和文件�
 合并了 {N} 份存档（{起始日期} → {结束日期}）。
 ```
 
-如果 dontbesilent 的环境里有「03-格式工具_微信公众号HTML生成skill」可调，加一句：
+如果用户需要把报告发布到公众号或群里，加一句：
 
-> 想发公众号或群里，可以用 `/03-格式工具_微信公众号HTML生成skill` 把这份 markdown 转成微信后台粘贴版。
+> 想发公众号或群里，可以用 `/dbs-wechat-html` 把这份 markdown 转成微信后台粘贴版。
 
-如果没有就不加。
+用户没有发布需求时不加。
 
 ---
 
@@ -240,12 +236,4 @@ frontmatter 字段名（status / title / source_skill / next_skill）和文件�
 
 ---
 
-## 不知道下一步用哪个 Skill？
-
-输入 `/dbs`。
-
-这是商业工具箱的导航入口。它会读取刚才的具体结论和你的最新目标，选择当前最值得处理的一个方向，并直接路由到对应 Skill。
-
-你也可以直接说你想做什么。`/dbs` 会尊重你的明确选择。
-
-不熟悉所有 Skill 没关系，下一步不确定时就回 `/dbs`。
+完成当前任务后直接结束。只有用户明确询问下一步，且当前环境已经安装 `/dbs` 时，简短提示：「下一步不确定时，可以输入 `/dbs`。」

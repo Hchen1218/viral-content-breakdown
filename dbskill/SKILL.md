@@ -10,6 +10,8 @@ description: |
   - /dbs-benchmark、/对标、「帮我找对标」「我该模仿谁」「我该学谁」
   - /dbs-standard-answer、/标准答案、「历史上谁遇到过类似问题」「这种情况以前有人经历过吗」「有没有经典解法」
   - /dbs-content、/内容诊断、「这个内容怎么做」「帮我看看这个文案」
+  - /dbs-content-risk-check、/发布前排雷、「有没有违规」「这条内容能不能发」「检查敏感词」
+  - /dbs-install-skill、/安装 Skill、「安装 skill」「同步 skill」「卸载 skill」「查看 skill 入口」
   - /dbs-spread、「为什么这个能火」「受众想听什么」
   - /dbs-resonate、「这个文稿有没有问题」「能不能发」
   - /dbs-hook、/hook、「帮我优化开头」「开头怎么写」
@@ -20,6 +22,8 @@ description: |
   - /dbs-deconstruct、/拆概念、「帮我拆解这个概念」「这个词到底什么意思」
   - /dbs-goal、/目标、「帮我搞清楚目标」「我想做个人 IP」「我的目标是成为...」「我想变得更...」
   - /dbs-good-question、/好问题、/问题说明书、「这个问题能不能自动化解决」「帮我把问题说清楚」
+  - /dbs-jtbd、/JTBD、「用户到底要解决什么」「为什么会选择这个方案」「用 JTBD 重写提示词」
+  - /dbs-skill-maker、/制作 Skill、「做一个 skill」「把这个问题沉淀成 skill」「测试候选 skill」
   - /dbs-decision、/决策系统、/决策立案、/结果回填、/状态画像、「帮我记下这个决策」「看看我是不是又在重复老问题」
   - /dbs-learning、/dbs-learn、/交互式学习、「带我学一个课题」「继续下一篇」「根据我的反馈写下一篇」
   - /dbs-save、/存档、「保存这次诊断」「记下来」「这个结论留着」
@@ -34,8 +38,8 @@ description: |
   上游内部模块规则同步为 references/*.md，根入口仍是本地唯一入口包装，不把内部模块注册成独立 Skill。
 metadata:
   github_url: https://github.com/dontbesilent2025/dbskill
-  github_hash: 8282f010964601070334dd7350973386abff6d2b
-  version: 2.18.15
+  github_hash: c331c4e8893a5d19e10a7b674a5c7485ebf170a6
+  version: "2.18.31"
   created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
   dependencies: []
@@ -45,12 +49,30 @@ metadata:
 
 你是 dontbesilent 商业工具箱的唯一入口封装。你的任务有两种：
 
-- **任务开始前**：搞清楚用户要解决什么，把他路由到正确的内部模块并立即执行完整流程
+- **任务开始前**：搞清楚用户要解决什么，判断单个模块是否足够；复杂任务可编排 1 个主模块和最多 2 个辅助模块，然后立即执行完整流程
 - **任务做完后**：如果当前对话里已经出现 dbs-* 诊断结果，给出 2-3 个有理由的下一步方向
 
 **你不做简化版路由，不要求用户手动切换其他 skill，也不要把 references/ 里的原版文件当成可任意改写的摘要。**
 
 上游原版 `skills/dbs/SKILL.md` 已原样保存在 `references/upstream-dbs.md`。当需要对照原版总入口规则时，读取它；当需要执行某个内部模块时，读取下面映射到的参考文件并完整遵循其原规则。
+
+本机采用单入口架构：只暴露当前 `dbskill/SKILL.md`，`references/` 里的模块仅供本入口内部读取。更新时不要执行会把上游所有模块注册成独立 Skill 的 `npx skills add ... --all`，也不要把 `dbs-bridge`、`dbs-content-system`、`dbs-wechat-html` 重新加入本机入口。
+
+## 版本检查
+
+在判断模式和路由之前，定位本 Skill 所在目录并执行版本检查；无输出、失败或超时都不影响正常路由：
+
+```bash
+DBS_LOCAL_VERSION="2.18.31"; bash "<本 SKILL.md 所在目录>/scripts/check-update.sh" "$DBS_LOCAL_VERSION"
+```
+
+## 任务复杂度
+
+- 一个内部模块已经覆盖对象、阶段、交付物和验收条件时，只使用一个模块。
+- 同一任务需要彼此独立、必要且可验证的多项能力时，选择 1 个主模块和最多 2 个辅助模块。
+- 辅助模块只承担前置筛选、证据补充或验收约束中的一种角色，不重复主模块工作。
+- 组合只存在于本入口内部，最终仍交付一份由主模块统领的结果，不生成独立 Skill 入口。
+- 判断为组合时，先读取 `references/composition-contract.md`，再读取入选模块和它们的直接引用。
 
 ---
 
@@ -76,6 +98,8 @@ metadata:
 | 想找对标、想模仿谁、说"我该学谁" | `/dbs-benchmark` | 对标分析，五重过滤排除一切噪音 |
 | 想从历史同构案例中寻找反复有效的解法、说"历史上谁遇到过类似问题"、"这种情况以前怎么解决"、"有没有标准答案" | `/dbs-standard-answer` | 历史同构与标准答案研究，从成功、失败和反例中提炼带条件的机制 |
 | 选题通过了想知道怎么做内容、说"这个内容怎么做" | `/dbs-content` | 内容创作诊断，五维检测 |
+| 提交标题、正文、图片、字幕、口播或视频，想检查敏感词、发布风险、平台审核、违规导流、声明小字，或说"发布前排雷"、"有没有违规"、"这条内容能不能发" | `/dbs-content-risk-check` | 内容发布风险检查，区分机器可能识别的信号与内容本身的问题 |
+| 想安装、同步、去重或卸载 Skill，或询问多个 Agent 的 Skill 入口 | `/dbs-install-skill` | 多端 Skill 安装与入口同步，只处理派生产物，不删除真源 |
 | 有一段已有内容想知道为什么能火、打中了什么情绪、应该从什么方向深化讨论、说"为什么这个能火"、"受众想听什么" | `/dbs-spread` | 传播心理解码，拆出共鸣机制和可放大方向 |
 | 写完文稿心里没底、怕没流量、怕没戳中受众、说"这个文稿有没有问题"、"能不能发" | `/dbs-resonate` | 文稿共鸣诊断，识别“全面但没刺中核心”的问题 |
 | 有短视频文案想优化开头、说"开头怎么写" | `/dbs-hook` | 短视频开头优化，诊断 + 生成方案 |
@@ -86,6 +110,8 @@ metadata:
 | 某个概念搞不清楚、说"这个词什么意思" | `/dbs-deconstruct` | 概念拆解，维特根斯坦式审查 |
 | 目标模糊、说"我想做 X 但不知从何开始"、"我的目标是成为..."、"我想变得更..."、需要把愿望语法变成可检查目标 | `/dbs-goal` | 目标清晰化，维特根斯坦式语法审计 |
 | 问题模糊、想把问题说清楚、判断能不能让 Agent 自动解决、说"这个问题能不能自动化"、"帮我写问题说明书" | `/dbs-good-question` | 好问题生成器，把模糊问题改成 Agent 可推理、可验证的问题说明书 |
+| 想理解用户需求背后的任务、分析为什么会选择或切换方案，或说"用户到底要解决什么"、"用 JTBD 重写提示词" | `/dbs-jtbd` | JTBD 任务澄清，识别情境中的进展、切换力量与选择标准 |
+| 想制作、创建、测试或改进一个可安装的 Skill，或把反复出现的问题沉淀成 Skill | `/dbs-skill-maker` | 从问题契约到行为验证，制作可本地交付的 Skill |
 | 想把重大决策长期记录下来、回填结果、复盘规律，或说"帮我记下这个决策"、"看看我是不是又在重复老问题" | `/dbs-decision` | 决策系统，在本地沉淀可回填、可复盘的项目 |
 | 说「更新 dbskill」「升级 dbskill」「检查 dbskill 更新」 | `/dbs-update` | 只同步官方 dbskill，不碰其他 Skill 和用户存档 |
 | 想搭建知识库、让 AI 读懂本地文件夹、把资料放进知识库、从知识库找资料、更新知识库导航或检查资料结构 | `/dbs-knowledge` | 文件夹知识库，建立知识库导航并持续处理资料的查找、收录、调用和健康检查 |
@@ -126,6 +152,10 @@ metadata:
 17. 好问题生成器
 18. 交互式学习
 19. 决策系统
+20. 发布前风险检查
+21. JTBD 任务澄清
+22. Skill 安装与同步
+23. Skill 制作与验证
 
 ### 内部文件映射
 
@@ -133,6 +163,8 @@ metadata:
 - `/dbs-benchmark` -> `references/dbs-benchmark.md`
 - `/dbs-standard-answer` -> `references/dbs-standard-answer.md`
 - `/dbs-content` -> `references/dbs-content.md`
+- `/dbs-content-risk-check` -> `references/dbs-content-risk-check.md`
+- `/dbs-install-skill` -> `references/dbs-install-skill/SKILL.md`
 - `/dbs-spread` -> `references/dbs-spread.md`
 - `/dbs-resonate` -> `references/dbs-resonate.md`
 - `/dbs-hook` -> `references/dbs-hook.md`
@@ -143,6 +175,8 @@ metadata:
 - `/dbs-deconstruct` -> `references/dbs-deconstruct.md`
 - `/dbs-goal` -> `references/dbs-goal.md`
 - `/dbs-good-question` -> `references/dbs-good-question.md`
+- `/dbs-jtbd` -> `references/dbs-jtbd.md`
+- `/dbs-skill-maker` -> `references/dbs-skill-maker/SKILL.md`
 - `/dbs-decision` -> `references/dbs-decision.md`
   - `/dbs-learning` -> `references/dbs-learning.md`
 - `/dbs-save` -> `references/dbs-save.md`

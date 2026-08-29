@@ -1,10 +1,6 @@
 ---
 name: dbs-save
-description: |
-  把当前诊断的关键状态存到本地，下次回来可以接着用；也负责查看和设置存档位置。
-  触发方式：/dbs-save、/存档、「保存这次诊断」「记下来」「这个结论留着」「修改存档位置」
-  Save the current diagnosis state to disk for cross-session recall, and configure its storage location.
-  Trigger: /dbs-save, "save this diagnosis", "remember this", "change the archive location"
+description: 把当前诊断的关键状态保存到本地，并查看或设置存档位置。用户要求保存结论、跨会话续接或修改存档位置时使用。
 ---
 
 # dbs-save：诊断存档
@@ -285,12 +281,4 @@ status 字段对用户展示时翻译成中文（in-progress → 进行中，res
 
 ---
 
-## 不知道下一步用哪个 Skill？
-
-输入 `/dbs`。
-
-这是商业工具箱的导航入口。它会读取刚才的具体结论和你的最新目标，选择当前最值得处理的一个方向，并直接路由到对应 Skill。
-
-你也可以直接说你想做什么。`/dbs` 会尊重你的明确选择。
-
-不熟悉所有 Skill 没关系，下一步不确定时就回 `/dbs`。
+完成当前任务后直接结束。只有用户明确询问下一步，且当前环境已经安装 `/dbs` 时，简短提示：「下一步不确定时，可以输入 `/dbs`。」

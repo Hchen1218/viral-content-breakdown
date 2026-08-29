@@ -1,10 +1,6 @@
 ---
 name: dbs-benchmark
-description: |
-  dontbesilent 对标分析。用五重过滤法帮你找到值得模仿的对标，排除一切关于「我」的噪音。
-  触发方式：/dbs-benchmark、/对标、「帮我找对标」「我该模仿谁」
-  Benchmark analysis using dontbesilent's five-filter method.
-  Trigger: /dbs-benchmark, "find me a benchmark", "who should I copy"
+description: 用五重过滤法寻找值得模仿的对标，并排除主体差异造成的噪音。用户要求找对标、选择模仿对象或分析竞争参照时使用。
 ---
 
 # dbs-benchmark：对标分析
@@ -214,12 +210,4 @@ description: |
 
 ---
 
-## 不知道下一步用哪个 Skill？
-
-输入 `/dbs`。
-
-这是商业工具箱的导航入口。它会读取刚才的具体结论和你的最新目标，选择当前最值得处理的一个方向，并直接路由到对应 Skill。
-
-你也可以直接说你想做什么。`/dbs` 会尊重你的明确选择。
-
-不熟悉所有 Skill 没关系，下一步不确定时就回 `/dbs`。
+完成当前任务后直接结束。只有用户明确询问下一步，且当前环境已经安装 `/dbs` 时，简短提示：「下一步不确定时，可以输入 `/dbs`。」
