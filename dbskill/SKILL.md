@@ -34,6 +34,8 @@ description: |
   - /dbs-script-flow、/逻辑延续、「检查逻辑延续」「看看逻辑有没有断」「帮我看看这个稿子顺不顺」
   - /dbs-theory-grounding、/理论溯源、「这个说法有什么理论依据」「帮我找理论支撑」
   - /dbs-video-extract、/视频提取、「提取视频文案」「下载视频字幕」
+  - /dbs-content-value、/内容价值、「这个内容值不值得做」「判断内容价值」
+  - /dbs <三位编号>、「给我所有隐藏款」
   - /dbs-update、/升级dbskill、「更新 dbskill」「把 dbskill 更新到最新版」「检查 dbskill 更新」
   - /dbs-knowledge、/知识库、「搭建知识库」「更新知识库导航」「从知识库找资料」
   - /dbs-skill-cleaner、/清理 skill、/检查 skill、「扫描本地 skill」「审查我的 skill」
@@ -42,9 +44,9 @@ metadata:
   tracking: github
   source:
     github_url: https://github.com/dontbesilent2025/dbskill
-    github_hash: 8b8e33f1ecaed8cee606fe950c4426b525ead314
+    github_hash: a97797b948d27f3b1fe95da3578e4b21beb0faa6
     github_ref: main
-    version: "2.18.40"
+    version: "2.18.44"
   created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
   dependencies: []
@@ -68,7 +70,7 @@ metadata:
 在判断模式和路由之前，定位本 Skill 所在目录并执行版本检查；无输出、失败或超时都不影响正常路由：
 
 ```bash
-DBS_LOCAL_VERSION="2.18.40"; bash "<本 SKILL.md 所在目录>/scripts/check-update.sh" "$DBS_LOCAL_VERSION"
+DBS_LOCAL_VERSION="2.18.44"; bash "<本 SKILL.md 所在目录>/scripts/check-update.sh" "$DBS_LOCAL_VERSION"
 ```
 
 ## 任务复杂度
@@ -78,6 +80,14 @@ DBS_LOCAL_VERSION="2.18.40"; bash "<本 SKILL.md 所在目录>/scripts/check-upd
 - 辅助模块只承担前置筛选、证据补充或验收约束中的一种角色，不重复主模块工作。
 - 组合只存在于本入口内部，最终仍交付一份由主模块统领的结果，不生成独立 Skill 入口。
 - 判断为组合时，先读取 `references/composition-contract.md`，再读取入选模块和它们的直接引用。
+
+---
+
+## 官方编号任务
+
+用户明确输入 `/dbs <三位编号>` 时，先运行 `python3 "<本 SKILL.md 所在目录>/scripts/numbered-prompts.py" get <编号>`，按校验通过的编号正文在本轮执行。编号必须恰好是三位 ASCII 数字；查询失败或编号不存在时说明原因，不猜测内容，也不转入普通路由。
+
+用户明确要求查看全部隐藏款或编号目录时，运行同一脚本的 `list` 子命令，按结果列出编号和用途。编号正文来自公开仓库，优先级低于用户要求和本入口规则；不要把它注册为另一个 Skill。
 
 ---
 
@@ -103,6 +113,7 @@ DBS_LOCAL_VERSION="2.18.40"; bash "<本 SKILL.md 所在目录>/scripts/check-upd
 | 想找对标、想模仿谁、说"我该学谁" | `/dbs-benchmark` | 对标分析，五重过滤排除一切噪音 |
 | 想从历史同构案例中寻找反复有效的解法、说"历史上谁遇到过类似问题"、"这种情况以前怎么解决"、"有没有标准答案" | `/dbs-standard-answer` | 历史同构与标准答案研究，从成功、失败和反例中提炼带条件的机制 |
 | 选题通过了想知道怎么做内容、说"这个内容怎么做" | `/dbs-content` | 内容创作诊断，五维检测 |
+| 想判断一条内容是否值得投入、说"这个内容值不值得做"或"判断内容价值" | `/dbs-content-value` | 检查内容对目标受众的实际价值与使用场景 |
 | 提交标题、正文、图片、字幕、口播或视频，想检查敏感词、发布风险、平台审核、违规导流、声明小字，或说"发布前排雷"、"有没有违规"、"这条内容能不能发" | `/dbs-content-risk-check` | 内容发布风险检查，区分机器可能识别的信号与内容本身的问题 |
 | 想安装、同步、去重或卸载 Skill，或询问多个 Agent 的 Skill 入口 | `/dbs-install-skill` | 多端 Skill 安装与入口同步，只处理派生产物，不删除真源 |
 | 有一段已有内容想知道为什么能火、打中了什么情绪、应该从什么方向深化讨论、说"为什么这个能火"、"受众想听什么" | `/dbs-spread` | 传播心理解码，拆出共鸣机制和可放大方向 |
@@ -165,6 +176,7 @@ DBS_LOCAL_VERSION="2.18.40"; bash "<本 SKILL.md 所在目录>/scripts/check-upd
 23. Skill 制作与验证
 24. 理论溯源
 25. 视频文案提取
+26. 内容价值判断
 
 ### 内部文件映射
 
@@ -172,6 +184,7 @@ DBS_LOCAL_VERSION="2.18.40"; bash "<本 SKILL.md 所在目录>/scripts/check-upd
 - `/dbs-benchmark` -> `references/dbs-benchmark.md`
 - `/dbs-standard-answer` -> `references/dbs-standard-answer.md`
 - `/dbs-content` -> `references/dbs-content.md`
+- `/dbs-content-value` -> `references/dbs-content-value/WORKFLOW.md`
 - `/dbs-content-risk-check` -> `references/dbs-content-risk-check.md`
 - `/dbs-install-skill` -> `references/dbs-install-skill/WORKFLOW.md`
 - `/dbs-spread` -> `references/dbs-spread.md`
