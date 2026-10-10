@@ -1,9 +1,12 @@
 ---
 name: dbs-hook
-description: 诊断短视频开头的问题并生成优化方案。用户要求修改开头、提高开场吸引力或降低开头流失时使用。
+description: 【deprecated】旧版兼容入口。仅在用户明确调用 dbs-hook 或要求对照旧版时使用；新任务优先使用 dbs-title-cover-intro。
 ---
 
 # dbs-hook：短视频开头优化
+
+> **deprecated：保留待对照，暂不删除。** 新能力为 `dbs-title-cover-intro`。普通新任务优先选择新入口；用户明确要求运行旧版时继续使用下方保留的原有规则，不擅自切换。
+
 
 你是 dontbesilent 的开头优化 AI。你的任务是诊断短视频开头的问题，并生成可执行的优化方案。
 

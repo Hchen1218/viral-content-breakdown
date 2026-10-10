@@ -34,7 +34,10 @@ description: |
   - /dbs-script-flow、/逻辑延续、「检查逻辑延续」「看看逻辑有没有断」「帮我看看这个稿子顺不顺」
   - /dbs-theory-grounding、/理论溯源、「这个说法有什么理论依据」「帮我找理论支撑」
   - /dbs-video-extract、/视频提取、「提取视频文案」「下载视频字幕」
-  - /dbs-content-value、/内容价值、「这个内容值不值得做」「判断内容价值」
+  - /dbs-content-value、/内容价值、「这个内容值不值得做」「判断内容价值」「评估内容流量」
+  - /dbs-title-cover-intro、「帮我起标题」「封面标题」「视频开头」「冷开场」
+  - /dbs-video-navigation、「视频章节导航」「顶部进度条」「当前位置提示」
+  - /dbs-human-dispatch、「人员任务委派」「给员工派任务」「跟进任务验收」
   - /dbs <三位编号>、「给我所有隐藏款」
   - /dbs-update、/升级dbskill、「更新 dbskill」「把 dbskill 更新到最新版」「检查 dbskill 更新」
   - /dbs-knowledge、/知识库、「搭建知识库」「更新知识库导航」「从知识库找资料」
@@ -44,9 +47,9 @@ metadata:
   tracking: github
   source:
     github_url: https://github.com/dontbesilent2025/dbskill
-    github_hash: a97797b948d27f3b1fe95da3578e4b21beb0faa6
+    github_hash: 564a794ffa8d08eb9c28ede8b2446237c1f67ada
     github_ref: main
-    version: "2.18.44"
+    version: "2.18.47"
   created_at: 2026-04-07T00:00:00+08:00
   entry_point: SKILL.md
   dependencies: []
@@ -70,7 +73,7 @@ metadata:
 在判断模式和路由之前，定位本 Skill 所在目录并执行版本检查；无输出、失败或超时都不影响正常路由：
 
 ```bash
-DBS_LOCAL_VERSION="2.18.44"; bash "<本 SKILL.md 所在目录>/scripts/check-update.sh" "$DBS_LOCAL_VERSION"
+DBS_LOCAL_VERSION="2.18.47"; bash "<本 SKILL.md 所在目录>/scripts/check-update.sh" "$DBS_LOCAL_VERSION"
 ```
 
 ## 任务复杂度
@@ -113,13 +116,16 @@ DBS_LOCAL_VERSION="2.18.44"; bash "<本 SKILL.md 所在目录>/scripts/check-upd
 | 想找对标、想模仿谁、说"我该学谁" | `/dbs-benchmark` | 对标分析，五重过滤排除一切噪音 |
 | 想从历史同构案例中寻找反复有效的解法、说"历史上谁遇到过类似问题"、"这种情况以前怎么解决"、"有没有标准答案" | `/dbs-standard-answer` | 历史同构与标准答案研究，从成功、失败和反例中提炼带条件的机制 |
 | 选题通过了想知道怎么做内容、说"这个内容怎么做" | `/dbs-content` | 内容创作诊断，五维检测 |
-| 想判断一条内容是否值得投入、说"这个内容值不值得做"或"判断内容价值" | `/dbs-content-value` | 检查内容对目标受众的实际价值与使用场景 |
+| 想评估内容开头、受众、流量反应与商业价值，或诊断低流量 | `/dbs-content-value` | 判断观看行为与商业价值，给出优先修改方向 |
 | 提交标题、正文、图片、字幕、口播或视频，想检查敏感词、发布风险、平台审核、违规导流、声明小字，或说"发布前排雷"、"有没有违规"、"这条内容能不能发" | `/dbs-content-risk-check` | 内容发布风险检查，区分机器可能识别的信号与内容本身的问题 |
 | 想安装、同步、去重或卸载 Skill，或询问多个 Agent 的 Skill 入口 | `/dbs-install-skill` | 多端 Skill 安装与入口同步，只处理派生产物，不删除真源 |
-| 有一段已有内容想知道为什么能火、打中了什么情绪、应该从什么方向深化讨论、说"为什么这个能火"、"受众想听什么" | `/dbs-spread` | 传播心理解码，拆出共鸣机制和可放大方向 |
-| 写完文稿心里没底、怕没流量、怕没戳中受众、说"这个文稿有没有问题"、"能不能发" | `/dbs-resonate` | 文稿共鸣诊断，识别“全面但没刺中核心”的问题 |
-| 有短视频文案想优化开头、说"开头怎么写" | `/dbs-hook` | 短视频开头优化，诊断 + 生成方案 |
-| 想起小红书标题、说"帮我起个标题"、要写标题 | `/dbs-xhs-title` | 小红书标题公式，75 个验证过的爆款公式匹配 |
+| 有一段已有内容想知道为什么能火、打中了什么情绪、应该从什么方向深化讨论、说"为什么这个能火"、"受众想听什么" | `/dbs-spread` | 分析共鸣机制、受众情绪与传播动机 |
+| 写完文稿心里没底、怕没流量、怕没戳中受众、说"这个文稿有没有问题"、"能不能发" | `/dbs-resonate` | 诊断文稿共鸣机制，识别核心受众与表达问题 |
+| 明确调用 `/dbs-hook`、`/hook` 或要求对照旧版开头优化 | `/dbs-hook` | 保留旧版开头优化兼容入口 |
+| 想生成或修改文字标题、封面文字、视频开头、冷开场或多平台适配 | `/dbs-title-cover-intro` | 按稿件与拍摄状态确定主线，检查正文兑现并生成配套文案 |
+| 明确调用 `/dbs-xhs-title` 或要求对照旧版小红书标题公式 | `/dbs-xhs-title` | 保留旧版 75 个标题公式兼容入口 |
+| 想制作视频章节导航、顶部进度条或当前位置提示 | `/dbs-video-navigation` | 根据本地视频或带时间戳字幕制作导航 MP4 与时间表 |
+| 想委派人员任务、写清要求、处理员工反馈或验收成果 | `/dbs-human-dispatch` | 准备任务说明并在已有授权范围内派单、跟进和验收 |
 | 发来文案问有没有 AI 味、说"检测一下" | `/dbs-ai-check` | AI 写作特征识别，只诊断不改 |
 | 觉得自己在关键决策上走捷径、想找更深入的方法、说"有没有更慢的方法" | `/dbs-slowisfast` | 慢就是快，找到值得慢做的环节 |
 | 知道该做什么但做不动、说"我总是拖延" | `/dbs-action` | 执行力诊断，阿德勒框架找到真正原因 |
@@ -159,8 +165,8 @@ DBS_LOCAL_VERSION="2.18.44"; bash "<本 SKILL.md 所在目录>/scripts/check-upd
 6. 传播心理解码
 7. 文稿共鸣诊断
 8. 知识库
-9. 开头优化
-10. 小红书标题
+9. 视频开头与冷开场
+10. 标题、封面文字与视频开头
 11. AI 检测
 12. Skill 审查与清理
 13. 慢方法诊断
@@ -176,7 +182,9 @@ DBS_LOCAL_VERSION="2.18.44"; bash "<本 SKILL.md 所在目录>/scripts/check-upd
 23. Skill 制作与验证
 24. 理论溯源
 25. 视频文案提取
-26. 内容价值判断
+26. 内容流量与商业价值判断
+27. 视频章节导航
+28. 人员任务委派
 
 ### 内部文件映射
 
@@ -191,6 +199,9 @@ DBS_LOCAL_VERSION="2.18.44"; bash "<本 SKILL.md 所在目录>/scripts/check-upd
 - `/dbs-resonate` -> `references/dbs-resonate.md`
 - `/dbs-hook` -> `references/dbs-hook.md`
 - `/dbs-xhs-title` -> `references/dbs-xhs-title.md`
+- `/dbs-title-cover-intro` -> `references/dbs-title-cover-intro/WORKFLOW.md`
+- `/dbs-video-navigation` -> `references/dbs-video-navigation/WORKFLOW.md`
+- `/dbs-human-dispatch` -> `references/dbs-human-dispatch/WORKFLOW.md`
 - `/dbs-ai-check` -> `references/dbs-ai-check.md`
 - `/dbs-slowisfast` -> `references/dbs-slowisfast.md`
 - `/dbs-action` -> `references/dbs-action.md`
@@ -214,7 +225,7 @@ DBS_LOCAL_VERSION="2.18.44"; bash "<本 SKILL.md 所在目录>/scripts/check-upd
 - `/dbs-knowledge` -> `references/dbs-knowledge.md`
 - `/dbs-skill-cleaner` -> `references/dbs-skill-cleaner.md`
 
-如果某个参考文件引用了额外脚本或资源，按该文件中记录的 `references/` 相对路径解析。
+如果内部模块位于 `references/<模块>/WORKFLOW.md`，它就是原版模块的入口：其中 `scripts/`、`references/`、`assets/` 相对该模块目录解析；执行其命令时使用该目录作为工作目录或补全绝对路径。扁平 `.md` 模块沿用文件内已记录的资源映射。
 
 ---
 
